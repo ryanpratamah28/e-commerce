@@ -4,7 +4,8 @@
     <div id="auth">
         <div class="wrapper">
             <div class="authForm">
-                <form action="">
+                <form method="POST" action="{{route('login')}}">
+                    @csrf
                     <div class="headForm">
                         <h1>Welcome</h1>
                         <p>Log in to your account to continue</p>
@@ -16,7 +17,7 @@
                                     <img src="../assets/img/iconUser.svg" alt="">
                                 </label>
                             </div>
-                            <input type="username" class="form-control" id="username" placeholder="Username">
+                            <input type="username" name="email" class="form-control" id="username" placeholder="Username">
                         </div>
                         <div class="mb-3 inputForm passwordForm">
                             <div class="icon">
@@ -27,7 +28,7 @@
                             <div class="wrapperToggle">
                                 <i class="bi bi-eye-fill" id="togglePassword"></i>
                             </div>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                         </div>
                         <div class="mb-5 link">
                             <a href="#">Forget Your Password ?</a>
