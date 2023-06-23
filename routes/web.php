@@ -13,7 +13,7 @@ use App\Http\Controllers\ManageProductsController;
 use App\Http\Controllers\ManageTransactionsController;
 
 // User Controller
-use App\Http\Controllers\ProfileUserController;
+use App\Http\Controllers\user\ProfileUserController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckoutController;
@@ -37,6 +37,9 @@ Route::middleware('isGuest')->group(function() {
 // Admin
 Route::middleware(['isLogin', 'CekRole:admin,user'])->group(function () {
     Route::get('/dashboard', [AdminController::class, 'dashboard'])->name('dashboard');
+    Route::get('/profile', [ProfileUserController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit', [ProfileUserController::class, 'editProfile'])->name('profile.edit');
+    Route::patch('/profile/edit', [ProfileUserController::class, 'changeProfile'])->name('profile.change');
 });
 
 // User & Admin
