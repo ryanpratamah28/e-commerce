@@ -9,13 +9,13 @@ use Illuminate\Support\Facades\Auth;
 
 class RegisterController extends Controller
 {
-    public function register(){
+    public function register()
+    {
         return view('auth.register');
     }
 
-        public function registerAccount(Request $request)
+    public function registerAccount(Request $request)
     {
-
         $request->validate([
             'name' => 'required',
             'adress' => 'required',

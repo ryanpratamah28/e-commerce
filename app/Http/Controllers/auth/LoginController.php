@@ -26,7 +26,7 @@ class LoginController extends Controller
 
         $user = $request->only('email', 'password');
         if (Auth::attempt($user)) {
-            return redirect('/dashboard');
+            return redirect('/');
         }else {
             return redirect()->back()->with('error', 'Gagal login, silahkan cek dan coba lagi!');
         }
