@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\User;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 class PagesController extends Controller
 {
@@ -11,7 +13,12 @@ class PagesController extends Controller
     }
 
     public function showProduct(){
-        return view('show_product');
+        if (Auth::check()) {
+            $user = User::where('id', Auth::user()->id)->first();
+            return view('show_product', compact('user'));
+        } else {
+            return view('show_product');
+        }
     }
 
     public function detailProduct(){
@@ -20,10 +27,6 @@ class PagesController extends Controller
 
     public function cart(){
         return view('cart');
-    }
-
-    public function accountProfile(){
-        return view('profile_account');
     }
 
     public function historyTransaction(){

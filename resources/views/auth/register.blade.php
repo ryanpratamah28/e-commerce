@@ -13,14 +13,6 @@
                     <div class="bodyForm">
                         <div class="mb-3 inputForm">
                             <div class="icon">
-                                <label for="phone">
-                                    <img src="../assets/img/iconUser.svg" alt="">
-                                </label>
-                            </div>
-                            <input type="text" name="email" class="form-control" id="username" placeholder="Username">
-                        </div>
-                        <div class="mb-3 inputForm">
-                            <div class="icon">
                                 <label for="name">
                                     <img src="../assets/img/iconUser.svg" alt="">
                                 </label>
@@ -29,8 +21,16 @@
                         </div>
                         <div class="mb-3 inputForm">
                             <div class="icon">
-                                <label for="email">
+                                <label for="phone">
                                     <img src="../assets/img/icon/email 2.png" alt="">
+                                </label>
+                            </div>
+                            <input type="text" name="email" class="form-control" id="email" placeholder="Email">
+                        </div>
+                        <div class="mb-3 inputForm">
+                            <div class="icon">
+                                <label for="email">
+                                    <img src="../assets/img/icon/telephone-handle-silhouette 1.png" alt="">
                                 </label>
                             </div>
                             <input type="number" name="phone" class="form-control" id="phone" placeholder="Phone">
@@ -38,7 +38,7 @@
                         <div class="mb-3 inputForm">
                             <div class="icon">
                                 <label for="email">
-                                    <img src="../assets/img/icon/telephone-handle-silhouette 1.png" alt="">
+                                    <img src="../assets/img/icon/pin (1).png" alt="">
                                 </label>
                             </div>
                             <input type="text" name="adress" class="form-control" id="address" placeholder="Address">
@@ -56,10 +56,10 @@
                         </div>
 
                         <div class="wrapperButton mb-4">
-                            <button class="button">Register</button>
+                            <button class="button" type="submit">Register</button>
                         </div>
 
-                        <p class="toSignUppage">Have an account ? <a href="#">Log In!</a></p>
+                        <p class="toSignUppage">Have an account ? <a href="{{route('login.page')}}">Log In!</a></p>
                     </div>
                 </form>
             </div>
