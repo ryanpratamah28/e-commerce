@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class checkout extends Model
+class Checkout extends Model
 {
     use HasFactory;
     protected $table = 'checkouts';
@@ -15,7 +15,8 @@ class checkout extends Model
         'adress',
         'phone',
         'product',
-        'category',
+        'image-product',
+        'price',
         'status',
         'user_id',
     ];

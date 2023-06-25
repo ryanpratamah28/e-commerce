@@ -18,7 +18,8 @@ return new class extends Migration
             $table->string('adress');
             $table->string('phone');
             $table->string('product');
-            $table->string('category');
+            $table->string('price');
+            $table->string('image-product');
             $table->string('status');
             $table->string('user_id');
             $table->timestamps();

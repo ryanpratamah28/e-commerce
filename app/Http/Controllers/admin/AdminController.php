@@ -7,7 +7,6 @@ use App\Models\User;
 use App\Models\Checkout;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
-
 class AdminController extends Controller
 {
     public function index(){
@@ -26,19 +25,20 @@ public function listOrder()
     return view('admin.order.list-order', compact('order'))->with('i');
 }
 
-    public function detail_pembayaran(){
-        return view('admin.order.detailpembayaran');
+    public function detail_pembayaran($id){
+        $bukti = Checkout::where('id', $id)->first();
+        return view('admin.order.detailpembayaran', compact('bukti'));
     }
 
-    public function validasi($user_id){
-        Checkout::where('user_id', '=', $user_id)->update([
+    public function validasi($id){
+        Checkout::where('id', '=', $id)->update([
             'status' => 1,
         ]);
         return redirect()->back()->with('done', 'Berhasil Validasi');
     }
   
-    public function tolak($user_id){
-        Checkout::where('user_id', '=', $user_id)->update([
+    public function tolak($id){
+        Checkout::where('id', '=', $id)->update([
             'status' => 2,
               // 'done_time' => \Carbon\Carbon::now(),
         ]);

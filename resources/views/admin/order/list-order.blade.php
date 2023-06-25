@@ -24,7 +24,7 @@
                         <td>{{ $orders->adress }}</td>
                         <td>{{ $orders->phone }}</td>
 						<td>
-							<a href="/dashboard/detailpembayaran/{{$orders->user_id}}"><button class="btn btn-primary" style="color: white">Detail</button></a>
+							<a href="/dashboard/detailpembayaran/{{$orders->id}}"><button class="btn btn-primary" style="color: white">Detail</button></a>
 						</td>
                         <td>{{ $orders->product }} / {{ $orders->category }}</td>
 							<td>
@@ -39,14 +39,14 @@
 								<p style="color: red">Di Ditolak</p>
 								@else
 								<div class="d-flex gap-2">
-									<form action="{{ route('validasi', $orders->user_id) }}"
+									<form action="{{ route('validasi', $orders->id) }}"
 										method="POST">
 										@csrf
 										@method('PATCH')
 										<button type="submit" class="btn btn-primary" style="color: white; background:rgb(24, 175, 24)"> Validasi </button>
 									</form>
 
-									<form action="{{ route('tolak', $orders->user_id) }}"
+									<form action="{{ route('tolak', $orders->id) }}"
 										method="POST">
 										@csrf
 										@method('PATCH')

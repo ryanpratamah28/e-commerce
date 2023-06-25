@@ -17,10 +17,10 @@ return new class extends Migration
             $table->string('name');
             $table->text('description');
             $table->integer('price');
-            $table->string('product_img');
-            $table->string('product_category_id');
-            $table->string('product_category_name');
-            $table->string('slug');
+            // $table->string('product_img');
+            // $table->string('product_category_id');
+            // $table->string('product_category_name');
+            // $table->string('slug');
             $table->timestamps();
         });
     }

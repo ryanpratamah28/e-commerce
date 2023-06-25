@@ -59,7 +59,7 @@
                             <button class="button">Register</button>
                         </div>
 
-                        <p class="toSignUppage">Have an account ? <a href="#">Log In!</a></p>
+                        <p class="toSignUppage">Have an account ? <a href="/login">Log In!</a></p>
                     </div>
                 </form>
             </div>

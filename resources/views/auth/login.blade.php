@@ -37,7 +37,7 @@
                         <div class="wrapperButton mb-4">
                             <button class="button">Login</button>
                         </div>
-                        <p class="toSignUppage">Don’t have an account ? <a href="#">Sign up!</a></p>
+                        <p class="toSignUppage">Don’t have an account ? <a href="/register">Sign up!</a></p>
                     </div>
                 </form>
             </div>

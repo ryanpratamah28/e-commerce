@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -16,21 +17,23 @@
     <!--Auth CSS-->
     <link rel="stylesheet" href="../assets/css/auth.css">
 </head>
+
 <body>
 
     @yield('auth')
 
     <!--Vendor-->
-        <!--Jquery-->
-        <script src="../assets/vendor/jquery/jquery.min.js"></script>
-        <!--Bootstrap-->
-        <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+    
+    <!--Jquery-->
+    <script src="../assets/vendor/jquery/jquery.min.js"></script>
+    <!--Bootstrap-->
+    <script src="../assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!--Auth Script-->
     <script>
         const togglePassword = document.querySelector('#togglePassword');
         const password = document.querySelector('#password');
-        
+
         togglePassword.addEventListener('click', function (e) {
             // toggle the type attribute
             const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
@@ -38,6 +41,8 @@
 
             this.classList.toggle('bi-eye-slash-fill');
         });
+
     </script>
 </body>
+
 </html>
