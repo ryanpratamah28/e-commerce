@@ -13,38 +13,33 @@ use App\Http\Controllers\admin\ManageProductsController;
 use App\Http\Controllers\admin\ManageTransactionsController;
 
 // User Controller
-use App\Http\Controllers\ProfileUserController;
+use App\Http\Controllers\user\ProfileUserController;
 use App\Http\Controllers\PagesController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\TransactionController;
 
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
 Route::get('/', function () {
     return view('welcome');
 });
 
-// Auth
-Route::get('/login', [LoginController::class, 'login'])->name('login.page');
-Route::post('/login/auth', [LoginController::class, 'loginAuth'])->name('login.auth');
-
-Route::get('/register', [RegisterController::class, 'register'])->name('register.page');
-Route::post('/register/input', [RegisterController::class, 'registerAccount'])->name('register.account');
-
 Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
+Route::middleware('isGuest')->group(function() {
+    // Auth
+    Route::get('/login', [LoginController::class, 'login'])->name('login.page');
+    Route::post('/login/auth', [LoginController::class, 'loginAuth'])->name('login');
+
+    Route::get('/register', [RegisterController::class, 'register'])->name('register.page');
+    Route::post('/register/input', [RegisterController::class, 'registerAccount'])->name('register.account');
+});
+
 // Admin
+Route::middleware(['isLogin', 'CekRole:admin,user'])->group(function () {
+    Route::get('/profile', [ProfileUserController::class, 'profile'])->name('profile');
+    Route::get('/profile/edit', [ProfileUserController::class, 'editProfile'])->name('profile.edit');
+    Route::patch('/profile/edit', [ProfileUserController::class, 'changeProfile'])->name('profile.change');
+});
 
 Route::prefix('/dashboard')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index.admin');
@@ -68,8 +63,8 @@ Route::prefix('/dashboard')->group(function () {
     });
 
     //USER DATA
-
     Route::get('/users', [AdminController::class, 'userData'])->name('users.data');
 });
+
 
 // User

@@ -4,7 +4,8 @@
     <div id="auth">
         <div class="wrapper">
             <div class="authForm">
-                <form action="">
+                <form action="{{route('register.account')}}" method="POST">
+                    @csrf
                     <div class="headForm">
                         <h1>Create Account</h1>
                         <p>Sign Up account to continue </p>
@@ -16,7 +17,7 @@
                                     <img src="../assets/img/iconUser.svg" alt="">
                                 </label>
                             </div>
-                            <input type="text" class="form-control" id="username" placeholder="Username">
+                            <input type="text" name="email" class="form-control" id="username" placeholder="Username">
                         </div>
                         <div class="mb-3 inputForm">
                             <div class="icon">
@@ -24,7 +25,7 @@
                                     <img src="../assets/img/iconUser.svg" alt="">
                                 </label>
                             </div>
-                            <input type="text" class="form-control" id="name" placeholder="Name">
+                            <input type="text" name="name" class="form-control" id="name" placeholder="Name">
                         </div>
                         <div class="mb-3 inputForm">
                             <div class="icon">
@@ -32,7 +33,7 @@
                                     <img src="../assets/img/icon/email 2.png" alt="">
                                 </label>
                             </div>
-                            <input type="number" class="form-control" id="phone" placeholder="Phone">
+                            <input type="number" name="phone" class="form-control" id="phone" placeholder="Phone">
                         </div>
                         <div class="mb-3 inputForm">
                             <div class="icon">
@@ -40,7 +41,7 @@
                                     <img src="../assets/img/icon/telephone-handle-silhouette 1.png" alt="">
                                 </label>
                             </div>
-                            <input type="text" class="form-control" id="address" placeholder="Address">
+                            <input type="text" name="adress" class="form-control" id="address" placeholder="Address">
                         </div>
                         <div class="mb-3 inputForm passwordForm">
                             <div class="icon">
@@ -51,7 +52,7 @@
                             <div class="wrapperToggle">
                                 <i class="bi bi-eye-fill" id="togglePassword"></i>
                             </div>
-                            <input type="password" class="form-control" id="password" placeholder="Password">
+                            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                         </div>
 
                         <div class="wrapperButton mb-4">
