@@ -13,11 +13,11 @@ use App\Http\Controllers\admin\ManageProductsController;
 use App\Http\Controllers\admin\ManageTransactionsController;
 
 // User Controller
-use App\Http\Controllers\ProfileUserController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\user\ProfileUserController;
+use App\Http\Controllers\user\PagesController;
+use App\Http\Controllers\user\ProductController;
+use App\Http\Controllers\user\CheckoutController;
+use App\Http\Controllers\user\TransactionController;
 
 
 /*
@@ -31,9 +31,18 @@ use App\Http\Controllers\TransactionController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Homepage & Main Page ( Before Login )
+
+Route::get('/', [PagesController::class, 'index'])->name('homepage');
+Route::get('/product', [PagesController::class, 'showProduct'])->name('show.product');
+Route::get('/product/detail', [PagesController::class, 'detailProduct'])->name('detail.product');
+Route::get('/cart', [PagesController::class, 'cart'])->name('cart');
+Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
+Route::get('/history-transaction', [PagesController::class, 'historyTransaction'])->name('history.transaction');
+
+Route::get('/account', [PagesController::class, 'accountProfile'])->name('account.profile');
+
+
 
 // Auth
 Route::get('/login', [LoginController::class, 'login'])->name('login.page');
@@ -53,6 +62,7 @@ Route::prefix('/dashboard')->group(function () {
     Route::prefix('/product')->group(function () {
         Route::get('/', [ManageProductsController::class, 'product'])->name('product');
         Route::get('/create', [ManageProductsController::class, 'createProduct'])->name('create.product');
+        Route::post('/create/store', [ManageProductsController::class, 'storeProduct'])->name('store.product');
         Route::post('/edit/{id}', [ManageProductsController::class, 'editProduct'])->name('edit.product');
         Route::put('/update/{id}', [ManageProductsController::class, 'updateProduct'])->name('update.product');
         Route::delete('/delete/{id}', [ManageProductsController::class, 'deleteProduct'])->name('delete.product');
@@ -62,6 +72,7 @@ Route::prefix('/dashboard')->group(function () {
     Route::prefix('/category')->group(function () {
         Route::get('/', [ManageCategoriesController::class, 'category'])->name('category');
         Route::get('/create', [ManageCategoriesController::class, 'createCategory'])->name('create.category');
+        Route::post('/create/store', [ManageCategoriesController::class, 'storeCategory'])->name('store.category');
         Route::post('/edit/{id}', [ManageCategoriesController::class, 'editCategory'])->name('edit.category');
         Route::put('/update/{id}', [ManageCategoriesController::class, 'updateCategory'])->name('update.category');
         Route::delete('/delete/{id}', [ManageCategoriesController::class, 'deleteCategory'])->name('delete.category');

@@ -15,10 +15,10 @@ class Product extends Model
         'name',
         'description',
         'price',
-        'product_img',
-        'product_category_id',
-        'product_category_name',
-        'product_count',
-        'slug',
+        // 'product_img',
+        // 'product_category_id',
+        // 'product_category_name',
+        // 'product_count',
+        // 'slug',
     ];
 }
