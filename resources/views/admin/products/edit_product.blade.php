@@ -6,12 +6,15 @@
             <h5 class="mb-0">Edit Product</h5>
         </div>
         <div class="card-body">
-            <form>
+            <form method="POST" action="/category/update/{{ $product['id'] }}">
+                @csrf
+                @method('PATCH')
+
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">Product Name</label>
                     <input type="text" class="form-control" id="basic-default-fullname" placeholder="John Doe" />
                 </div>
-                <div class="mb-3">
+                {{-- <div class="mb-3">
                     <label for="exampleFormControlSelect1" class="form-label">Category</label>
                     <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example">
                       <option selected hidden>Select Category</option>
@@ -19,7 +22,7 @@
                       <option value="2">Electronic</option>
                       <option value="3">Gadget</option>
                     </select>
-                  </div>
+                  </div> --}}
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-company">Description</label>
                     <input type="text" class="form-control" id="basic-default-company" placeholder="ACME Inc." />

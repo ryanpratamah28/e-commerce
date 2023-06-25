@@ -14,21 +14,16 @@ use App\Http\Controllers\admin\ManageTransactionsController;
 
 // User Controller
 use App\Http\Controllers\user\ProfileUserController;
-use App\Http\Controllers\PagesController;
-use App\Http\Controllers\ProductController;
-use App\Http\Controllers\CheckoutController;
-use App\Http\Controllers\TransactionController;
+use App\Http\Controllers\user\PagesController;
+use App\Http\Controllers\user\ProductController;
+use App\Http\Controllers\user\CheckoutController;
+use App\Http\Controllers\user\TransactionController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('isGuest')->group(function() {
     // Auth
     Route::get('/login', [LoginController::class, 'login'])->name('login.page');
-    Route::post('/login/auth', [LoginController::class, 'loginAuth'])->name('login');
 
     Route::get('/register', [RegisterController::class, 'register'])->name('register.page');
     Route::post('/register/input', [RegisterController::class, 'registerAccount'])->name('register.account');
@@ -48,6 +43,7 @@ Route::prefix('/dashboard')->group(function () {
     Route::prefix('/product')->group(function () {
         Route::get('/', [ManageProductsController::class, 'product'])->name('product');
         Route::get('/create', [ManageProductsController::class, 'createProduct'])->name('create.product');
+        Route::post('/create/store', [ManageProductsController::class, 'storeProduct'])->name('store.product');
         Route::post('/edit/{id}', [ManageProductsController::class, 'editProduct'])->name('edit.product');
         Route::put('/update/{id}', [ManageProductsController::class, 'updateProduct'])->name('update.product');
         Route::delete('/delete/{id}', [ManageProductsController::class, 'deleteProduct'])->name('delete.product');
@@ -57,6 +53,7 @@ Route::prefix('/dashboard')->group(function () {
     Route::prefix('/category')->group(function () {
         Route::get('/', [ManageCategoriesController::class, 'category'])->name('category');
         Route::get('/create', [ManageCategoriesController::class, 'createCategory'])->name('create.category');
+        Route::post('/create/store', [ManageCategoriesController::class, 'storeCategory'])->name('store.category');
         Route::post('/edit/{id}', [ManageCategoriesController::class, 'editCategory'])->name('edit.category');
         Route::put('/update/{id}', [ManageCategoriesController::class, 'updateCategory'])->name('update.category');
         Route::delete('/delete/{id}', [ManageCategoriesController::class, 'deleteCategory'])->name('delete.category');

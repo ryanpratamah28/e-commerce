@@ -6,12 +6,16 @@
             <h5 class="mb-0">Edit Category</h5>
         </div>
         <div class="card-body">
-            <form>
+            <form method="POST" action="/category/update/{{ $category['id'] }}">
+                @csrf
+                @method('PATCH')
+
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">Category Name</label>
-                    <input type="text" class="form-control" id="basic-default-fullname" placeholder="Toys" />
+                    <input type="text" class="form-control" placeholder="Toys" name="category_name" value="{{ $category['id']}} "/>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{{route('category')}}" class="btn btn-danger">Cancel</a>
             </form>
         </div>
     </div>
