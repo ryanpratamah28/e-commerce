@@ -11,8 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('checkout', function (Blueprint $table) {
+        Schema::create('checkouts', function (Blueprint $table) {
             $table->id();
+            $table->string('bukti_pembayaran');
+            $table->string('name');
+            $table->string('adress');
+            $table->string('phone');
+            $table->string('product');
+            $table->string('category');
+            $table->string('status');
+            $table->string('user_id');
             $table->timestamps();
         });
     }
@@ -22,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('checkout');
+        Schema::dropIfExists('checkouts');
     }
 };

@@ -3,14 +3,45 @@
 namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Checkout;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
     public function index(){
-        return view('admin.layout.dashboard');
+        $user = User::where('id', Auth::user()->id)->first();
+        return view('admin.layout.dashboard', compact('user'));
     }
 
     public function userData(){
-        return view('admin.manage_user.list_user');
+        $userData = User::all();
+        return view('admin.manage_user.list_user', compact('userData'))->with('i');
+    }
+
+public function listOrder()
+{
+    $order = Checkout::with('user')->get();
+    return view('admin.order.list-order', compact('order'))->with('i');
+}
+
+    public function detail_pembayaran(){
+        return view('admin.order.detailpembayaran');
+    }
+
+    public function validasi($user_id){
+        Checkout::where('user_id', '=', $user_id)->update([
+            'status' => 1,
+        ]);
+        return redirect()->back()->with('done', 'Berhasil Validasi');
+    }
+  
+    public function tolak($user_id){
+        Checkout::where('user_id', '=', $user_id)->update([
+            'status' => 2,
+              // 'done_time' => \Carbon\Carbon::now(),
+        ]);
+        return redirect()->back()->with('done', 'Permintaan Di tolak');
     }
 }
