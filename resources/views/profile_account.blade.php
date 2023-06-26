@@ -28,7 +28,9 @@
                 <div class="navbar-wrapper">
                     <div class="leftSideNavbar">
                         <div class="text-logo">
-                            <h1 class="me-3">SH</h1>
+                            <a href="/show" class="text-dark text-decoration-none">
+                                <h1 class="me-3">SH</h1>
+                            </a>
                         </div>
                         <div class="searchMenu">
                             <form action="">
