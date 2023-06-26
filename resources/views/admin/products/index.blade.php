@@ -21,15 +21,15 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $product->name }}</td>
-                            <td>{{ $product->$category->name}}</td>
+                            <td>{{ $product->category->name}}</td>
                             <td>
-                                <img src="{{ asset('images/' . $product->thumb_img) }}" width="100px" alt="">
+                                <img src="{{ asset('storage/images/'. $product->thumb_img) }}"width="100px" alt="">
                             </td>
                             <td>{{ $product->description }}</td>
-                            <td>Rp {{ number_format($product->price, 0, ',', '.') }}</td>
+                            <td>Rp. {{ number_format($product->price, 0, ',', '.') }}</td>
                             <td>
-                                <form method="POST" action="{{ route('dashboard.products.destroy', $product->id) }}" class="d-flex">
-                                    <a class="btn btn-success me-1" href="{{ route('dashboard.products.edit', $product->id) }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                <form method="POST" action="{{ route('dashboard.delete.product', $product->id) }}" class="d-flex">
+                                    <a class="btn btn-success me-1" href="{{ route('dashboard.edit.product', $product->id) }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
 
                                     @csrf
                                     @method('DELETE')
