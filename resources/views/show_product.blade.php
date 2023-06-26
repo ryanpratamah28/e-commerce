@@ -105,6 +105,17 @@
                                             <span class="align-middle">My Profile</span>
                                         </a>
                                     </li>
+									@if(Auth::check())
+										@if(Auth::user()->role == 'admin')
+										<li>
+											<a class="dropdown-item" href="/dashboard">
+												<i class="bx bx-user me-2"></i>
+												<span class="align-middle">Dashboard Admin</span>
+											</a>
+										</li>
+										@else
+									@endif
+									@endif
                                     <li>
                                         <div class="dropdown-divider"></div>
                                     </li>
