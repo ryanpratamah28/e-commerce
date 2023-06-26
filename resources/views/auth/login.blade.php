@@ -30,9 +30,6 @@
                             </div>
                             <input type="password" name="password" class="form-control" id="password" placeholder="Password">
                         </div>
-                        <div class="mb-5 link">
-                            <a href="#">Forget Your Password ?</a>
-                        </div>
 
                         <div class="wrapperButton mb-4">
                             <button class="button" type="submit">Login</button>
