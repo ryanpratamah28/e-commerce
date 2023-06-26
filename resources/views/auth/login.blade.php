@@ -42,7 +42,8 @@
                             <button class="button" type="submit">Login</button>
                         </div>
 
-                        <p class="toSignUppage">Don’t have an account ? <a href="{{route('register.page')}}">Sign up!</a></p>
+                        <p class="toSignUppage">Don’t have an account ? <a href="{{ route('register.page') }}">Sign up!</a>
+                        </p>
                     </div>
                 </form>
             </div>
