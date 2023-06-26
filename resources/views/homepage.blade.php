@@ -46,7 +46,7 @@
                     </li>
                 </ul>
                 <div class="slicing-color"></div>
-@if (Route::has('login'))
+                @if (Route::has('login'))
                     @auth
                         <a class="btn btn-light" href="{{ route('logout') }}">
                             <img src="assets/img/homepage/icons8-login-50.png" width="20" height="20">
@@ -65,7 +65,6 @@
                         @endif
                     @endauth
                 @endif
->>>>>>> 9745f0e2a688518e7972b670c267b2eb4389ebf5
             </div>
         </div>
         </div>

@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('adress');
             $table->string('phone');
+            $table->string('email');
             $table->string('product');
             $table->string('price');
             $table->string('image-product');

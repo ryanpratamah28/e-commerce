@@ -419,7 +419,24 @@
     }
 
     function getProductPrice(index) {
-      return cartData[index].totalPrice;
+      var totalPrice = cartData[index].totalPrice;
+
+      // Cek apakah ada lebih dari satu totalPrice
+      if (cartData.length > 1) {
+        var combinedTotalPrice = calculateCombinedTotalPrice();
+        return combinedTotalPrice;
+      } else {
+        return totalPrice;
+      }
+    }
+
+    // Fungsi untuk menghitung total harga kombinasi
+    function calculateCombinedTotalPrice() {
+      var combinedTotalPrice = 0;
+      for (var i = 0; i < cartData.length; i++) {
+        combinedTotalPrice += cartData[i].totalPrice;
+      }
+      return combinedTotalPrice;
     }
 
     var productText = generateProductText();
@@ -437,6 +454,7 @@
     priceInput.val('Rp. ' + firstProductPrice);
   });
 </script>
+
 
     <script>
   $(document).ready(function() {

@@ -100,7 +100,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('profile.account') }}">
+                                        <a class="dropdown-item" href="/profile">
                                             <i class="bx bx-user me-2"></i>
                                             <span class="align-middle">My Profile</span>
                                         </a>
@@ -129,9 +129,9 @@
                             </li>
 
                             <div class="cartWrapper">
-                                <a href="#" class="cart icon">
+                                <a href="/cart" class="cart icon">
                                     <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
-                                    <div class="totalItem">9</div>
+                                    <div class="totalItem">0</div>
                                 </a>
                             </div>
                         </div>
@@ -288,7 +288,7 @@
                             <p>Penawaran Terbaik</p>
                         </a>
                         <div class="bestOfferProduct">
-                            <a href="#" class="product">
+                            <a href="/detail" class="product">
                                 <div class="imagesProduct">
                                     <img src="./assets/img/flexible-1.jpg" alt="" />
                                 </div>

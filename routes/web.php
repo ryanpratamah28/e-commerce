@@ -31,7 +31,6 @@ Route::middleware('isGuest')->group(function() {
     // Auth
     Route::get('/login', [LoginController::class, 'login'])->name('login.page');
     Route::post('/login/auth', [LoginController::class, 'loginAuth'])->name('login');
-
     Route::get('/register', [RegisterController::class, 'register'])->name('register.page');
     Route::post('/register/input', [RegisterController::class, 'registerAccount'])->name('register.account');
 });
@@ -78,5 +77,4 @@ Route::middleware(['isLogin', 'CekRole:admin'])->prefix('/dashboard')->group(fun
     Route::patch('/detailpembayaran/validasi/{checkout:id}', [AdminController::class, 'validasi'])->name('validasi');
     Route::patch('/detailpembayaran/tolak/{checkout:id}', [AdminController::class, 'tolak'])->name('tolak');
 
-
-// User
+});

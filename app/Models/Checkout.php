@@ -14,6 +14,7 @@ class Checkout extends Model
         'bukti_pembayaran',
         'adress',
         'phone',
+        'email',
         'product',
         'image-product',
         'price',
