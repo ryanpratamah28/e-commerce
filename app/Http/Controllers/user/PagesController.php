@@ -19,17 +19,13 @@ class PagesController extends Controller
 
     public function showProduct()
     {
-        if (Auth::check()) {
-            $user = User::where('id', Auth::user()->id)->first();
-            $products = Product::with('category')
-                ->limit(5)
-                ->get();
-            $product = Product::all();
-            $categories = Category::all();
-            return view('show_product', compact('products', 'user', 'categories', 'product'));
-        } else {
-            return view('show_product');
-        }
+        $user = User::where('id', Auth::user()->id)->first();
+        $products = Product::with('category')
+            ->limit(5)
+            ->get();
+        $product = Product::all();
+        $categories = Category::all();
+        return view('show_product', compact('products', 'user', 'categories', 'product'));
 
         // if (Auth::check()) {
         //     $user = User::where('id', Auth::user()->id)->first();
@@ -38,10 +34,9 @@ class PagesController extends Controller
         //     $products = Product::with('category')->limit(5)->get();
         //     $product = Product::all();
         //     $categories = Category::all();
-        
-        //     return view('show_product', compact('product', 'products', 'categories', ));        
+
+        //     return view('show_product', compact('product', 'products', 'categories', ));
         // }
-        
     }
 
     public function detailProduct($id)
