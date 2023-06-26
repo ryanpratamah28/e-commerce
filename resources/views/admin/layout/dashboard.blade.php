@@ -17,7 +17,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../../assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../../../assets/img/favicon/favicon.ico" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -28,21 +28,21 @@
     />
 
     <!-- Icons -->
-    <link rel="stylesheet" href="../../assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/fonts/boxicons.css" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="../../assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../../assets/css/demo.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/css/core.css" class="template-customizer-core-css" />
+    <link rel="stylesheet" href="../../../assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
+    <link rel="stylesheet" href="../../../assets/css/demo.css" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
-    <link rel="stylesheet" href="../../assets/vendor/libs/apex-charts/apex-charts.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet" href="../../../assets/vendor/libs/apex-charts/apex-charts.css" />
 
 
     <!-- Helpers -->
-    <script src="../../assets/vendor/js/helpers.js"></script>
-    <script src="../../assets/js/config.js"></script>
+    <script src="../../../assets/vendor/js/helpers.js"></script>
+    <script src="../../../assets/js/config.js"></script>
   </head>
 
   <body>
@@ -76,15 +76,15 @@
               <span class="menu-header-text">Product</span>
             </li>
 
-            <li class="menu-item {{ (request()->is('dashboard/products/create')) ? 'active' : '' }}" >
-              <a href="/dashboard/products/create" class="menu-link">
+            <li class="menu-item {{ (request()->is('dashboard/product/create')) ? 'active' : '' }}" >
+              <a href="/dashboard/product/create" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-plus"></i>
                 <div data-i18n="Basic">Add Product</div>
               </a>
             </li>
 
-            <li class="menu-item {{ (request()->is('dashboard/products')) ? 'active' : '' }}" >
-              <a href="/dashboard/products" class="menu-link">
+            <li class="menu-item {{ (request()->is('dashboard/product')) ? 'active' : '' }}" >
+              <a href="/dashboard/product" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">List Product</div>
               </a>
@@ -93,15 +93,15 @@
             <!-- Components -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Category</span></li>
             <!-- Cards -->
-            <li class="menu-item {{ (request()->is('dashboard/categories/create')) ? 'active' : '' }}" >
-              <a href="/dashboard/categories/create" class="menu-link">
+            <li class="menu-item {{ (request()->is('dashboard/category/create')) ? 'active' : '' }}" >
+              <a href="/dashboard/category/create" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-plus"></i>
                 <div data-i18n="Basic">Add Category</div>
               </a>
             </li>
 
-            <li class="menu-item {{ (request()->is('dashboard/categories')) ? 'active' : '' }}" >
-              <a href="/dashboard/categories" class="menu-link">
+            <li class="menu-item {{ (request()->is('dashboard/category')) ? 'active' : '' }}" >
+              <a href="/dashboard/category" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">List Category</div>
               </a>
@@ -148,7 +148,7 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                      <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                     </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
@@ -157,7 +157,7 @@
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                              <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
                             </div>
                           </div>
                           <div class="flex-grow-1">
@@ -322,22 +322,22 @@
 
     <!-- Core JS -->
     <!-- build:js assets/vendor/js/core.js -->
-    <script src="../../assets/vendor/libs/jquery/jquery.js"></script>
-    <script src="../../assets/vendor/libs/popper/popper.js"></script>
-    <script src="../../assets/vendor/js/bootstrap.js"></script>
-    <script src="../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="../../../assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../../../assets/vendor/libs/popper/popper.js"></script>
+    <script src="../../../assets/vendor/js/bootstrap.js"></script>
+    <script src="../../../assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-    <script src="../../assets/vendor/js/menu.js"></script>
+    <script src="../../../assets/vendor/js/menu.js"></script>
     <!-- endbuild -->
 
     <!-- Vendors JS -->
-    <script src="../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <script src="../../../assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
     <!-- Main JS -->
-    <script src="../../assets/js/main.js"></script>
+    <script src="../../../assets/js/main.js"></script>
 
     <!-- Page JS -->
-    <script src="../../assets/js/dashboards-analytics.js"></script>
+    <script src="../../../assets/js/dashboards-analytics.js"></script>
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>

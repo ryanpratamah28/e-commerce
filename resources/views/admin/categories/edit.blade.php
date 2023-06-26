@@ -6,13 +6,13 @@
             <h5 class="mb-0">Edit Category</h5>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('dashboard.categories.update', $categories->id) }}" enctype="multipart/form-data">
+            <form action="{{ route('dashboard.update.category', $category->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-fullname">Category Name</label>
-                    <input type="text" class="form-control" placeholder="Toys" name="category_name" value="{{ $category->name }}" />
+                    <input type="text" class="form-control" placeholder="Toys" name="name" value="{{ $category->name }}" />
                     @error('name')
                         <div class="form-text text-danger">{{ $message }}</div>
                     @enderror
@@ -26,8 +26,8 @@
                     @enderror
                 </div>
 
+                <a href="{{ route('dashboard.category') }}" class="btn btn-danger">Cancel</a>
                 <button type="submit" class="btn btn-primary">Update</button>
-                <a href="{{ route('category') }}" class="btn btn-danger">Cancel</a>
             </form>
         </div>
     </div>
