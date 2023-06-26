@@ -4,7 +4,13 @@
     <div id="auth">
         <div class="wrapper">
             <div class="authForm">
-                <form method="POST" action="{{route('login')}}">
+                @if (session('error'))
+                    <div class="alert alert-danger" role="alert">
+                        {{ session('error') }}
+                    </div>
+                @endif
+
+                <form method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="headForm">
                         <h1>Welcome</h1>
@@ -28,16 +34,15 @@
                             <div class="wrapperToggle">
                                 <i class="bi bi-eye-fill" id="togglePassword"></i>
                             </div>
-                            <input type="password" name="password" class="form-control" id="password" placeholder="Password">
-                        </div>
-                        <div class="mb-5 link">
-                            <a href="#">Forget Your Password ?</a>
+                            <input type="password" name="password" class="form-control" id="password"
+                                placeholder="Password">
                         </div>
 
                         <div class="wrapperButton mb-4">
                             <button class="button" type="submit">Login</button>
                         </div>
-                        <p class="toSignUppage">Don’t have an account ? <a href="/register">Sign up!</a></p>
+
+                        <p class="toSignUppage">Don’t have an account ? <a href="{{route('register.page')}}">Sign up!</a></p>
                     </div>
                 </form>
             </div>
