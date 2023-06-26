@@ -61,9 +61,6 @@
                             </div>
                         </div> -->
                         <div class="afterLogin">
-                            <a href="#" class="profileWrapper icon">
-                                <img src="./assets/img/icon/profile_icon.svg" alt="">
-                            </a>
                             <div class="cartWrapper">
                                 <a href="/cart" class="cart icon">
                                     <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">

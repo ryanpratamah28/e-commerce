@@ -167,6 +167,7 @@
                 <div class="container">
                     <div class="row first-line">
                         <div class="col-12 col-lg-8 col-xl-9">
+                            <a class="btn btn-outline-danger" href="/show" style="width: 100px; margin: -20px 0 10px 0;">Back</a>
                             <div class="card">
                                 <div class="wrapperDetailProduct row">
                                     <div class="col-12 col-lg-5">
