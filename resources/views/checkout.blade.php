@@ -134,8 +134,8 @@
                                         </div>
                                         <div class="col-12"></div>
                                     </div>
-
-                                    <div class="col-12 d-flex justify-content-end">
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <a href="/cart" class="btn btn-outline-danger">Back</a>
                                         <button type="submit" class="button button-primary">Submit</button>
                                     </div>
                             </form>

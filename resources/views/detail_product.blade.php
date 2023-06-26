@@ -86,6 +86,7 @@
                 <div class="row first-line">
                     <div class="col-12 col-lg-8 col-xl-9">
                         <div class="card">
+                            <a class="btn btn-outline-danger" href="/show" style="width: 100px;">Back</a>
                             <div class="wrapperDetailProduct row">
                                 <div class="col-12 col-lg-5">
                                     <div class="wrapper-image-product">
