@@ -169,7 +169,7 @@
 
     <div id="mainContent">
         <div class="container first-line">
-            <div class="bannerSection">
+            <!-- <div class="bannerSection">
                 <div class="wrapperBanner">
                     <a href="#" class="banner">
                         <img src="./assets/img/Banner.png" alt="" />
@@ -189,7 +189,7 @@
                     </a>
                 </div>
                 <div class="slick-slider-dots"></div>
-            </div>
+            </div> -->
         </div>
         <div class="container">
             <div class="row line">

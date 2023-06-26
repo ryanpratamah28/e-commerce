@@ -14,8 +14,10 @@ class PagesController extends Controller
         return view('user.page');
     }
 
-    public function home(){
-        return view('homepage');
+    public function home()
+    {
+        $count = Checkout::where('status', 1)->count();
+        return view('homepage', compact('count'));
     }
 
     public function showProduct(){

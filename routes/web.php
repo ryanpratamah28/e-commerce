@@ -19,13 +19,13 @@ use App\Http\Controllers\user\ProductController;
 use App\Http\Controllers\user\CheckoutController;
 use App\Http\Controllers\user\TransactionController;
 
-Route::get('/', [PagesController::class, 'home'])->name('homepage');
-Route::get('/show', [PagesController::class, 'showProduct'])->name('show.product');
-Route::get('/cart', [PagesController::class, 'cart'])->name('cart');
-Route::get('/detail', [PagesController::class, 'detailProduct'])->name('detail.product');
-Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
+// Route::get('/', [PagesController::class, 'home'])->name('homepage');
+// Route::get('/show', [PagesController::class, 'showProduct'])->name('show.product');
+// Route::get('/cart', [PagesController::class, 'cart'])->name('cart');
+// Route::get('/detail', [PagesController::class, 'detailProduct'])->name('detail.product');
+// // Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
 
-Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+// Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 
 Route::middleware('isGuest')->group(function() {
     // Auth
@@ -44,6 +44,12 @@ Route::middleware(['isLogin', 'CekRole:admin,user'])->group(function () {
     Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
     Route::get('/history', [PagesController::class, 'historyTransaction'])->name('history');
     Route::post('/pembayaran', [PagesController::class, 'pembayaran'])->name('pembayaran');
+
+    Route::get('/', [PagesController::class, 'home'])->name('homepage');
+    Route::get('/show', [PagesController::class, 'showProduct'])->name('show.product');
+    Route::get('/cart', [PagesController::class, 'cart'])->name('cart');
+    Route::get('/detail', [PagesController::class, 'detailProduct'])->name('detail.product');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
 Route::middleware(['isLogin', 'CekRole:user'])->prefix('/page')->group(function () {
@@ -67,14 +73,13 @@ Route::middleware(['isLogin', 'CekRole:admin'])->prefix('/dashboard')->group(fun
         Route::put('/category/update/{id}', [ManageCategoriesController::class, 'updateCategory'])->name('update.category');
         Route::delete('/category/delete/{id}', [ManageCategoriesController::class, 'deleteCategory'])->name('delete.category');
 
+        //USER DATA
+        Route::get('/users', [AdminController::class, 'userData'])->name('users.data');
+        Route::delete('/delete/{user:id}', [AdminController::class, 'userDelete'])->name('users.delete');
 
-    //USER DATA
-    Route::get('/users', [AdminController::class, 'userData'])->name('users.data');
-    Route::delete('/delete/{user:id}', [AdminController::class, 'userDelete'])->name('users.delete');
-
-    Route::get('/list-order', [AdminController::class, 'listOrder'])->name('list.order');
-    Route::get('/detailpembayaran/{checkout:id}', [AdminController::class, 'detail_pembayaran'])->name('detail.pembayaran');
-    Route::patch('/detailpembayaran/validasi/{checkout:id}', [AdminController::class, 'validasi'])->name('validasi');
-    Route::patch('/detailpembayaran/tolak/{checkout:id}', [AdminController::class, 'tolak'])->name('tolak');
+        Route::get('/list-order', [AdminController::class, 'listOrder'])->name('list.order');
+        Route::get('/detailpembayaran/{checkout:id}', [AdminController::class, 'detail_pembayaran'])->name('detail.pembayaran');
+        Route::patch('/detailpembayaran/validasi/{checkout:id}', [AdminController::class, 'validasi'])->name('validasi');
+        Route::patch('/detailpembayaran/tolak/{checkout:id}', [AdminController::class, 'tolak'])->name('tolak');
 
 });

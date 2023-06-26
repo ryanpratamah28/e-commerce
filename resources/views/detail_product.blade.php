@@ -26,9 +26,9 @@
             <div class="container">
                 <div class="navbar-wrapper">
                     <div class="leftSideNavbar">
-                        <div class="logoBrand">
-                            <img src="./assets/img/plantsasriLogo.png" alt="">
-                        </div>
+                        <a class="navbar-brand" href="#">
+                            <h1 class="text-logo" style="color:black;">SH</h1>
+                        </a>
                         <div class="searchMenu">
                             <form action="">
                                 <div class="input-group">
@@ -130,7 +130,7 @@
                                     <div class="wrapper-detail-product">
                                         <h1 class="name-product" data-name="Kabel Fleksibel Untuk Handphone Samsung">Kabel Fleksibel Untuk Handphone Samsung</h1>
                                         <div class="price-product">
-                                            <p>Rp. 27.000<span>/Produk</span></p>
+                                            <p id="price">27000<span>/Produk</span></p>
                                         </div>
                                         <div class="wrapper-quantity-product">
                                             <p>Jumlah Order Barang</p>
@@ -312,7 +312,7 @@
 <script>
     function updateSummary() {
         var quantity = parseInt($('.product-quantity').val());
-        var price = 27000;
+        var price = parseInt($('#price').text());
         var totalPrice = quantity * price;
 
         $('.total-order span').text(quantity);

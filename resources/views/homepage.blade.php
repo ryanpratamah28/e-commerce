@@ -99,7 +99,11 @@
                             <small>Produk</small>
                         </div>
                         <div class="m-3">
-                            <h1 class="text-center">1</h1>
+                                @if($count)
+                                    <h1 class="text-center">{{ $count }}</h1>
+                                @else
+                                    <h1 class="text-center">0</h1>
+                                @endif</h1>
                             <small>Produk Terjual</small>
                         </div>
                         <div class="m-3">

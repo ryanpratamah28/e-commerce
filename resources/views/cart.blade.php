@@ -97,15 +97,15 @@
                             <div class="cart-container">
                                 <div class="head-cart">
                                     <div class="form-check checkbox-select">
-                                        <input class="form-check-input checkbox-all" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
+                                        <input class="form-check-input checkbox-all" type="checkbox" value="" id="chooseAllCheckbox">
+                                        <label class="form-check-label" for="chooseAllCheckbox">
                                             Choose all
                                         </label>
                                     </div>
                                     <div class="delete-button delete-all">
-                                        <button class="delete-cart-button">
+                                        <button class="delete-cart-button delete-all-button">
                                             <img src="./assets/img/icon/trash-delete-icon.svg" alt="">
-                                            Delete
+                                            Delete All
                                         </button>
                                     </div>
                                 </div>
@@ -248,9 +248,6 @@
         function generateCartItemHTML(item, index) {
             return `
                 <div class="product-list">
-                    <div class="form-check checkbox-select checkbox-item">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                    </div>
                     <div class="product-detail">
                         <div class="image-product">
                             <img src="${item.imageSrc}" alt="">
@@ -321,6 +318,25 @@
                 cartContainer.append(itemHTML);
             }
         }
+
+        $('.checkbox-all').change(function() {
+            var isChecked = $(this).is(':checked');
+            $('.checkbox-item').prop('checked', isChecked);
+        });
+
+        $('.body-cart').on('change', '.checkbox-item', function() {
+            var totalItems = $('.checkbox-item').length;
+            var checkedItems = $('.checkbox-item:checked').length;
+            var isAllChecked = (totalItems === checkedItems);
+            $('.checkbox-all').prop('checked', isAllChecked);
+        });
+
+        $('.delete-all-button').click(function() {
+    if (confirm('Are you sure you want to delete all items?')) {
+        localStorage.removeItem('cartData');
+        location.reload();
+    }
+});
 
         // Menangani klik tombol minus dan plus
         $('.body-cart').on('click', '.quantity-count', function() {
