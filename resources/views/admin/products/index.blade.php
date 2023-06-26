@@ -28,8 +28,8 @@
                             <td>{{ $product->description }}</td>
                             <td>Rp. {{ number_format($product->price, 0, ',', '.') }}</td>
                             <td>
-                                <form method="POST" action="{{ route('dashboard.delete.product', $product->id) }}" class="d-flex">
-                                    <a class="btn btn-success me-1" href="{{ route('dashboard.edit.product', $product->id) }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                <form method="POST" action="{{ route('delete.product', $product->id) }}" class="d-flex">
+                                    <a class="btn btn-success me-1" href="{{ route('edit.product', $product->id) }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
 
                                     @csrf
                                     @method('DELETE')

@@ -47,27 +47,24 @@
                     <div class="rightSideNavbar">
                         <div class="beforeLogin">
                             <div class="buttonWrapper">
-                                <a href="#" class="button button-outline button-outline-primary">Login</a>
-                                <a href="#" class="button button-primary">Sign Up</a>
+                                @if (Route::has('login'))
+                                        @auth
+                                            <a href="{{route('logout')}}" class="button button-outline button-outline-primary">Logout</a>
+                                        @else
+                                            <a href="/login" class="button button-outline button-outline-primary">Login</a>
+                                            @if (Route::has('register'))
+                                            <a href="/register" class="button button-primary">Sign Up</a>
+                                            @endif
+                                        @endauth
+                                @endif
                             </div>
                             <div class="cartWrapper">
-                                <a href="#" class="cart icon">
+                                <a href="/cart" class="cart icon">
                                     <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
-                                    <div class="totalItem">9</div>
+                                    <div class="totalItem">0</div>
                                 </a>
                             </div>
                         </div>
-                        <!-- <div class="afterLogin">
-                            <a href="#" class="profileWrapper icon">
-                                <img src="./assets/img/icon/profile_icon.svg" alt="">
-                            </a>
-                            <div class="cartWrapper">
-                                <a href="#" class="cart icon">
-                                    <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
-                                    <div class="totalItem">9</div>
-                                </a>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -77,86 +74,42 @@
             <div class="container">
                <div class="row first-line">
                    <div class="col-12 col-lg-8 col-xl-9">
+                      <a class="btn btn-outline-danger" href="/show" style="width: 100px; margin: -20px 0 10px 0;">Back</a>
                         <div class="card">
                             <h3>Keranjang Kamu</h3>
-                            <div class="alert alert-danger" role="alert">
-                                <div class="icon-alert">
-                                    <img src="./assets/img/icon/alert-icon.svg" alt="">
-                                </div>
-                                Hello, you are not logged in, please Sign In !
-                            </div>
+                            @if (Route::has('login'))
+                                    @auth
+                                    <div class="alert alert-success" role="alert">
+                                        <div class="icon-alert">
+                                            <img src="./assets/img/icon/alert-icon.svg" alt="">
+                                        </div>
+                                        You signed
+                                    </div>
+                                    @else
+                                    <div class="alert alert-danger" role="alert">
+                                        <div class="icon-alert">
+                                            <img src="./assets/img/icon/alert-icon.svg" alt="">
+                                        </div>
+                                        Hello, you are not logged in, please Sign In !
+                                    </div>
+                                @endauth
+                            @endif
                             <div class="cart-container">
                                 <div class="head-cart">
                                     <div class="form-check checkbox-select">
-                                        <input class="form-check-input checkbox-all" type="checkbox" value="" id="flexCheckDefault">
-                                        <label class="form-check-label" for="flexCheckDefault">
+                                        <input class="form-check-input checkbox-all" type="checkbox" value="" id="chooseAllCheckbox">
+                                        <label class="form-check-label" for="chooseAllCheckbox">
                                             Choose all
                                         </label>
                                     </div>
                                     <div class="delete-button delete-all">
-                                        <button class="delete-cart-button">
+                                        <button class="delete-cart-button delete-all-button">
                                             <img src="./assets/img/icon/trash-delete-icon.svg" alt="">
-                                            Delete
+                                            Delete All
                                         </button>
                                     </div>
                                 </div>
                                 <div class="body-cart">
-                                    <div class="product-list">
-                                        <div class="form-check checkbox-select checkbox-item">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="image-product">
-                                                <img src="./assets/img/memori-hp.jpg" alt="">
-                                            </div>
-                                            <div class="wrapper-info-product">
-                                                <div class="name-price-product">
-                                                    <h5>Memori Handphone 60 GB</h5>
-                                                    <p>Rp. <span class="price">250.000</span></p>
-                                                </div>
-                                                <p class="price-per-plant">Rp. <span class="price-plant">250.00</span>/Produk</p>
-                                                <div class="action-cart">
-                                                    <div class="quantity-product">
-                                                        <button class="quantity-count quantity-count--minus" data-action="minus" type="button">-</button>
-                                                        <input class="product-quantity" type="number" name="product-quantity" min="0" max="10" value="1">
-                                                        <button class="quantity-count quantity-count--add" data-action="add" type="button">+</button>
-                                                    </div>
-                                                    <button class="delete-cart-button">
-                                                        <img src="./assets/img/icon/trash-delete-icon.svg" alt="">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div class="product-list">
-                                        <div class="form-check checkbox-select checkbox-item">
-                                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                        </div>
-                                        <div class="product-detail">
-                                            <div class="image-product">
-                                                <img src="./assets/img/flexible-1.jpg" alt="">
-                                            </div>
-                                            <div class="wrapper-info-product">
-                                                <div class="name-price-product">
-                                                    <h5>Kabel Fleksibel untuk Handphone Samsung</h5>
-                                                    <p>Rp. <span class="price">27.000</span></p>
-                                                </div>
-                                                <p class="price-per-plant">Rp. <span class="price-plant">27.000</span>/Produk</p>
-                                                <div class="action-cart">
-                                                    <div class="quantity-product">
-                                                        <button class="quantity-count quantity-count--minus" data-action="minus" type="button">-</button>
-                                                        <input class="product-quantity" type="number" name="product-quantity" min="0" max="10" value="1">
-                                                        <button class="quantity-count quantity-count--add" data-action="add" type="button">+</button>
-                                                    </div>
-                                                    <button class="delete-cart-button">
-                                                        <img src="./assets/img/icon/trash-delete-icon.svg" alt="">
-                                                        Delete
-                                                    </button>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -168,11 +121,19 @@
                                 
                                 <div class="total-fix">
                                     <p>Total</p>
-                                    <p class="value-total-fix">$60</p>
+                                    <p class="value-total-fix">Rp. 0</p>
                                 </div>
-                                <button class="button button-primary w-100">
-                                    Checkout
-                                </button>
+                             @if (Route::has('login'))
+                                @auth
+                                    <a href="/checkout" class="button button-primary w-100">
+                                        Checkout
+                                    </a>
+                                @else
+                                <a href="/login" class="button button-primary w-100">
+                                    Login and Checkout
+                                </a>
+                                @endauth
+                            @endif
                             </div>
                         </div>
                    </div>
@@ -271,7 +232,137 @@
                 $input.val(qty);
             });
         })();
-
     </script>
+
+<script>
+    $(document).ready(function() {
+        // Mengambil data dari localStorage saat halaman dimuat
+        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+
+        function updateTotalItem() {
+            var totalItem = cartData.length;
+            $('.totalItem').text(totalItem);
+        }
+
+        // Fungsi untuk menghasilkan elemen HTML untuk setiap item dalam data keranjang
+        function generateCartItemHTML(item, index) {
+            return `
+                <div class="product-list">
+                    <div class="product-detail">
+                        <div class="image-product">
+                            <img src="${item.imageSrc}" alt="">
+                        </div>
+                        <div class="wrapper-info-product">
+                            <div class="name-price-product">
+                                <h5>${item.productName}</h5>
+                                <p>Rp. <span class="price" data-price="${item.totalPrice}" data-index="${index}">${item.totalPrice}</span></p>
+                            </div>
+                            <p class="price-per-plant">Rp. <span class="price-plant">${item.price}</span>/Produk</p>
+                            <div class="action-cart">
+                                <div class="quantity-product">
+                                    <button class="quantity-count quantity-count--minus" data-action="minus" type="button" data-index="${index}">-</button>
+                                    <input class="product-quantity" type="number" name="product-quantity" min="0" max="10" value="${item.quantity}" data-index="${index}">
+                                    <button class="quantity-count quantity-count--add" data-action="add" type="button" data-index="${index}">+</button>
+                                </div>
+                                <button class="delete-cart-button" data-index="${index}">
+                                    <img src="./assets/img/icon/trash-delete-icon.svg" alt="">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fungsi untuk mengupdate total price
+        function updateTotalPrice() {
+            var totalPrice = 0;
+            for (var i = 0; i < cartData.length; i++) {
+                totalPrice += cartData[i].totalPrice;
+            }
+            $('.value-total-fix').text('Rp. ' + totalPrice);
+        }
+
+        // Fungsi untuk mengupdate harga total per item
+        function updateItemTotalPrice(index) {
+            var item = cartData[index];
+            var priceElement = $('.price[data-index="' + index + '"]');
+            priceElement.text(item.totalPrice);
+            priceElement.attr('data-price', item.totalPrice);
+        }
+
+        // Fungsi untuk menghapus item dari keranjang berdasarkan index
+        function deleteCartItem(index) {
+            cartData.splice(index, 1);
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+            location.reload();
+            $('.body-cart').empty(); // Menghapus elemen HTML sebelum memperbarui
+            updateCartItems(); // Memperbarui tampilan keranjang setelah menghapus item
+        }
+
+        // Fungsi untuk memperbarui quantity item dalam keranjang
+        function updateCartItemQuantity(index, quantity) {
+            cartData[index].quantity = quantity;
+            cartData[index].totalPrice = quantity * cartData[index].price; // Mengupdate totalPrice
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+            updateTotalPrice(); // Memperbarui total price
+            updateItemTotalPrice(index); // Memperbarui harga total per item
+        }
+
+        // Menambahkan elemen HTML untuk setiap item dalam data keranjang
+        function updateCartItems() {
+            var cartContainer = $('.body-cart');
+            for (var i = 0; i < cartData.length; i++) {
+                var itemHTML = generateCartItemHTML(cartData[i], i);
+                cartContainer.append(itemHTML);
+            }
+        }
+
+        $('.checkbox-all').change(function() {
+            var isChecked = $(this).is(':checked');
+            $('.checkbox-item').prop('checked', isChecked);
+        });
+
+        $('.body-cart').on('change', '.checkbox-item', function() {
+            var totalItems = $('.checkbox-item').length;
+            var checkedItems = $('.checkbox-item:checked').length;
+            var isAllChecked = (totalItems === checkedItems);
+            $('.checkbox-all').prop('checked', isAllChecked);
+        });
+
+        $('.delete-all-button').click(function() {
+    if (confirm('Are you sure you want to delete all items?')) {
+        localStorage.removeItem('cartData');
+        location.reload();
+    }
+});
+
+        // Menangani klik tombol minus dan plus
+        $('.body-cart').on('click', '.quantity-count', function() {
+            var action = $(this).data('action');
+            var index = $(this).data('index');
+            var quantityInput = $('.product-quantity[data-index="' + index + '"]');
+            var quantity = parseInt(quantityInput.val());
+            if (action === 'minus' && quantity > 0) {
+                quantityInput.val(quantity - 1);
+                updateCartItemQuantity(index, quantity - 1);
+            } else if (action === 'add' && quantity < 10) {
+                quantityInput.val(quantity + 1);
+                updateCartItemQuantity(index, quantity + 1);
+            }
+        });
+
+        // Menangani klik tombol hapus
+        $('.body-cart').on('click', '.delete-cart-button', function() {
+            var index = $(this).data('index');
+            deleteCartItem(index);
+        });
+
+        updateCartItems(); // Memperbarui tampilan keranjang saat halaman dimuat
+        updateTotalPrice(); // Memperbarui total price saat halaman dimuat
+        updateTotalItem();
+    });
+</script>
 </body>
 </html>

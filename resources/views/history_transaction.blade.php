@@ -61,13 +61,10 @@
                             </div>
                         </div> -->
                         <div class="afterLogin">
-                            <a href="#" class="profileWrapper icon">
-                                <img src="./assets/img/icon/profile_icon.svg" alt="">
-                            </a>
                             <div class="cartWrapper">
-                                <a href="#" class="cart icon">
+                                <a href="/cart" class="cart icon">
                                     <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
-                                    <div class="totalItem">9</div>
+                                    <div class="totalItem">0</div>
                                 </a>
                             </div>
                         </div>
@@ -84,18 +81,18 @@
                             <div class="card card-user-menu">
                                 <div class="user-detail">
                                     <img src="./assets/faces/1.jpg" alt="">
-                                    <p class="name-user">Reksa Prayoga</p>
+                                    <p class="name-user">{{Auth::user()->name}}</p>
                                 </div>
                                 <div class="menu-profile">
-                                    <a href="#" class="menu">
+                                    <a href="/profile" class="menu">
                                         <ion-icon name="person"></ion-icon>
                                         Account
                                     </a>
-                                    <a href="#" class="menu">
+                                    <a href="/history" class="menu">
                                         <ion-icon name="cart"></ion-icon>
                                         History Transaction
                                     </a>
-                                    <a href="#" class="menu logout">
+                                    <a href="{{route('logout')}}" class="menu logout">
                                         <ion-icon name="log-out"></ion-icon>
                                         Logout
                                     </a>
@@ -122,24 +119,26 @@
                                     <div class="tab-content" id="nav-tabContent">
                                         <div class="tab-pane fade show active" id="nav-All" role="tabpanel"
                                             aria-labelledby="nav-All-tab">
+                                        @foreach($history as $histories)
+                                            @if($histories->email == Auth::user()->email && $histories['status'] == 1)
                                             <div class="history-item">
                                                 <div class="head-item">
                                                     <div class="icon">
                                                         <img src="./assets/img/icon/icon-history-transaksi.svg" alt="">
                                                     </div>
-                                                    <div class="date">30 July 2022</div>
+                                                    <div class="date">{{$histories->updated_at}}</div>
                                                     <div class="status success">Done</div>
                                                     <div class="id-transaksi">INVAFNAUFHAG3563</div>
                                                 </div>
                                                 <div class="body-item">
                                                     <div class="image-item">
-                                                        <img src="./assets/img/flexible-1.jpg" alt="">
+                                                        <img src="{{ $histories->{"image-product"} }}" alt="">
                                                     </div>
                                                     <div class="detail-item">
-                                                        <a href="#" class="name-item">Kabel Fleksibel untuk Handphone Samsung</a>
+                                                        <a href="#" class="name-item">{{$histories->product}}</a>
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <div class="price">
-                                                                <p>Rp. 27.000</p>
+                                                                <p>{{$histories->price}}</p>
                                                             </div>
                                                             <div class="action-item">
                                                                 <button type="button" class="button button-text"
@@ -176,7 +175,7 @@
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>Transaction Date</td>
-                                                                                            <td>09 July 2022</td>
+                                                                                            <td>{{$histories->updated_at}}</td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -191,15 +190,11 @@
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>Name</td>
-                                                                                            <td class="bold-text">Reksa
-                                                                                                Prayoga</td>
+                                                                                            <td class="bold-text">{{$histories->name}}</td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>Address</td>
-                                                                                            <td>Jl. Skip, Kec. Bogor
-                                                                                                Sel., Kota Bogor, Jawa
-                                                                                                Barat, 16134 [Note: rt01
-                                                                                                rw01 no47]</td>
+                                                                                            <td>{{$histories->adress}}</td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
@@ -209,22 +204,17 @@
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Method Payment</td>
-                                                                                            <td class="bold-text">BCA
-                                                                                            </td>
-                                                                                        </tr>
-                                                                                        <tr>
                                                                                             <td>Subtotal</td>
-                                                                                            <td>$300</td>
+                                                                                            <td>{{$histories->price}}</td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td>Discount</td>
-                                                                                            <td>(20%) -$60</td>
+                                                                                            <td>(0) - Rp. 0</td>
                                                                                         </tr>
                                                                                         <tr>
                                                                                             <td class="bold-text">Total
                                                                                             </td>
-                                                                                            <td class="bold-text">$240
+                                                                                            <td class="bold-text">{{$histories->price}}
                                                                                             </td>
                                                                                         </tr>
                                                                                     </tbody>
@@ -342,111 +332,217 @@
                                                     </div>
                                                 </div>
                                             </div>
-
+                                            @endif
+                                        @endforeach
+                                        
+                                        </div>
+                                        <div class="tab-pane fade" id="nav-done" role="tabpanel"
+                                            aria-labelledby="nav-done-tab">
+                                             @foreach($history as $histories)
+                                            @if($histories->email == Auth::user()->email && $histories['status'] == 1)
                                             <div class="history-item">
                                                 <div class="head-item">
                                                     <div class="icon">
                                                         <img src="./assets/img/icon/icon-history-transaksi.svg" alt="">
                                                     </div>
-                                                    <div class="date">30 July 2022</div>
-                                                    <div class="status danger">Failed</div>
+                                                    <div class="date">{{$histories->updated_at}}</div>
+                                                    <div class="status success">Done</div>
                                                     <div class="id-transaksi">INVAFNAUFHAG3563</div>
                                                 </div>
                                                 <div class="body-item">
                                                     <div class="image-item">
-                                                        <img src="./assets/faces/2.jpg" alt="">
+                                                        <img src="{{ $histories->{"image-product"} }}" alt="">
                                                     </div>
                                                     <div class="detail-item">
-                                                        <a href="#" class="name-item">Memori Handphone 60 GB</a>
+                                                        <a href="#" class="name-item">{{$histories->product}}</a>
                                                         <div class="d-flex justify-content-between align-items-center">
                                                             <div class="price">
-                                                                <p>Rp. 250.000</p>
+                                                                <p>{{$histories->price}}</p>
                                                             </div>
                                                             <div class="action-item">
-                                                                <button class="button button-text">Lihat Detail</button>
+                                                                <button type="button" class="button button-text"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#seeDetail2Modal">
+                                                                    Lihat Detail
+                                                                </button>
                                                             </div>
 
-                                                            <div class="modal fade modal-rating" id="ratingTransaction"
+                                                            <!--Modal See Detail-->
+                                                            <div class="modal fade modal-detail" id="seeDetail2Modal"
                                                                 data-bs-backdrop="static" data-bs-keyboard="false"
-                                                                tabindex="-1" aria-labelledby="ratingTransactionLabel"
+                                                                tabindex="-1" aria-labelledby="seeDetailModalLabel"
                                                                 aria-hidden="true">
                                                                 <div class="modal-dialog  modal-dialog-centered">
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title"
-                                                                                id="ratingTransactionLabel">Review</h5>
+                                                                                id="seeDetailModalLabel">Transaction
+                                                                                Detail</h5>
                                                                             <button type="button" class="btn-close"
                                                                                 data-bs-dismiss="modal"
                                                                                 aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
-                                                                            <form action="">
-                                                                                <div class="star-wrapper">
-                                                                                    <div class="star-rating">
-                                                                                        <input id="star-5" type="radio"
-                                                                                            name="rating"
-                                                                                            value="star-5" />
-                                                                                        <label for="star-5">
-                                                                                            <i class="bi-star-fill"
-                                                                                                aria-hidden="true"></i>
-                                                                                        </label>
+                                                                            <div class="line-detail">
+                                                                                <h5>Info Transaction</h5>
+                                                                                <table style="width: 100%;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>No. Invoice</td>
+                                                                                            <td class="primary-text">
+                                                                                                NVAFN/AUFHAG3563</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Transaction Date</td>
+                                                                                            <td>{{$histories->updated_at}}</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div class="line-detail">
+                                                                                <h5>Info Delivered</h5>
+                                                                                <table style="width: 100%;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>No Resi</td>
+                                                                                            <td>37463591974</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Name</td>
+                                                                                            <td class="bold-text">{{$histories->name}}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Address</td>
+                                                                                            <td>{{$histories->adress}}</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div class="line-detail">
+                                                                                <h5>Payment Details</h5>
+                                                                                <table style="width: 100%;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>Subtotal</td>
+                                                                                            <td>{{$histories->price}}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Discount</td>
+                                                                                            <td>(0) - Rp. 0</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td class="bold-text">Total
+                                                                                            </td>
+                                                                                            <td class="bold-text">{{$histories->price}}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
 
-                                                                                        <input id="star-4" type="radio"
-                                                                                            name="rating"
-                                                                                            value="star-4" />
-                                                                                        <label for="star-4">
-                                                                                            <i class="bi-star-fill"
-                                                                                                aria-hidden="true"></i>
-                                                                                        </label>
-
-                                                                                        <input id="star-3" type="radio"
-                                                                                            name="rating"
-                                                                                            value="star-3" />
-                                                                                        <label for="star-3">
-                                                                                            <i class="bi-star-fill"
-                                                                                                aria-hidden="true"></i>
-                                                                                        </label>
-
-                                                                                        <input id="star-2" type="radio"
-                                                                                            name="rating"
-                                                                                            value="star-2" />
-                                                                                        <label for="star-2">
-                                                                                            <i class="bi-star-fill"
-                                                                                                aria-hidden="true"></i>
-                                                                                        </label>
-
-                                                                                        <input id="star-1" type="radio"
-                                                                                            name="rating"
-                                                                                            value="star-1" />
-                                                                                        <label for="star-1">
-                                                                                            <i class="bi-star-fill"
-                                                                                                aria-hidden="true"></i>
-                                                                                        </label>
-
+                                                            <!--Modal Track Order-->
+                                                            <div class="modal fade modal-tracking"
+                                                                id="trackTransaksiModal" data-bs-backdrop="static"
+                                                                data-bs-keyboard="false" tabindex="-1"
+                                                                aria-labelledby="trackTransaksiModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="trackTransaksiModalLabel">Tracking
+                                                                            </h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div
+                                                                                    class="col-12 col-md-6 mb-3 mb-md-0">
+                                                                                    <div class="detail-tracking">
+                                                                                        <div
+                                                                                            class="line-tracking number-tracking">
+                                                                                            <p class="title-detail">No
+                                                                                                Resi</p>
+                                                                                            <h4 class="bold-text">
+                                                                                                37463591974</h4>
+                                                                                        </div>
+                                                                                        <div class="line-tracking">
+                                                                                            <p class="title-detail">
+                                                                                                Sender</p>
+                                                                                            <h4 class="bold-text">
+                                                                                                Plantsasri ID</h4>
+                                                                                        </div>
+                                                                                        <div class="line-tracking">
+                                                                                            <p class="title-detail">
+                                                                                                Receiver</p>
+                                                                                            <h4 class="bold-text">Reksa
+                                                                                                Prayoga</h4>
+                                                                                            <h4 class="address">Jl.
+                                                                                                Skip, Kec. Bogor Sel.,
+                                                                                                Kota Bogor, Jawa Barat,
+                                                                                                16134 [Note: rt01 rw01
+                                                                                                no47]</h4>
+                                                                                        </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div class="row">
-                                                                                    <div class="col-12">
-                                                                                        <div class="form-input">
-                                                                                            <label for="text-review"
-                                                                                                class="form-label">Your
-                                                                                                Comment</label>
-                                                                                            <textarea name=""
-                                                                                                id="text-review"
-                                                                                                class="form-control"
-                                                                                                cols="30"
-                                                                                                rows="5"></textarea>
-                                                                                            <div class="form-text">Make
-                                                                                                sure the comment is
-                                                                                                correct.</div>
+                                                                                <div class="col-12 col-md-6">
+                                                                                    <div class="process-tracking">
+                                                                                        <div class="tracking-images">
+                                                                                            <img src="./assets/img/tracking-vector.svg"
+                                                                                                alt="">
                                                                                         </div>
-                                                                                        <div class="mt-3">
-                                                                                            <button
-                                                                                                class="button button-primary w-100">Save</button>
+                                                                                        <p class="status">Status :
+                                                                                            <span>Delivered</span></p>
+                                                                                        <div class="card">
+                                                                                            <div class="tracking">
+                                                                                                <div
+                                                                                                    class="process-track">
+                                                                                                    <div
+                                                                                                        class="bullets-track now-proccess">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="line-track">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <p class="name-process">
+                                                                                                    Proces</p>
+                                                                                            </div>
+                                                                                            <div class="tracking">
+                                                                                                <div
+                                                                                                    class="process-track">
+                                                                                                    <div
+                                                                                                        class="bullets-track">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="line-track">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <p class="name-process">
+                                                                                                    Delivered</p>
+                                                                                            </div>
+                                                                                            <div class="tracking">
+                                                                                                <div
+                                                                                                    class="process-track">
+                                                                                                    <div
+                                                                                                        class="bullets-track">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="line-track">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <p class="name-process">
+                                                                                                    Done</p>
+                                                                                            </div>
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                            </form>
+                                                                            </div>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -455,13 +551,445 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        </div>
-                                        <div class="tab-pane fade" id="nav-done" role="tabpanel"
-                                            aria-labelledby="nav-done-tab">...</div>
+                                            @endif
+                                        @endforeach
+                                            </div>
                                         <div class="tab-pane fade" id="nav-proccess" role="tabpanel"
-                                            aria-labelledby="nav-proccess-tab">...</div>
+                                            aria-labelledby="nav-proccess-tab">
+                                             @foreach($history as $histories)
+                                            @if($histories->email == Auth::user()->email && $histories['status'] == 0)
+                                            <div class="history-item">
+                                                <div class="head-item">
+                                                    <div class="icon">
+                                                        <img src="./assets/img/icon/icon-history-transaksi.svg" alt="">
+                                                    </div>
+                                                    <div class="date">{{$histories->updated_at}}</div>
+                                                    <div class="status">Process</div>
+                                                    <div class="id-transaksi">INVAFNAUFHAG3563</div>
+                                                </div>
+                                                <div class="body-item">
+                                                    <div class="image-item">
+                                                        <img src="{{ $histories->{"image-product"} }}" alt="">
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <a href="#" class="name-item">{{$histories->product}}</a>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="price">
+                                                                <p>{{$histories->price}}</p>
+                                                            </div>
+                                                            <div class="action-item">
+                                                                <button type="button" class="button button-text"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#seeDetail3Modal">
+                                                                    Lihat Detail
+                                                                </button>
+                                                            </div>
+
+                                                            <!--Modal See Detail-->
+                                                            <div class="modal fade modal-detail" id="seeDetail3Modal"
+                                                                data-bs-backdrop="static" data-bs-keyboard="false"
+                                                                tabindex="-1" aria-labelledby="seeDetailModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog  modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="seeDetailModalLabel">Transaction
+                                                                                Detail</h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="line-detail">
+                                                                                <h5>Info Transaction</h5>
+                                                                                <table style="width: 100%;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>No. Invoice</td>
+                                                                                            <td class="primary-text">
+                                                                                                NVAFN/AUFHAG3563</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Transaction Date</td>
+                                                                                            <td>{{$histories->updated_at}}</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div class="line-detail">
+                                                                                <h5>Info Delivered</h5>
+                                                                                <table style="width: 100%;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>No Resi</td>
+                                                                                            <td>37463591974</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Name</td>
+                                                                                            <td class="bold-text">{{$histories->name}}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Address</td>
+                                                                                            <td>{{$histories->adress}}</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div class="line-detail">
+                                                                                <h5>Payment Details</h5>
+                                                                                <table style="width: 100%;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>Subtotal</td>
+                                                                                            <td>{{$histories->price}}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Discount</td>
+                                                                                            <td>(0) - Rp. 0</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td class="bold-text">Total
+                                                                                            </td>
+                                                                                            <td class="bold-text">{{$histories->price}}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--Modal Track Order-->
+                                                            <div class="modal fade modal-tracking"
+                                                                id="trackTransaksiModal" data-bs-backdrop="static"
+                                                                data-bs-keyboard="false" tabindex="-1"
+                                                                aria-labelledby="trackTransaksiModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="trackTransaksiModalLabel">Tracking
+                                                                            </h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div
+                                                                                    class="col-12 col-md-6 mb-3 mb-md-0">
+                                                                                    <div class="detail-tracking">
+                                                                                        <div
+                                                                                            class="line-tracking number-tracking">
+                                                                                            <p class="title-detail">No
+                                                                                                Resi</p>
+                                                                                            <h4 class="bold-text">
+                                                                                                37463591974</h4>
+                                                                                        </div>
+                                                                                        <div class="line-tracking">
+                                                                                            <p class="title-detail">
+                                                                                                Sender</p>
+                                                                                            <h4 class="bold-text">
+                                                                                                Plantsasri ID</h4>
+                                                                                        </div>
+                                                                                        <div class="line-tracking">
+                                                                                            <p class="title-detail">
+                                                                                                Receiver</p>
+                                                                                            <h4 class="bold-text">Reksa
+                                                                                                Prayoga</h4>
+                                                                                            <h4 class="address">Jl.
+                                                                                                Skip, Kec. Bogor Sel.,
+                                                                                                Kota Bogor, Jawa Barat,
+                                                                                                16134 [Note: rt01 rw01
+                                                                                                no47]</h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12 col-md-6">
+                                                                                    <div class="process-tracking">
+                                                                                        <div class="tracking-images">
+                                                                                            <img src="./assets/img/tracking-vector.svg"
+                                                                                                alt="">
+                                                                                        </div>
+                                                                                        <p class="status">Status :
+                                                                                            <span>Delivered</span></p>
+                                                                                        <div class="card">
+                                                                                            <div class="tracking">
+                                                                                                <div
+                                                                                                    class="process-track">
+                                                                                                    <div
+                                                                                                        class="bullets-track now-proccess">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="line-track">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <p class="name-process">
+                                                                                                    Proces</p>
+                                                                                            </div>
+                                                                                            <div class="tracking">
+                                                                                                <div
+                                                                                                    class="process-track">
+                                                                                                    <div
+                                                                                                        class="bullets-track">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="line-track">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <p class="name-process">
+                                                                                                    Delivered</p>
+                                                                                            </div>
+                                                                                            <div class="tracking">
+                                                                                                <div
+                                                                                                    class="process-track">
+                                                                                                    <div
+                                                                                                        class="bullets-track">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="line-track">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <p class="name-process">
+                                                                                                    Done</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
+                                        @endforeach
+                                            </div>
                                         <div class="tab-pane fade" id="nav-failed" role="tabpanel"
-                                            aria-labelledby="nav-failed-tab">...</div>
+                                            aria-labelledby="nav-failed-tab">
+                                             @foreach($history as $histories)
+                                            @if($histories->email == Auth::user()->email && $histories['status'] == 2)
+                                            <div class="history-item">
+                                                <div class="head-item">
+                                                    <div class="icon">
+                                                        <img src="./assets/img/icon/icon-history-transaksi.svg" alt="">
+                                                    </div>
+                                                    <div class="date">{{$histories->updated_at}}</div>
+                                                    <div class="status danger">Fail</div>
+                                                    <div class="id-transaksi">INVAFNAUFHAG3563</div>
+                                                </div>
+                                                <div class="body-item">
+                                                    <div class="image-item">
+                                                        <img src="{{ $histories->{"image-product"} }}" alt="">
+                                                    </div>
+                                                    <div class="detail-item">
+                                                        <a href="#" class="name-item">{{$histories->product}}</a>
+                                                        <div class="d-flex justify-content-between align-items-center">
+                                                            <div class="price">
+                                                                <p>{{$histories->price}}</p>
+                                                            </div>
+                                                            <div class="action-item">
+                                                                <button type="button" class="button button-text"
+                                                                    data-bs-toggle="modal"
+                                                                    data-bs-target="#seeDetail4Modal">
+                                                                    Lihat Detail
+                                                                </button>
+                                                            </div>
+
+                                                            <!--Modal See Detail-->
+                                                            <div class="modal fade modal-detail" id="seeDetail4Modal"
+                                                                data-bs-backdrop="static" data-bs-keyboard="false"
+                                                                tabindex="-1" aria-labelledby="seeDetailModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog  modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="seeDetailModalLabel">Transaction
+                                                                                Detail</h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="line-detail">
+                                                                                <h5>Info Transaction</h5>
+                                                                                <table style="width: 100%;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>No. Invoice</td>
+                                                                                            <td class="primary-text">
+                                                                                                NVAFN/AUFHAG3563</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Transaction Date</td>
+                                                                                            <td>{{$histories->updated_at}}</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div class="line-detail">
+                                                                                <h5>Info Delivered</h5>
+                                                                                <table style="width: 100%;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>No Resi</td>
+                                                                                            <td>37463591974</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Name</td>
+                                                                                            <td class="bold-text">{{$histories->name}}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Address</td>
+                                                                                            <td>{{$histories->adress}}</td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                            <div class="line-detail">
+                                                                                <h5>Payment Details</h5>
+                                                                                <table style="width: 100%;">
+                                                                                    <tbody>
+                                                                                        <tr>
+                                                                                            <td>Subtotal</td>
+                                                                                            <td>{{$histories->price}}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Discount</td>
+                                                                                            <td>(0) - Rp. 0</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td class="bold-text">Total
+                                                                                            </td>
+                                                                                            <td class="bold-text">{{$histories->price}}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    </tbody>
+                                                                                </table>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+
+                                                            <!--Modal Track Order-->
+                                                            <div class="modal fade modal-tracking"
+                                                                id="trackTransaksiModal" data-bs-backdrop="static"
+                                                                data-bs-keyboard="false" tabindex="-1"
+                                                                aria-labelledby="trackTransaksiModalLabel"
+                                                                aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="trackTransaksiModalLabel">Tracking
+                                                                            </h5>
+                                                                            <button type="button" class="btn-close"
+                                                                                data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <div class="row">
+                                                                                <div
+                                                                                    class="col-12 col-md-6 mb-3 mb-md-0">
+                                                                                    <div class="detail-tracking">
+                                                                                        <div
+                                                                                            class="line-tracking number-tracking">
+                                                                                            <p class="title-detail">No
+                                                                                                Resi</p>
+                                                                                            <h4 class="bold-text">
+                                                                                                37463591974</h4>
+                                                                                        </div>
+                                                                                        <div class="line-tracking">
+                                                                                            <p class="title-detail">
+                                                                                                Sender</p>
+                                                                                            <h4 class="bold-text">
+                                                                                                Plantsasri ID</h4>
+                                                                                        </div>
+                                                                                        <div class="line-tracking">
+                                                                                            <p class="title-detail">
+                                                                                                Receiver</p>
+                                                                                            <h4 class="bold-text">Reksa
+                                                                                                Prayoga</h4>
+                                                                                            <h4 class="address">Jl.
+                                                                                                Skip, Kec. Bogor Sel.,
+                                                                                                Kota Bogor, Jawa Barat,
+                                                                                                16134 [Note: rt01 rw01
+                                                                                                no47]</h4>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                                <div class="col-12 col-md-6">
+                                                                                    <div class="process-tracking">
+                                                                                        <div class="tracking-images">
+                                                                                            <img src="./assets/img/tracking-vector.svg"
+                                                                                                alt="">
+                                                                                        </div>
+                                                                                        <p class="status">Status :
+                                                                                            <span>Delivered</span></p>
+                                                                                        <div class="card">
+                                                                                            <div class="tracking">
+                                                                                                <div
+                                                                                                    class="process-track">
+                                                                                                    <div
+                                                                                                        class="bullets-track now-proccess">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="line-track">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <p class="name-process">
+                                                                                                    Proces</p>
+                                                                                            </div>
+                                                                                            <div class="tracking">
+                                                                                                <div
+                                                                                                    class="process-track">
+                                                                                                    <div
+                                                                                                        class="bullets-track">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="line-track">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <p class="name-process">
+                                                                                                    Delivered</p>
+                                                                                            </div>
+                                                                                            <div class="tracking">
+                                                                                                <div
+                                                                                                    class="process-track">
+                                                                                                    <div
+                                                                                                        class="bullets-track">
+                                                                                                    </div>
+                                                                                                    <div
+                                                                                                        class="line-track">
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                                <p class="name-process">
+                                                                                                    Done</p>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endif
+                                        @endforeach
+                                            </div>
                                     </div>
                                 </div>
                             </div>
@@ -484,5 +1012,7 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
-
+    <script>
+        localStorage.removeItem('cartData');
+    </script>
 </html>

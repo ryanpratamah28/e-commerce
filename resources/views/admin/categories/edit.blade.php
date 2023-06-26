@@ -6,7 +6,7 @@
             <h5 class="mb-0">Edit Category</h5>
         </div>
         <div class="card-body">
-            <form action="{{ route('dashboard.update.category', $category->id) }}" method="POST" enctype="multipart/form-data">
+            <form action="{{ route('update.category', $category->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -26,7 +26,7 @@
                     @enderror
                 </div>
 
-                <a href="{{ route('dashboard.category') }}" class="btn btn-danger">Cancel</a>
+                <a href="{{ route('category') }}" class="btn btn-danger">Cancel</a>
                 <button type="submit" class="btn btn-primary">Update</button>
             </form>
         </div>

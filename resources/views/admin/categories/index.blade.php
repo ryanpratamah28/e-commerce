@@ -22,8 +22,8 @@
                                 <img src="{{ asset('storage/images/'. $category->thumb_img) }}"width="100px" alt="">
                             </td>
                             <td>
-                                <form method="POST" action="{{ route('dashboard.delete.category', $category->id) }}" class="d-flex">
-                                    <a class="btn btn-success d-flex align-items-center me-1" href="{{ route('dashboard.edit.category', $category->id) }}"><i class="bx bx-edit-alt me-1"></i>Edit</a>
+                                <form method="POST" action="{{ route('delete.category', $category->id) }}" class="d-flex">
+                                    <a class="btn btn-success d-flex align-items-center me-1" href="{{ route('edit.category', $category->id) }}"><i class="bx bx-edit-alt me-1"></i>Edit</a>
 
                                     @csrf
                                     @method('DELETE')

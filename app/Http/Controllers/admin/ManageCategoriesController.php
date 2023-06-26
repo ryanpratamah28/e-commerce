@@ -38,7 +38,7 @@ class ManageCategoriesController extends Controller
         Category::create($validatedData);
 
         return redirect()
-            ->route('dashboard.category')
+            ->route('category')
             ->with('success', 'Category created successfully.');
     }
 
@@ -69,7 +69,7 @@ class ManageCategoriesController extends Controller
         $category->update($validatedData);
 
         return redirect()
-            ->route('dashboard.category')
+            ->route('category')
             ->with('success', 'Category updated successfully.');
     }
 
@@ -81,7 +81,7 @@ class ManageCategoriesController extends Controller
         $category->delete();
 
         return redirect()
-            ->route('dashboard.category')
+            ->route('category')
             ->with('success', 'Category deleted successfully.');
     }
 }

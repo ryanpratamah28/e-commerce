@@ -41,7 +41,7 @@ class ManageProductsController extends Controller
 
         Product::create($validatedProduct);
 
-        return redirect()->route('dashboard.product')->with('success', 'Product created successfully.');
+        return redirect()->route('product')->with('success', 'Product created successfully.');
     }
 
     public function edit($id)
@@ -74,7 +74,7 @@ class ManageProductsController extends Controller
     
         $product->update($validatedProduct);
     
-        return redirect()->route('dashboard.product')->with('success', 'Product updated successfully.');
+        return redirect()->route('product')->with('success', 'Product updated successfully.');
     }
     
 
@@ -85,6 +85,6 @@ class ManageProductsController extends Controller
         File::delete('public/images' . $product->thumb_img);
         $product->delete();
 
-        return redirect()->route('dashboard.product')->with('success', 'Product deleted successfully.');
+        return redirect()->route('product')->with('success', 'Product deleted successfully.');
     }
 }

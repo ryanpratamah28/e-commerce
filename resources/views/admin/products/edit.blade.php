@@ -6,7 +6,7 @@
             <h5 class="mb-0">Edit Product</h5>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('dashboard.update.product', $product->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('update.product', $product->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -52,7 +52,7 @@
                     @enderror
                 </div>
 
-                <a href="{{ route('dashboard.product') }}" class="btn btn-danger">Cancel</a>
+                <a href="{{ route('product') }}" class="btn btn-danger">Cancel</a>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

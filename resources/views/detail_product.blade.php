@@ -52,7 +52,7 @@
                     </div>
 
                     <div class="rightSideNavbar">
-						@if(Auth::check())
+@if(Auth::check())
                         <div class="afterLogin align-items-center">
                             <li class="nav-item navbar-dropdown dropdown-user dropdown profileWrapper icon"
                                 style="list-style: none;">
@@ -98,7 +98,7 @@
                                         <div class="dropdown-divider"></div>
                                     </li>
                                     <li>
-                                        <a class="dropdown-item" href="{{ route('profile.account') }}">
+                                        <a class="dropdown-item" href="{{ route('profile') }}">
                                             <i class="bx bx-user me-2"></i>
                                             <span class="align-middle">My Profile</span>
                                         </a>
@@ -125,11 +125,10 @@
                                     </li>
                                 </ul>
                             </li>
-
                             <div class="cartWrapper">
-                                <a href="#" class="cart icon">
+                                <a href="/cart" class="cart icon">
                                     <img src="../../assets/img/icon/shopping-cart_icon.svg" alt="">
-                                    <div class="totalItem">9</div>
+                                    <div class="totalItem">0</div>
                                 </a>
                             </div>
                         </div>
@@ -162,19 +161,20 @@
             </div>
         </div>
 
-        {{-- @if(is_array($products) || $products instanceof \Countable) --}}
+{{-- @if(is_array($products) || $products instanceof \Countable) --}}
         {{-- @foreach($products as $product) --}}
             <div id="mainContent">
                 <div class="container">
                     <div class="row first-line">
                         <div class="col-12 col-lg-8 col-xl-9">
+                            <a class="btn btn-outline-danger" href="/show" style="width: 100px; margin: -20px 0 10px 0;">Back</a>
                             <div class="card">
                                 <div class="wrapperDetailProduct row">
                                     <div class="col-12 col-lg-5">
                                         <div class="wrapper-image-product">
                                             <div class="view-Images">
                                                 <div class="images-product">
-                                                    <img src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
+                                                    <img class="product-image" src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
                                                 </div>
                                                 <div class="images-product">
                                                     <img src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
@@ -208,11 +208,11 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="col-12 col-lg-7">
+                                        <div class="col-12 col-lg-7">
                                         <div class="wrapper-detail-product">
-                                            <h1 class="name-product">{{$product->name}}</h1>
+                                            <h1 class="name-product" data-name="{{$product->name}}">{{$product->name}}</h1>
                                             <div class="price-product">
-                                                <p>Rp. {{ number_format($product->price, 0, ',', '.') }}<span>/Produk</span></p>
+                                                <p id="price">Rp. {{ number_format($product->price, 0, ',', '.') }}<span>/Produk</span></p>
                                             </div>
                                             <div class="wrapper-quantity-product">
                                                 <p>Jumlah Order Barang</p>
@@ -252,14 +252,14 @@
                                     <div class="detail-summary">
                                         <div class="total-order">
                                             <p>Jumlah Order</p>
-                                            <p><span>1</span> Plant</p>
+                                            <p><span>1</span> Produk</p>
                                         </div>
                                         <div class="total-price">
                                             <p>Harga</p>
-                                            <p>Rp. <span>27.000</span></p>
+                                            <p>Rp. <span>0</span></p>
                                         </div>
                                     </div>
-                                    <button class="button button-primary w-100">
+                                    <button id="add-to-cart" class="button button-primary w-100">
                                         <img src="../../assets/img/icon/shopping-cart-white.svg" alt="">    
                                         Tambah ke Keranjang
                                     </button>
@@ -326,7 +326,7 @@
         </script>
 
         <!--Quantity Input-->
-        <script>
+<script>
             var QtyInput = (function () {
             var $qtyInputs = $(".quantity-product");
 
@@ -393,6 +393,205 @@
         })();
 
         </script>
+
+<script>
+    function updateSummary() {
+        var quantity = parseInt($('.product-quantity').val());
+        var price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
+        var totalPrice = quantity * price;
+
+        $('.total-order span').text(quantity);
+        $('.total-price span').text(totalPrice);
+    }
+
+    $('.quantity-count--add').click(function() {
+        var quantityInput = $(this).siblings('.product-quantity');
+        var maxQuantity = parseInt(quantityInput.attr('max'));
+        var currentQuantity = parseInt(quantityInput.val());
+        if (currentQuantity < maxQuantity) {
+            currentQuantity += 0;
+            quantityInput.val(currentQuantity);
+            updateSummary();
+        }
+    });
+
+    $('.quantity-count--minus').click(function() {
+        var quantityInput = $(this).siblings('.product-quantity');
+        var minQuantity = parseInt(quantityInput.attr('min'));
+        var currentQuantity = parseInt(quantityInput.val());
+        if (currentQuantity > minQuantity) {
+            currentQuantity -= 0;
+            quantityInput.val(currentQuantity);
+            updateSummary();
+        }
+    });
+
+    $('#add-to-cart').click(function() {
+        var quantity = parseInt($('.product-quantity').val());
+        var price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
+        var totalPrice = quantity * price;
+        var productName = $('.name-product').data('name'); // Mengambil nama produk
+        var imageSrc = $('.product-image').attr('src');
+
+        // Mengambil data yang sudah ada dalam localStorage (jika ada)
+        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+
+        // Menambahkan data baru ke dalam array
+        var newData = {
+            quantity: quantity,
+            totalPrice: totalPrice,
+            productName: productName,
+            price: price,
+            imageSrc: imageSrc
+        };
+        cartData.push(newData);
+
+        // Menyimpan data ke localStorage sebagai string
+        localStorage.setItem('cartData', JSON.stringify(cartData));
+
+        // Tampilkan pesan sukses atau lakukan tindakan lainnya
+        alert('Produk telah ditambahkan ke keranjang.');
+        location.reload(); // Lakukan refresh halaman
+
+        // Bersihkan nilai jumlah order dan update summary
+        $('.product-quantity').val(0);
+        updateSummary();
+    });
+
+    $(document).ready(function() {
+        // Mengambil data dari localStorage saat halaman dimuat
+        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+
+        if (cartData.length > 0) {
+            var lastData = cartData[cartData.length - 1];
+            // Mengisi nilai jumlah order, total harga, dan nama produk dari data terakhir
+            $('.product-quantity').val(lastData.quantity);
+            $('.total-order span').text(lastData.quantity);
+            $('.total-price span').text(lastData.totalPrice);
+            $('.name-product').text(lastData.productName);
+            $('.images.product').text(lastData.imageSrc);
+        } else {
+            updateSummary();
+        }
+    });
+</script>
+
+
+<script>
+       $(document).ready(function() {
+        // Mengambil data dari localStorage saat halaman dimuat
+        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+
+        function updateTotalItem() {
+            var totalItem = cartData.length;
+            $('.totalItem').text(totalItem);
+        }
+
+        // Fungsi untuk menghasilkan elemen HTML untuk setiap item dalam data keranjang
+        function generateCartItemHTML(item, index) {
+            return `
+                <div class="product-list">
+                    <div class="form-check checkbox-select checkbox-item">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    </div>
+                    <div class="product-detail">
+                        <div class="image-product">
+                            <img src="${item.imageSrc}" alt="">
+                        </div>
+                        <div class="wrapper-info-product">
+                            <div class="name-price-product">
+                                <h5>${item.productName}</h5>
+                                <p>Rp. <span class="price" data-price="${item.totalPrice}" data-index="${index}">${item.totalPrice}</span></p>
+                            </div>
+                            <p class="price-per-plant">Rp. <span class="price-plant">${item.price}</span>/Produk</p>
+                            <div class="action-cart">
+                                <div class="quantity-product">
+                                    <button class="quantity-count quantity-count--minus" data-action="minus" type="button" data-index="${index}">-</button>
+                                    <input class="product-quantity" type="number" name="product-quantity" min="0" max="10" value="${item.quantity}" data-index="${index}">
+                                    <button class="quantity-count quantity-count--add" data-action="add" type="button" data-index="${index}">+</button>
+                                </div>
+                                <button class="delete-cart-button" data-index="${index}">
+                                    <img src="./assets/img/icon/trash-delete-icon.svg" alt="">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fungsi untuk mengupdate total price
+        function updateTotalPrice() {
+            var totalPrice = 0;
+            for (var i = 0; i < cartData.length; i++) {
+                totalPrice += cartData[i].totalPrice;
+            }
+            $('.value-total-fix').text('Rp. ' + totalPrice);
+        }
+
+        // Fungsi untuk mengupdate harga total per item
+        function updateItemTotalPrice(index) {
+            var item = cartData[index];
+            var priceElement = $('.price[data-index="' + index + '"]');
+            priceElement.text(item.totalPrice);
+            priceElement.attr('data-price', item.totalPrice);
+        }
+
+        // Fungsi untuk menghapus item dari keranjang berdasarkan index
+        function deleteCartItem(index) {
+            cartData.splice(index, 1);
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+            $('.body-cart').empty(); // Menghapus elemen HTML sebelum memperbarui
+            updateCartItems(); // Memperbarui tampilan keranjang setelah menghapus item
+        }
+
+        // Fungsi untuk memperbarui quantity item dalam keranjang
+        function updateCartItemQuantity(index, quantity) {
+            cartData[index].quantity = quantity;
+            cartData[index].totalPrice = quantity * cartData[index].price; // Mengupdate totalPrice
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+
+            updateTotalPrice(); // Memperbarui total price
+            updateItemTotalPrice(index); // Memperbarui harga total per item
+        }
+
+        // Menambahkan elemen HTML untuk setiap item dalam data keranjang
+        function updateCartItems() {
+            var cartContainer = $('.body-cart');
+            for (var i = 0; i < cartData.length; i++) {
+                var itemHTML = generateCartItemHTML(cartData[i], i);
+                cartContainer.append(itemHTML);
+            }
+        }
+
+        // Menangani klik tombol minus dan plus
+        $('.body-cart').on('click', '.quantity-count', function() {
+            var action = $(this).data('action');
+            var index = $(this).data('index');
+            var quantityInput = $('.product-quantity[data-index="' + index + '"]');
+            var quantity = parseInt(quantityInput.val());
+            if (action === 'minus' && quantity > 0) {
+                quantityInput.val(quantity - 1);
+                updateCartItemQuantity(index, quantity - 1);
+            } else if (action === 'add' && quantity < 10) {
+                quantityInput.val(quantity + 1);
+                updateCartItemQuantity(index, quantity + 1);
+            }
+        });
+
+        // Menangani klik tombol hapus
+        $('.body-cart').on('click', '.delete-cart-button', function() {
+            var index = $(this).data('index');
+            deleteCartItem(index);
+        });
+        
+        updateCartItems(); // Memperbarui tampilan keranjang saat halaman dimuat
+        updateTotalPrice(); // Memperbarui total price saat halaman dimuat
+        updateTotalItem();
+    });
+</script>
+
 
 </body>
 </html>

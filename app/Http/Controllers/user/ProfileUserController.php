@@ -9,17 +9,30 @@ use Illuminate\Support\Facades\Auth;
 
 class ProfileUserController extends Controller
 {
-    public function accountProfile()
+    public function profile()
     {
         $user = User::where('id', Auth::user()->id)->first();
-        return view('users.profile.profile_account', compact('user'));
+        $user2 = User::all();
+        return view('profile_account', compact('user', 'user2'));
     }
 
-    // public function editProfile()
-    // {
-    //     $user = User::where('id', Auth::user()->id)->first();
-    //     return view('users.profile.edit-profile', compact('user'));
-    // }
+    public function editProfile()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+        return view('edit-profile', compact('user'));
+    }
+        public function changePassword(Request $request)
+    {
+        $request->validate([
+            'password' => 'required|min:6', // Anda juga dapat menambahkan aturan validasi lainnya
+        ]);
+
+        $user = Auth::user();
+        $user->password = bcrypt($request->password);
+        $user->save();
+
+        return redirect()->back()->with('success', 'Password berhasil diubah.');
+    }
 
     public function changeProfile(Request $request)
     {

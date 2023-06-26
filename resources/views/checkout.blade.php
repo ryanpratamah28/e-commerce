@@ -39,7 +39,7 @@
                                         <label class="form-label" for="form1">Search</label>
                                     </div>
                                     <button type="button" class="buttonSearch button button-primary">
-                                        <img src="./assets/img/icon/search_icon.svg" alt="">
+                                        <img src="../../assets/img/icon/search_icon.svg" alt="">
                                     </button>
                                 </div>
                             </form>
@@ -49,27 +49,24 @@
                     <div class="rightSideNavbar">
                         <div class="beforeLogin">
                             <div class="buttonWrapper">
-                                <a href="#" class="button button-outline button-outline-primary">Login</a>
-                                <a href="#" class="button button-primary">Sign Up</a>
+                                @if (Route::has('login'))
+                                        @auth
+                                            <a href="{{route('logout')}}" class="button button-outline button-outline-primary">Logout</a>
+                                        @else
+                                            <a href="/login" class="button button-outline button-outline-primary">Login</a>
+                                            @if (Route::has('register'))
+                                            <a href="/register" class="button button-primary">Sign Up</a>
+                                            @endif
+                                        @endauth
+                                @endif
                             </div>
                             <div class="cartWrapper">
-                                <a href="#" class="cart icon">
-                                    <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
-                                    <div class="totalItem">9</div>
+                                <a href="/cart" class="cart icon">
+                                    <img src="../../assets/img/icon/shopping-cart_icon.svg" alt="">
+                                    <div class="totalItem">0</div>
                                 </a>
                             </div>
                         </div>
-                        <!-- <div class="afterLogin">
-                            <a href="#" class="profileWrapper icon">
-                                <img src="./assets/img/icon/profile_icon.svg" alt="">
-                            </a>
-                            <div class="cartWrapper">
-                                <a href="#" class="cart icon">
-                                    <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
-                                    <div class="totalItem">9</div>
-                                </a>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
             </div>
@@ -90,48 +87,55 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-personalData" role="tabpanel"
                             aria-labelledby="nav-personalData-tab">
-                            <form action="">
-                                <h5 class="titleForm">Informasi Pribadi</h6>
+                            <form action="{{route('pembayaran')}}" method="POST" enctype="multipart/form-data">
+                                @csrf
+                                <h5 class="titleForm">Informasi Pribadi</h5>
                                     <div class="row">
                                         <div class="col-6">
                                             <div class="form-input">
-                                                <label for="firstName" class="form-label">Nama Awal</label>
-                                                <input type="text" class="form-control" id="firstName">
+                                                <label for="firstName" class="form-label">Nama</label>
+                                                <input type="text" value="{{Auth::user()->name}}" name="name" class="form-control" id="firstName">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-input">
-                                                <label for="lastName" class="form-label">Nama Akhir</label>
-                                                <input type="text" class="form-control" id="lastName">
+                                                <label for="lastName" class="form-label">Konfirmasi Pembayaran</label>
+                                                <input type="file" name="bukti_pembayaran" class="form-control" id="pembayaran">
                                             </div>
                                         </div>
                                         <div class="col-12">
                                             <div class="form-input">Nomor Telepon</label>
-                                                <input type="number" class="form-control" id="phoneNumber">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
-                                            <div class="form-input">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" class="form-control" id="email">
+                                                <input type="number" value="{{Auth::user()->phone}}" name="phone" class="form-control" id="phone">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-input">
-                                                <label for="username" class="form-label">Username</label>
-                                                <input type="text" class="form-control" id="username">
+                                                <label class="form-label">Address</label>
+                                                <input type="text" value="{{Auth::user()->adress}}" name="adress" class="form-control" id="address">
                                             </div>
                                         </div>
                                         <div class="col-6">
                                             <div class="form-input">
-                                                <label for="password" class="form-label">Password</label>
-                                                <input type="password" class="form-control" id="password">
+                                                <label for="username" class="form-label">Email</label>
+                                                <input type="email" name="email" value="{{Auth::user()->email}}" class="form-control" id="email">
                                             </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="username" class="form-label">Your Product</label>
+                                            <textarea style="margin-top: 0;" class="form-control product" name="product" readonly></textarea>
+                                        </div>
+                                        <div class="col-6">
+                                            <label for="username" class="form-label">Price</label>
+                                            <input class="form-control price" name="price" readonly/>
+                                        </div>
+                                        <div class="col-6" style="display: none;">
+                                            <label for="username" class="form-label">Image Product</label>
+                                            <input class="form-control image-product" name="image-product" readonly/>
                                         </div>
                                         <div class="col-12"></div>
                                     </div>
-
-                                    <div class="col-12 d-flex justify-content-end">
+                                    <div class="col-12 d-flex justify-content-between">
+                                        <a href="/cart" class="btn btn-outline-danger">Back</a>
                                         <button type="submit" class="button button-primary">Submit</button>
                                     </div>
                             </form>
@@ -141,10 +145,9 @@
                             <div class="row">
                                 <div class="col-12 col-lg-8">
                                     <div class="detail-customer">
-                                        <h5 class="name-customer">Reksa Prayoga</h5>
-                                        <p class="number-phone">+628127386123</p>
-                                        <p class="address">Jl. Sumur Batu Raya No.50, RT.4/RW.2, Sumur Batu, Kec.
-                                            Babakan Madang, Kabupaten Bogor, Jawa Barat 16810</p>
+                                        <h5 class="name-customer">{{Auth::user()->name}}</h5>
+                                        <p class="number-phone">{{Auth::user()->phone}}</p>
+                                        <p class="address">{{Auth::user()->adress}}</p>
                                     </div>
                                 
                                     <div class="shipping-detail">
@@ -161,15 +164,6 @@
                                                     <h6>Rp. 27.000</h6>
                                                 </div>
                                             </div>
-                                            <div class="item">
-                                                <div class="images-item">
-                                                    <img src="./assets/img/images_plant_example.png" alt="">
-                                                </div>
-                                                <div class="detail-item">
-                                                    <h5>Memori Handphone 60 GB</h5>
-                                                    <h6>Rp. 250.000</h6>
-                                                </div>
-                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -181,7 +175,7 @@
                                                 <div class="detail-summary">
                                                     <div class="d-flex align-items-center justify-content-between mb-2">
                                                         <p class="bold-text">Total</p>
-                                                        <p class="bold-text">Rp. 277.000</p>
+                                                        <p class="bold-text value-total">Rp. 0</p>
                                                     </div>
                                                 </div>
                                                 <div class="dropdown">
@@ -396,9 +390,6 @@
         </div>
     </div>
 
-
-
-
     <!--Vendor-->
     <!--Jquery-->
     <script src="./assets/vendor/jquery/jquery.min.js"></script>
@@ -411,4 +402,218 @@
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
     <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 
+<script>
+  $(document).ready(function() {
+    var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+
+    function generateProductText() {
+      var productText = '';
+      for (var i = 0; i < cartData.length; i++) {
+        productText += `${cartData[i].productName} (Jumlah: ${cartData[i].quantity})\n`;
+      }
+      return productText;
+    }
+
+    function getProductImage(index) {
+      return cartData[index].imageSrc;
+    }
+
+    function getProductPrice(index) {
+      var totalPrice = cartData[index].totalPrice;
+
+      // Cek apakah ada lebih dari satu totalPrice
+      if (cartData.length > 1) {
+        var combinedTotalPrice = calculateCombinedTotalPrice();
+        return combinedTotalPrice;
+      } else {
+        return totalPrice;
+      }
+    }
+
+    // Fungsi untuk menghitung total harga kombinasi
+    function calculateCombinedTotalPrice() {
+      var combinedTotalPrice = 0;
+      for (var i = 0; i < cartData.length; i++) {
+        combinedTotalPrice += cartData[i].totalPrice;
+      }
+      return combinedTotalPrice;
+    }
+
+    var productText = generateProductText();
+    $('.form-control.product').val(productText);
+
+    var imageProductInput = $('.form-control.image-product');
+    var priceInput = $('.form-control.price');
+
+    // Mendapatkan gambar dan harga produk pertama dalam keranjang
+    var firstProductImage = getProductImage(0);
+    var firstProductPrice = getProductPrice(0);
+
+    // Menetapkan nilai gambar dan harga produk pertama ke input yang sesuai
+    imageProductInput.val(firstProductImage);
+    priceInput.val('Rp. ' + firstProductPrice);
+  });
+</script>
+
+
+    <script>
+  $(document).ready(function() {
+    var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+
+    function generateCartItemHTML(item, index) {
+      return `
+        <div class="wrapper-item">
+          <div class="item">
+            <div class="images-item">
+              <img src="${item.imageSrc}" alt="">
+            </div>
+            <div class="detail-item">
+              <h5>${item.productName}</h5>
+              <h6>Rp. ${item.totalPrice}</h6>
+            </div>
+          </div>
+        </div>
+      `;
+    }
+
+    function calculateTotalPrice() {
+      var totalPrice = 0;
+      for (var i = 0; i < cartData.length; i++) {
+        totalPrice += cartData[i].totalPrice;
+      }
+      return totalPrice;
+    }
+
+    function updateCartItems() {
+      var cartContainer = $('.wrapper-item');
+      cartContainer.empty(); // Menghapus elemen HTML sebelum memperbarui
+      for (var i = 0; i < cartData.length; i++) {
+        var itemHTML = generateCartItemHTML(cartData[i], i);
+        cartContainer.append(itemHTML);
+      }
+    }
+
+    function updateTotalPrice() {
+      var totalPrice = calculateTotalPrice();
+      $('.value-total').text('Rp. ' + totalPrice);
+    }
+
+    updateCartItems();
+    updateTotalPrice();
+  });
+</script>
+
+<script>
+       $(document).ready(function() {
+        // Mengambil data dari localStorage saat halaman dimuat
+        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+
+        function updateTotalItem() {
+            var totalItem = cartData.length;
+            $('.totalItem').text(totalItem);
+        }
+
+        // Fungsi untuk menghasilkan elemen HTML untuk setiap item dalam data keranjang
+        function generateCartItemHTML(item, index) {
+            return `
+                <div class="product-list">
+                    <div class="form-check checkbox-select checkbox-item">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    </div>
+                    <div class="product-detail">
+                        <div class="image-product">
+                            <img src="${item.imageSrc}" alt="">
+                        </div>
+                        <div class="wrapper-info-product">
+                            <div class="name-price-product">
+                                <h5>${item.productName}</h5>
+                                <p>Rp. <span class="price" data-price="${item.totalPrice}" data-index="${index}">${item.totalPrice}</span></p>
+                            </div>
+                            <p class="price-per-plant">Rp. <span class="price-plant">${item.price}</span>/Produk</p>
+                            <div class="action-cart">
+                                <div class="quantity-product">
+                                    <button class="quantity-count quantity-count--minus" data-action="minus" type="button" data-index="${index}">-</button>
+                                    <input class="product-quantity" type="number" name="product-quantity" min="0" max="10" value="${item.quantity}" data-index="${index}">
+                                    <button class="quantity-count quantity-count--add" data-action="add" type="button" data-index="${index}">+</button>
+                                </div>
+                                <button class="delete-cart-button" data-index="${index}">
+                                    <img src="./assets/img/icon/trash-delete-icon.svg" alt="">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fungsi untuk mengupdate total price
+        function updateTotalPrice() {
+            var totalPrice = 0;
+            for (var i = 0; i < cartData.length; i++) {
+                totalPrice += cartData[i].totalPrice;
+            }
+            $('.value-total-fix').text('Rp. ' + totalPrice);
+        }
+
+        // Fungsi untuk mengupdate harga total per item
+        function updateItemTotalPrice(index) {
+            var item = cartData[index];
+            var priceElement = $('.price[data-index="' + index + '"]');
+            priceElement.text(item.totalPrice);
+            priceElement.attr('data-price', item.totalPrice);
+        }
+
+        // Fungsi untuk menghapus item dari keranjang berdasarkan index
+        function deleteCartItem(index) {
+            cartData.splice(index, 1);
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+            $('.body-cart').empty(); // Menghapus elemen HTML sebelum memperbarui
+            updateCartItems(); // Memperbarui tampilan keranjang setelah menghapus item
+        }
+
+        // Fungsi untuk memperbarui quantity item dalam keranjang
+        function updateCartItemQuantity(index, quantity) {
+            cartData[index].quantity = quantity;
+            cartData[index].totalPrice = quantity * cartData[index].price; // Mengupdate totalPrice
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+            updateTotalPrice(); // Memperbarui total price
+            updateItemTotalPrice(index); // Memperbarui harga total per item
+        }
+
+        // Menambahkan elemen HTML untuk setiap item dalam data keranjang
+        function updateCartItems() {
+            var cartContainer = $('.body-cart');
+            for (var i = 0; i < cartData.length; i++) {
+                var itemHTML = generateCartItemHTML(cartData[i], i);
+                cartContainer.append(itemHTML);
+            }
+        }
+
+        // Menangani klik tombol minus dan plus
+        $('.body-cart').on('click', '.quantity-count', function() {
+            var action = $(this).data('action');
+            var index = $(this).data('index');
+            var quantityInput = $('.product-quantity[data-index="' + index + '"]');
+            var quantity = parseInt(quantityInput.val());
+            if (action === 'minus' && quantity > 0) {
+                quantityInput.val(quantity - 1);
+                updateCartItemQuantity(index, quantity - 1);
+            } else if (action === 'add' && quantity < 10) {
+                quantityInput.val(quantity + 1);
+                updateCartItemQuantity(index, quantity + 1);
+            }
+        });
+
+        // Menangani klik tombol hapus
+        $('.body-cart').on('click', '.delete-cart-button', function() {
+            var index = $(this).data('index');
+            deleteCartItem(index);
+        });
+        
+        updateCartItems(); // Memperbarui tampilan keranjang saat halaman dimuat
+        updateTotalPrice(); // Memperbarui total price saat halaman dimuat
+        updateTotalItem();
+    });
+    </script>
 </html>

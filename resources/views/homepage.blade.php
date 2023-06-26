@@ -42,7 +42,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="{{ route('show.product') }}">Belanja</a>
+                        <a class="nav-link" href="/show">Belanja</a>
                     </li>
                 </ul>
                 <div class="slicing-color"></div>
@@ -53,12 +53,12 @@
                             Logout
                         </a>
                     @else
-                        <a class="btn btn-light" href="{{ route('login.page') }}">
+                        <a class="btn btn-light" href="/login">
                             <img src="assets/img/homepage/icons8-login-50.png" width="20" height="20">
                             Login
                         </a>
                         @if (Route::has('register'))
-                            <a class="btn btn-light" href="{{ route('register') }}">
+                            <a class="btn btn-light" href="/register">
                                 <img src="assets/img/homepage/icons8-login-50.png" width="20" height="20">
                                 Register
                             </a>
@@ -83,7 +83,7 @@
                             yang menyediakan segala kebutuhan Anda dalam mencari dan membeli spare part handphone dengan
                             cara yang mudah dan menyenangkan.</p>
                         <div class="flex-button-content1">
-                            <button class="btn btn-dark">Belanja Sekarang</button>
+                            <a class="btn btn-dark" href="/show">Belanja Sekarang</a>
                         </div>
                     </div>
 
@@ -138,7 +138,7 @@
                     <div class="multiple-items">
                         @foreach($products as $product)
                         <div class="card">
-                            <img class="card-img-top" style="padding: 20px;" src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
+                            <img class="card-img-top" style="padding: 20px; height: 230px;" src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
 
                             <div class="card-body">
                                 <h5 class="card-title">{{$product->name}}</h5>

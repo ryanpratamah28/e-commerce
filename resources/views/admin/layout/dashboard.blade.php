@@ -111,7 +111,7 @@
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Orders</span></li>     
 
             <li class="menu-item">
-              <a href="tables-basic.html" class="menu-link">
+              <a href="/dashboard/list-order" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">List Order</div>
               </a>
@@ -148,21 +148,27 @@
                 <li class="nav-item navbar-dropdown dropdown-user dropdown">
                   <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);" data-bs-toggle="dropdown">
                     <div class="avatar avatar-online">
-                      <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                    </div>
+                              @if (is_null(Auth::user()->image_profile))
+                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                  @else
+                              <img src="{{asset('assets/img/' .Auth::user()->image_profile)}}" alt class="w-px-40 h-auto rounded-circle" />
+                              @endif                    </div>
                   </a>
                   <ul class="dropdown-menu dropdown-menu-end">
                     <li>
-                      <a class="dropdown-item" href="#">
+                      <a class="dropdown-item" href="/profile">
                         <div class="d-flex">
                           <div class="flex-shrink-0 me-3">
                             <div class="avatar avatar-online">
-                              <img src="../../../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
-                            </div>
+                              @if (is_null(Auth::user()->image_profile))
+                              <img src="../assets/img/avatars/1.png" alt class="w-px-40 h-auto rounded-circle" />
+                                  @else
+                              <img src="{{asset('assets/img/' .Auth::user()->image_profile)}}" alt class="w-px-40 h-auto rounded-circle" />
+                              @endif                            </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
-                            <small class="text-muted">{{ Auth::user()->role }}</small>
+                            <span class="fw-semibold d-block">{{Auth::user()->name}}</span>
+                            <small class="text-muted">{{Auth::user()->role}}</small>
                           </div>
                         </div>
                       </a>
@@ -171,7 +177,7 @@
                       <div class="dropdown-divider"></div>
                     </li>
                     <li>
-                      <a class="dropdown-item" href="{{ route('profile.account') }}">
+                      <a class="dropdown-item" href="/profile">
                         <i class="bx bx-user me-2"></i>
                         <span class="align-middle">My Profile</span>
                       </a>
