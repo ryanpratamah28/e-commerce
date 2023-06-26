@@ -56,7 +56,7 @@
               <h2 class="text-black fw-bolder ms-2">SH</h2>
             </a>
 
-            <a href="{{route('index.admin')}}" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
+            <a href="/dashboard" class="layout-menu-toggle menu-link text-large ms-auto d-block d-xl-none">
               <i class="bx bx-chevron-left bx-sm align-middle"></i>
             </a>
           </div>
@@ -65,8 +65,8 @@
 
           <ul class="menu-inner py-1">
             <!-- Dashboard -->
-            <li class="menu-item active">
-              <a href="{{route('index.admin')}}" class="menu-link">
+            <li class="menu-item {{ (request()->is('dashboard')) ? 'active' : '' }}" >
+              <a href="/dashboard" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-home-circle"></i>
                 <div data-i18n="Analytics">Dashboard</div>
               </a>
@@ -76,15 +76,15 @@
               <span class="menu-header-text">Product</span>
             </li>
 
-            <li class="menu-item">
-              <a href="{{route('create.product')}}" class="menu-link">
+            <li class="menu-item {{ (request()->is('dashboard/products/create')) ? 'active' : '' }}" >
+              <a href="/dashboard/products/create" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-plus"></i>
                 <div data-i18n="Basic">Add Product</div>
               </a>
             </li>
 
-            <li class="menu-item">
-              <a href="{{route('product')}}" class="menu-link">
+            <li class="menu-item {{ (request()->is('dashboard/products')) ? 'active' : '' }}" >
+              <a href="/dashboard/products" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">List Product</div>
               </a>
@@ -93,15 +93,15 @@
             <!-- Components -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Category</span></li>
             <!-- Cards -->
-            <li class="menu-item">
-              <a href="{{route('create.category')}}" class="menu-link">
+            <li class="menu-item {{ (request()->is('dashboard/categories/create')) ? 'active' : '' }}" >
+              <a href="/dashboard/categories/create" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-plus"></i>
                 <div data-i18n="Basic">Add Category</div>
               </a>
             </li>
 
-            <li class="menu-item">
-              <a href="{{route('category')}}" class="menu-link">
+            <li class="menu-item {{ (request()->is('dashboard/categories')) ? 'active' : '' }}" >
+              <a href="/dashboard/categories" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
                 <div data-i18n="Basic">List Category</div>
               </a>
@@ -119,8 +119,8 @@
 
             <!-- Users Data-->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Users Data</span></li>
-            <li class="menu-item">
-              <a href="{{route('users.data')}}" class="menu-link">
+            <li class="menu-item {{ (request()->is('dashboard/users')) ? 'active' : '' }}" >
+              <a href="/dashboard/users" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-archive"></i>
                 <div data-i18n="Tables">List User</div>
               </a>

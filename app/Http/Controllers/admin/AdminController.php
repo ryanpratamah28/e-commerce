@@ -12,6 +12,14 @@ class AdminController extends Controller
     }
 
     public function userData(){
-        return view('admin.manage_user.list_user');
+        $users = User::all();
+
+        return view('admin.manage_user.list_user', compact('users'));
+    }
+
+    public function userDelete(User $user){
+        $user->delete();
+
+        return redirect()->back()->with('deleteUser', 'Berhasil menghapus user');
     }
 }
