@@ -42,7 +42,7 @@
                     </li>
 
                     <li class="nav-item">
-                        <a class="nav-link" href="/product">Belanja</a>
+                        <a class="nav-link" href="/show">Belanja</a>
                     </li>
                 </ul>
                 <div class="slicing-color"></div>
@@ -138,7 +138,7 @@
                     <div class="multiple-items">
                         @foreach($products as $product)
                         <div class="card">
-                            <img class="card-img-top" style="padding: 20px;" src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
+                            <img class="card-img-top" style="padding: 20px; height: 230px;" src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
 
                             <div class="card-body">
                                 <h5 class="card-title">{{$product->name}}</h5>

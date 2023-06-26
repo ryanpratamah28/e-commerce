@@ -61,7 +61,7 @@
                                 <a class="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                     @if (is_null($user['image_profile']))
                                         <div class="avatar avatar-online">
-                                            <img src="./assets/img/avatars/1.png" alt=""
+                                            <img src="../../assets/img/avatars/1.png" alt=""
                                                 class="w-px-40 h-auto rounded-circle">
                                         </div>
                                     @else
@@ -76,7 +76,7 @@
                                     <li>
                                         <a class="dropdown-item" href="#">
                                             <div class="d-flex">
-                                                <div class="flex-shrink-0 me-3">
+                                                <!-- <div class="flex-shrink-0 me-3">
                                                     @if (is_null($user['image_profile']))
                                                         <div class="avatar avatar-online">
                                                             <img src="./assets/img/avatars/1.png" alt=""
@@ -88,7 +88,7 @@
                                                                 alt="" class="w-px-40 h-auto rounded-circle">
                                                         </div>
                                                     @endif
-                                                </div>
+                                                </div> -->
                                                 <div class="flex-grow-1">
                                                     <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
                                                     <small class="text-muted">{{ Auth::user()->role }}</small>
@@ -193,7 +193,6 @@
                     <div class="bestOfferContainer">
                         <a href="#" class="header-line">
                             <img src="./assets/img/icon/icons8-hot-price-30.png" alt="" />
-
                             <p>Penawaran Terbaik</p>
                         </a>
                         <div class="bestOfferProduct">

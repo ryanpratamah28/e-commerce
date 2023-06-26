@@ -39,7 +39,7 @@
                                         <label class="form-label" for="form1">Search</label>
                                     </div>
                                     <button type="button" class="buttonSearch button button-primary">
-                                        <img src="./assets/img/icon/search_icon.svg" alt="">
+                                        <img src="../../assets/img/icon/search_icon.svg" alt="">
                                     </button>
                                 </div>
                             </form>
@@ -62,7 +62,7 @@
                             </div>
                             <div class="cartWrapper">
                                 <a href="/cart" class="cart icon">
-                                    <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
+                                    <img src="../../assets/img/icon/shopping-cart_icon.svg" alt="">
                                     <div class="totalItem">0</div>
                                 </a>
                             </div>

@@ -127,7 +127,7 @@
                             </li>
                             <div class="cartWrapper">
                                 <a href="/cart" class="cart icon">
-                                    <img src="../assets/img/icon/shopping-cart_icon.svg" alt="">
+                                    <img src="../../assets/img/icon/shopping-cart_icon.svg" alt="">
                                     <div class="totalItem">0</div>
                                 </a>
                             </div>
@@ -173,7 +173,7 @@
                                         <div class="wrapper-image-product">
                                             <div class="view-Images">
                                                 <div class="images-product">
-                                                    <img src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
+                                                    <img class="product-image" src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
                                                 </div>
                                                 <div class="images-product">
                                                     <img src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
@@ -207,9 +207,9 @@
                                             </div>
                                         </div>
                                     </div>
-<div class="col-12 col-lg-7">
+                                        <div class="col-12 col-lg-7">
                                         <div class="wrapper-detail-product">
-                                            <h1 class="name-product">{{$product->name}}</h1>
+                                            <h1 class="name-product" data-name="{{$product->name}}">{{$product->name}}</h1>
                                             <div class="price-product">
                                                 <p id="price">Rp. {{ number_format($product->price, 0, ',', '.') }}<span>/Produk</span></p>
                                             </div>
@@ -258,7 +258,7 @@
                                             <p>Rp. <span>0</span></p>
                                         </div>
                                     </div>
-                                    <button class="button button-primary w-100">
+                                    <button id="add-to-cart" class="button button-primary w-100">
                                         <img src="../../assets/img/icon/shopping-cart-white.svg" alt="">    
                                         Tambah ke Keranjang
                                     </button>
@@ -325,7 +325,7 @@
         </script>
 
         <!--Quantity Input-->
-        <script>
+<script>
             var QtyInput = (function () {
             var $qtyInputs = $(".quantity-product");
 
@@ -396,7 +396,7 @@
 <script>
     function updateSummary() {
         var quantity = parseInt($('.product-quantity').val());
-        var price = parseInt($('#price').text());
+        var price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
         var totalPrice = quantity * price;
 
         $('.total-order span').text(quantity);
@@ -427,7 +427,7 @@
 
     $('#add-to-cart').click(function() {
         var quantity = parseInt($('.product-quantity').val());
-        var price = 27000;
+        var price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
         var totalPrice = quantity * price;
         var productName = $('.name-product').data('name'); // Mengambil nama produk
         var imageSrc = $('.product-image').attr('src');
@@ -468,7 +468,7 @@
             $('.total-order span').text(lastData.quantity);
             $('.total-price span').text(lastData.totalPrice);
             $('.name-product').text(lastData.productName);
-            $('.product-image').text(lastData.imageSrc);
+            $('.images.product').text(lastData.imageSrc);
         } else {
             updateSummary();
         }
@@ -550,6 +550,7 @@
             cartData[index].quantity = quantity;
             cartData[index].totalPrice = quantity * cartData[index].price; // Mengupdate totalPrice
             localStorage.setItem('cartData', JSON.stringify(cartData));
+
             updateTotalPrice(); // Memperbarui total price
             updateItemTotalPrice(index); // Memperbarui harga total per item
         }
