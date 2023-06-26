@@ -6,7 +6,7 @@
             <h5 class="mb-0">Edit Product</h5>
         </div>
         <div class="card-body">
-            <form method="POST" action="{{ route('dashboard.products.update', $product->id) }}" enctype="multipart/form-data">
+            <form method="POST" action="{{ route('update.product', $product->id) }}" enctype="multipart/form-data">
                 @csrf
                 @method('PUT')
 
@@ -17,13 +17,13 @@
                 
                 <div class="mb-3">
                     <label for="exampleFormControlSelect1" class="form-label">Kategori</label>
-                    <select class="form-select" id="exampleFormControlSelect1" name="category_product_name">
-                      <option selected hidden>Select Category</option>
+                    <select class="form-select" id="exampleFormControlSelect1" name="category_id">
+                      <option hidden>Select Category</option>
                         @foreach($categories as $category)
-                            <option value="{{ $category->category_name }} @if($category->id === $product->category_id) selected @endif" >{{ ($category->category_name) }}</option>
+                            <option value="{{ $category->id}}" @if($category->id === $product->category_id) selected @endif>{{ ($category->name) }}</option>
                         @endforeach
                     </select>
-                    @error('category_product_name')
+                    @error('category_id')
                         <div class="form-text text-danger">{{ $message }}</div>
                     @enderror
                 </div>
@@ -52,6 +52,7 @@
                     @enderror
                 </div>
 
+                <a href="{{ route('product') }}" class="btn btn-danger">Cancel</a>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>

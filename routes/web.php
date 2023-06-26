@@ -19,15 +19,9 @@ use App\Http\Controllers\user\ProductController;
 use App\Http\Controllers\user\CheckoutController;
 use App\Http\Controllers\user\TransactionController;
 
-// Route::get('/', [PagesController::class, 'home'])->name('homepage');
-// Route::get('/show', [PagesController::class, 'showProduct'])->name('show.product');
-// Route::get('/cart', [PagesController::class, 'cart'])->name('cart');
-// Route::get('/detail', [PagesController::class, 'detailProduct'])->name('detail.product');
-// // Route::get('/checkout', [PagesController::class, 'checkout'])->name('checkout');
+// Homepage & Main Page ( Before Login )
 
-// Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-
-Route::middleware('isGuest')->group(function() {
+Route::middleware('isGuest')->group(function () {
     // Auth
     Route::get('/login', [LoginController::class, 'login'])->name('login.page');
     Route::post('/login/auth', [LoginController::class, 'loginAuth'])->name('login');
@@ -45,33 +39,34 @@ Route::middleware(['isLogin', 'CekRole:admin,user'])->group(function () {
     Route::get('/history', [PagesController::class, 'historyTransaction'])->name('history');
     Route::post('/pembayaran', [PagesController::class, 'pembayaran'])->name('pembayaran');
 
-    Route::get('/', [PagesController::class, 'home'])->name('homepage');
+    Route::get('/product/detail/{id}', [PagesController::class, 'detailProduct'])->name('detail.product');
+    Route::get('/', [PagesController::class, 'index'])->name('homepage');
     Route::get('/show', [PagesController::class, 'showProduct'])->name('show.product');
     Route::get('/cart', [PagesController::class, 'cart'])->name('cart');
-    Route::get('/detail', [PagesController::class, 'detailProduct'])->name('detail.product');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-});
-
-Route::middleware(['isLogin', 'CekRole:user'])->prefix('/page')->group(function () {
-    Route::get('/', [PagesController::class, 'page'])->name('page');
 });
 
 Route::middleware(['isLogin', 'CekRole:admin'])->prefix('/dashboard')->group(function () {
     Route::get('/', [AdminController::class, 'index'])->name('index.admin');
 
-        Route::get('/product', [ManageProductsController::class, 'product'])->name('product');
-        Route::get('/product/create', [ManageProductsController::class, 'createProduct'])->name('create.product');
-        Route::post('/product/create/store', [ManageProductsController::class, 'storeProduct'])->name('store.product');
-        Route::post('/product/edit/{id}', [ManageProductsController::class, 'editProduct'])->name('edit.product');
-        Route::put('/product/update/{id}', [ManageProductsController::class, 'updateProduct'])->name('update.product');
-        Route::delete('/product/delete/{id}', [ManageProductsController::class, 'deleteProduct'])->name('delete.product');
+        Route::prefix('/product')->group(function () {
+            Route::get('/', [ManageProductsController::class, 'index'])->name('product');
+            Route::get('/create', [ManageProductsController::class, 'create'])->name('create.product');
+            Route::post('/create/store', [ManageProductsController::class, 'store'])->name('dashboard.store.product');
+            Route::get('/edit/{id}', [ManageProductsController::class, 'edit'])->name('edit.product');
+            Route::put('/update/{id}', [ManageProductsController::class, 'update'])->name('update.product');
+            Route::delete('/delete/{id}', [ManageProductsController::class, 'destroy'])->name('delete.product');
+        });
+        //CATEGORY
 
-        Route::get('/category', [ManageCategoriesController::class, 'category'])->name('category');
-        Route::get('/category/create', [ManageCategoriesController::class, 'createCategory'])->name('create.category');
-        Route::post('/category/create/store', [ManageCategoriesController::class, 'storeCategory'])->name('store.category');
-        Route::post('/category/edit/{id}', [ManageCategoriesController::class, 'editCategory'])->name('edit.category');
-        Route::put('/category/update/{id}', [ManageCategoriesController::class, 'updateCategory'])->name('update.category');
-        Route::delete('/category/delete/{id}', [ManageCategoriesController::class, 'deleteCategory'])->name('delete.category');
+        Route::prefix('/category')->group(function () {
+            Route::get('/', [ManageCategoriesController::class, 'index'])->name('category');
+            Route::get('/create', [ManageCategoriesController::class, 'create'])->name('create.category');
+            Route::post('/create/store', [ManageCategoriesController::class, 'store'])->name('dashboard.store.category');
+            Route::get('/edit/{id}', [ManageCategoriesController::class, 'edit'])->name('edit.category');
+            Route::put('/update/{id}', [ManageCategoriesController::class, 'update'])->name('update.category');
+            Route::delete('/delete/{id}', [ManageCategoriesController::class, 'destroy'])->name('delete.category');
+        });
 
         //USER DATA
         Route::get('/users', [AdminController::class, 'userData'])->name('users.data');

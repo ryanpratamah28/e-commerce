@@ -1,36 +1,47 @@
 <?php
 
 namespace App\Http\Controllers\User;
-use App\Models\Checkout;
-use App\Models\User;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Auth;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Checkout;
+use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Support\Facades\Auth;
+
 
 class PagesController extends Controller
 {
-    public function page(){
-        return view('user.page');
-    }
-
-    public function home()
+    public function index()
     {
-        $count = Checkout::where('status', 1)->count();
-        return view('homepage', compact('count'));
+        $products = Product::all();
+        $category = Category::all();
+        $user = User::all();
+        return view('homepage', compact('products', 'category', 'user'));
     }
 
-    public function showProduct(){
-        if (Auth::check()) {
-            $user = User::where('id', Auth::user()->id)->first();
-            return view('show_product', compact('user'));
+    public function showProduct()
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+        $products = Product::with('category')
+            ->limit(5)
+            ->get();
+        $product = Product::all();
+        $categories = Category::all();
+        return view('show_product', compact('products', 'user', 'categories', 'product'));
+
+    }
+
+    public function detailProduct($id)
+    {
+        $user = User::where('id', Auth::user()->id)->first();
+        $product = Product::with('category')->find($id);
+
+        if ($product) {
+            return view('detail_product', compact('product', 'user'));
         } else {
-            return view('show_product');
+            abort(404);
         }
-    }
-
-    public function detailProduct(){
-        return view('detail_product');
     }
 
     public function cart(){

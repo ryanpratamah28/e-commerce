@@ -19,7 +19,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $category->name }}</td>
                             <td>
-                                <img src="{{ asset('/images/' . $category->thumb_img) }}" width="100px" alt="">
+                                <img src="{{ asset('storage/images/'. $category->thumb_img) }}"width="100px" alt="">
                             </td>
                             <td>
                                 <form method="POST" action="{{ route('delete.category', $category->id) }}" class="d-flex">

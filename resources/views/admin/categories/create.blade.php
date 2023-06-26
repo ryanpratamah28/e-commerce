@@ -6,7 +6,7 @@
             <h5 class="mb-0">Buat Kategori Produk</h5>
         </div>
         <div class="card-body">
-            <form action="{{route('dashboard.categories.store')}}" method="POST" enctype="multipart/form-data">
+            <form action="{{route('dashboard.store.category')}}" method="POST" enctype="multipart/form-data">
                 @csrf 
 
                 <div class="mb-3">

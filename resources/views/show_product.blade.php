@@ -167,116 +167,25 @@
         </div>
     </div>
 
-    <div id="mainContent">
-        <div class="container first-line">
-            <!-- <div class="bannerSection">
-                <div class="wrapperBanner">
-                    <a href="#" class="banner">
-                        <img src="./assets/img/Banner.png" alt="" />
-
-                        <div class="wrapperButton">
-                            <div class="leftSide"></div>
-                            <div class="rightSide">
-                                <img src="" alt="" />
-                            </div>
-                        </div>
-                    </a>
-                    <a href="#" class="banner">
-                        <img src="./assets/img/Banner.png" alt="" />
-                    </a>
-                    <a href="#" class="banner">
-                        <img src="./assets/img/Banner.png" alt="" />
-                    </a>
-                </div>
-                <div class="slick-slider-dots"></div>
-            </div> -->
-        </div>
+    <div id="mainContent" style="margin-top: 150px">
         <div class="container">
             <div class="row line">
                 <div class="col-12 col-lg-3 mb-4 mb-lg-0">
                     <div class="categoriesContainer">
                         <h4>Kategori</h4>
                         <div class="wrapperCategories row">
+                            @foreach($categories as $category)
                             <div class="col-12 col-sm-6 col-md-3 col-lg-12">
                                 <a href="#" class="categoriesPlant">
                                     <div class="imagesCategories">
-                                        <img src="./assets/img/chargeran.jpg" alt="" />
+                                        <img src="{{ asset('storage/images/'. $category->thumb_img) }}" alt="">
                                     </div>
                                     <p class="nameCategories">
-                                        Chargeran Handphone
+                                        {{$category->name}}
                                     </p>
                                 </a>
                             </div>
-                            <div class="col-12 col-sm-6 col-md-3 col-lg-12">
-                                <a href="#" class="categoriesPlant">
-                                    <div class="imagesCategories">
-                                        <img src="./assets/img/baterai-1.jpg" alt="" />
-                                    </div>
-                                    <p class="nameCategories">
-                                        Baterai Handphone
-                                    </p>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-3 col-lg-12">
-                                <a href="#" class="categoriesPlant">
-                                    <div class="imagesCategories">
-                                        <img src="./assets/img/kamera-2.jpg" alt="" />
-                                    </div>
-                                    <p class="nameCategories">
-                                        Kamera Handphone
-                                    </p>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-3 col-lg-12">
-                                <a href="#" class="categoriesPlant">
-                                    <div class="imagesCategories">
-                                        <img src="./assets/img/lcd-phone-1.png" alt="" />
-                                    </div>
-                                    <p class="nameCategories">
-                                        LCD Handphone
-                                    </p>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-3 col-lg-12">
-                                <a href="#" class="categoriesPlant">
-                                    <div class="imagesCategories">
-                                        <img src="./assets/img/memori-hp.jpg" alt="" />
-                                    </div>
-                                    <p class="nameCategories">
-                                        Memori Handphone
-                                    </p>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-3 col-lg-12">
-                                <a href="#" class="categoriesPlant">
-                                    <div class="imagesCategories">
-                                        <img src="./assets/img/flexible-1.jpg" alt="" />
-                                    </div>
-                                    <p class="nameCategories">
-                                        Kabel Fleksibel HP
-                                    </p>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-3 col-lg-12">
-                                <a href="#" class="categoriesPlant">
-                                    <div class="imagesCategories">
-                                        <img src="./assets/img/main-board.png" alt="" />
-                                    </div>
-                                    <p class="nameCategories">
-                                        Main Board Handphone
-                                    </p>
-                                </a>
-                            </div>
-                            <div class="col-12 col-sm-6 col-md-3 col-lg-12">
-                                <a href="#" class="categoriesPlant">
-                                    <div class="imagesCategories">
-                                        <img src="./assets/img/speaker-hp.jpg" alt="" />
-                                    </div>
-                                    <p class="nameCategories">
-                                        Speaker Handphone
-                                    </p>
-                                </a>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -288,149 +197,25 @@
                             <p>Penawaran Terbaik</p>
                         </a>
                         <div class="bestOfferProduct">
-                            <a href="/detail" class="product">
+                            @foreach($products as $bestProduct)
+                            <a href="{{route('detail.product', $bestProduct->id)}}" class="product">
                                 <div class="imagesProduct">
-                                    <img src="./assets/img/flexible-1.jpg" alt="" />
+                                    <img src="{{ asset('storage/images/'. $bestProduct->thumb_img) }}" width="250px" alt="">
                                 </div>
+                        
                                 <div class="infoProduct">
                                     <p class="nameProduct">
-                                        Kabel Fleksibel untuk Handphone
-                                        Samsung
+                                        {{$bestProduct->name}}
                                     </p>
-                                    <p class="price">Rp. 27.000</p>
+                                    <p class="price">Rp. {{ number_format($bestProduct->price, 0, ',', '.') }}</p>
                                     <div class="discountDetail">
                                         <div class="discountValue">
-                                            10%
-                                        </div>
-                                        <div class="priceBefore">
-                                            Rp. 30.000
+                                            {{$bestProduct->category->name}}
                                         </div>
                                     </div>
-                                    <p class="rating">
-                                        <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                        5.0
-                                    </p>
                                 </div>
                             </a>
-                            <a href="#" class="product">
-                                <div class="imagesProduct">
-                                    <img src="./assets/img/kamera-iphone-x.jpeg" alt="" />
-                                </div>
-                                <div class="infoProduct">
-                                    <p class="nameProduct">
-                                        Jual Kamera Belakang untuk
-                                        iPhone X Pro
-                                    </p>
-                                    <p class="price">Rp. 200.000</p>
-                                    <div class="discountDetail">
-                                        <div class="discountValue">
-                                            50%
-                                        </div>
-                                        <div class="priceBefore">
-                                            Rp. 400.000
-                                        </div>
-                                    </div>
-                                    <p class="rating">
-                                        <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                        3.5
-                                    </p>
-                                </div>
-                            </a>
-                            <a href="#" class="product">
-                                <div class="imagesProduct">
-                                    <img src="./assets/img/baterai-1.jpg" alt="" />
-                                </div>
-                                <div class="infoProduct">
-                                    <p class="nameProduct">
-                                        PROMO!! Dijual Baterai Handphone
-                                        VHBW
-                                    </p>
-                                    <p class="price">Rp. 900.000</p>
-                                    <div class="discountDetail">
-                                        <div class="discountValue">
-                                            10%
-                                        </div>
-                                        <div class="priceBefore">
-                                            Rp. 1.000.000
-                                        </div>
-                                    </div>
-                                    <p class="rating">
-                                        <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                        5.0
-                                    </p>
-                                </div>
-                            </a>
-                            <a href="#" class="product">
-                                <div class="imagesProduct">
-                                    <img src="./assets/img/lcd-phone-1.png" alt="" />
-                                </div>
-                                <div class="infoProduct">
-                                    <p class="nameProduct">
-                                        HOT PROMO !! LCD Handphone
-                                        Samsung
-                                    </p>
-                                    <p class="price">Rp. 630.000</p>
-                                    <div class="discountDetail">
-                                        <div class="discountValue">
-                                            10%
-                                        </div>
-                                        <div class="priceBefore">
-                                            Rp. 700.000
-                                        </div>
-                                    </div>
-                                    <p class="rating">
-                                        <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                        4.5
-                                    </p>
-                                </div>
-                            </a>
-                            <a href="#" class="product">
-                                <div class="imagesProduct">
-                                    <img src="./assets/img/speaker-hp-2.jpg" alt="" />
-                                </div>
-                                <div class="infoProduct">
-                                    <p class="nameProduct">
-                                        Dijual Terpisah Speaker
-                                        Handphone untuk iPhone 12 Pro
-                                    </p>
-                                    <p class="price">Rp. 360.000</p>
-                                    <div class="discountDetail">
-                                        <div class="discountValue">
-                                            10%
-                                        </div>
-                                        <div class="priceBefore">
-                                            Rp. 400.000
-                                        </div>
-                                    </div>
-                                    <p class="rating">
-                                        <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                        5.0
-                                    </p>
-                                </div>
-                            </a>
-                            <a href="#" class="product">
-                                <div class="imagesProduct">
-                                    <img src="./assets/img/memori-hp.jpg" alt="" />
-                                </div>
-                                <div class="infoProduct">
-                                    <p class="nameProduct">
-                                        Memori Handphone Sandisk 16 GB
-                                    </p>
-                                    <p class="price">Rp. 225.000</p>
-                                    <div class="discountDetail">
-                                        <div class="discountValue">
-                                            10%
-                                        </div>
-                                        <div class="priceBefore">
-                                            Rp. 250.000
-                                        </div>
-                                    </div>
-                                    <p class="rating">
-                                        <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                        4.9
-                                    </p>
-                                </div>
-                            </a>
+                            @endforeach
                         </div>
                     </div>
                 </div>
@@ -440,194 +225,28 @@
             <div class="container pb-5">
                 <a href="#" class="header-line">
                     <img src="./assets/img/icon/icons8-open-end-wrench-100.png" alt="" />
-                    <p>Suku Cadang Handphone</p>
+                    <p>Semua Produk</p>
                 </a>
 
                 <div class="row">
+                    @foreach($product as $item)
                     <div class="col-6 col-lg-3">
-                        <a href="#" class="product">
+                        <a href="{{route('detail.product', $item->id)}}" class="product">
                             <div class="imagesProduct">
-                                <img src="./assets/img/main-board.png" alt="" />
+                                <img src="{{ asset('storage/images/'. $item->thumb_img) }}" width="250px" alt="">
                             </div>
                             <div class="infoProduct">
                                 <p class="nameProduct">
-                                    Main Board Handphone Iphone 7
+                                   {{ $item->name }}
                                 </p>
-                                <p class="price">Rp. 180.000</p>
+                                <p class="price">Rp. {{ number_format($item->price, 0, ',', '.') }}</p>
                                 <div class="discountDetail">
-                                    <div class="discountValue">10%</div>
-                                    <div class="priceBefore">
-                                        Rp. 200.000
-                                    </div>
+                                    <div class="discountValue">{{$item->category->name}}</div>
                                 </div>
-                                <p class="rating">
-                                    <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                    3.8
-                                </p>
                             </div>
                         </a>
                     </div>
-                    <div class="col-6 col-lg-3">
-                        <a href="#" class="product">
-                            <div class="imagesProduct">
-                                <img src="./assets/img/lcd-phone-1.png" alt="" />
-                            </div>
-                            <div class="infoProduct">
-                                <p class="nameProduct">
-                                    LCD Handphone Oppo F1
-                                </p>
-                                <p class="price">Rp. 750.000</p>
-                                <div class="discountDetail">
-                                    <div class="discountValue">50%</div>
-                                    <div class="priceBefore">
-                                        Rp. 1.500.000
-                                    </div>
-                                </div>
-                                <p class="rating">
-                                    <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                    4.6
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-lg-3">
-                        <a href="#" class="product">
-                            <div class="imagesProduct">
-                                <img src="./assets/img/soc-1.jpg" alt="" />
-                            </div>
-                            <div class="infoProduct">
-                                <p class="nameProduct">
-                                    SOC Xiaomi Redmi
-                                </p>
-                                <p class="price">Rp. 3.600.000</p>
-                                <div class="discountDetail">
-                                    <div class="discountValue">10%</div>
-                                    <div class="priceBefore">
-                                        Rp. 4.000.000
-                                    </div>
-                                </div>
-                                <p class="rating">
-                                    <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                    5.5
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-lg-3">
-                        <a href="#" class="product">
-                            <div class="imagesProduct">
-                                <img src="./assets/img/chargeran.jpg" alt="" />
-                            </div>
-                            <div class="infoProduct">
-                                <p class="nameProduct">
-                                    Chargeran Handphone Advan
-                                </p>
-                                <p class="price">Rp. 150.000</p>
-                                <div class="discountDetail">
-                                    <div class="discountValue">50%</div>
-                                    <div class="priceBefore">
-                                        Rp. 300.000
-                                    </div>
-                                </div>
-                                <p class="rating">
-                                    <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                    5.5
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-lg-3">
-                        <a href="#" class="product">
-                            <div class="imagesProduct">
-                                <img src="./assets/img/kamera-2.jpg" alt="" />
-                            </div>
-                            <div class="infoProduct">
-                                <p class="nameProduct">
-                                    Kamera Belakang iPhone 7
-                                </p>
-                                <p class="price">Rp. 2.500.000</p>
-                                <div class="discountDetail">
-                                    <div class="discountValue">50%</div>
-                                    <div class="priceBefore">
-                                        Rp. 5.000.000
-                                    </div>
-                                </div>
-                                <p class="rating">
-                                    <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                    5.5
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-lg-3">
-                        <a href="#" class="product">
-                            <div class="imagesProduct">
-                                <img src="./assets/img/speaker-hp.jpg" alt="" />
-                            </div>
-                            <div class="infoProduct">
-                                <p class="nameProduct">
-                                    Speaker Handphone Realme
-                                </p>
-                                <p class="price">Rp. 360.000</p>
-                                <div class="discountDetail">
-                                    <div class="discountValue">10%</div>
-                                    <div class="priceBefore">
-                                        Rp. 400.000
-                                    </div>
-                                </div>
-                                <p class="rating">
-                                    <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                    5.5
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-lg-3">
-                        <a href="#" class="product">
-                            <div class="imagesProduct">
-                                <img src="./assets/img/flexible-1.jpg" alt="" />
-                            </div>
-                            <div class="infoProduct">
-                                <p class="nameProduct">
-                                    Kabel Fleksibel Samsung
-                                </p>
-                                <p class="price">Rp. 90.000</p>
-                                <div class="discountDetail">
-                                    <div class="discountValue">10%</div>
-                                    <div class="priceBefore">
-                                        Rp. 100.000
-                                    </div>
-                                </div>
-                                <p class="rating">
-                                    <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                    5.5
-                                </p>
-                            </div>
-                        </a>
-                    </div>
-                    <div class="col-6 col-lg-3">
-                        <a href="#" class="product">
-                            <div class="imagesProduct">
-                                <img src="./assets/img/lcd-phone-1.png" alt="" />
-                            </div>
-                            <div class="infoProduct">
-                                <p class="nameProduct">
-                                    LCD iPhone X Pro Max
-                                </p>
-                                <p class="price">Rp. 450.000</p>
-                                <div class="discountDetail">
-                                    <div class="discountValue">10%</div>
-                                    <div class="priceBefore">
-                                        Rp. 500.000
-                                    </div>
-                                </div>
-                                <p class="rating">
-                                    <img src="./assets/img/icon/star_icon.svg" alt="" />
-                                    5.5
-                                </p>
-                            </div>
-                        </a>
-                    </div>
+                    @endforeach
                 </div>
             </div>
         </div>

@@ -6,7 +6,6 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
-
 class ManageCategoriesController extends Controller
 {
     public function index()
@@ -25,8 +24,8 @@ class ManageCategoriesController extends Controller
         // dd($request->all());
 
         $validatedData = $request->validate([
-            'category_name' => 'required|string|max:255',
-            'thumb_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'name' => 'required|string|max:255',
+            'thumb_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         if ($request->hasFile('thumb_img')) {
@@ -38,38 +37,51 @@ class ManageCategoriesController extends Controller
 
         Category::create($validatedData);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
+        return redirect()
+            ->route('category')
+            ->with('success', 'Category created successfully.');
     }
 
-    public function edit(Category $category)
+    public function edit($id)
     {
+        $category = Category::where('id', $id)->first();
         return view('admin.categories.edit', compact('category'));
     }
 
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
+        $category = Category::findOrFail($id);
+
         $validatedData = $request->validate([
-            'category_name' => 'required|string|max:255',
+            'name' => 'required|string|max:255',
             'thumb_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
         if ($request->hasFile('thumb_img')) {
-            $imageName = 'Product_' . uniqid() . '.' . $request->file('thumb_img')->getClientOriginalExtension();
-            $request->file('thumb_img')->storeAs('public/images', $imageName);
-            File::delete('public/images/' . $category->thumb_img);
-            $category->thumb_img = $imageName;
+            $image = $request->file('thumb_img');
+            $imageName = 'Category_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $validatedData['thumb_img'] = $imageName;
         }
+
+        $validatedData['name'] = $request->input('name');
 
         $category->update($validatedData);
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
+        return redirect()
+            ->route('category')
+            ->with('success', 'Category updated successfully.');
     }
 
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        File::delete('public/images/' . $category->thumb_img);
+        $category = Category::findOrFail($id);
+
+        File::delete('public/images' . $category->thumb_img);
         $category->delete();
 
-        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
+        return redirect()
+            ->route('category')
+            ->with('success', 'Category deleted successfully.');
     }
 }

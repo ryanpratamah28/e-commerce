@@ -24,7 +24,7 @@ class ManageProductsController extends Controller
 
     public function store(Request $request)
     {
-        $request->validate([
+        $validatedProduct = $request->validate([
             'category_id' => 'required',
             'name' => 'required',
             'description' => 'required',
@@ -32,30 +32,30 @@ class ManageProductsController extends Controller
             'thumb_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        $imageName = 'Product_' . uniqid() . '.' . $request->file('thumb_img')->getClientOriginalExtension();
-        $request->file('thumb_img')->storeAs('public/images', $imageName);
+        if ($request->hasFile('thumb_img')) {
+            $image = $request->file('thumb_img');
+            $imageName = 'Product_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $validatedProduct['thumb_img'] = $imageName;
+        }
 
-        $product = Product::create([
-            'category_id' => $request->category_id,
-            'name' => $request->name,
-            'description' => $request->description,
-            'price' => $request->price,
-            'thumb_img' => $imageName,
-            'slug' => Str::slug($request->name, '-'),
-        ]);
+        Product::create($validatedProduct);
 
-        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
+        return redirect()->route('product')->with('success', 'Product created successfully.');
     }
 
-    public function edit(Product $product)
+    public function edit($id)
     {
+        $product = Product::where('id', $id)->first();
         $categories = Category::all();
         return view('admin.products.edit', compact('product', 'categories'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(Request $request, $id)
     {
-        $request->validate([
+        $product = Product::findOrFail($id);
+    
+        $validatedProduct = $request->validate([
             'category_id' => 'required',
             'name' => 'required',
             'description' => 'required',
@@ -63,28 +63,28 @@ class ManageProductsController extends Controller
             'thumb_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
+        // return dd($request->all(), $product, $validatedProduct);
+    
         if ($request->hasFile('thumb_img')) {
-            $imageName = 'Product_' . uniqid() . '.' . $request->file('thumb_img')->getClientOriginalExtension();
-            $request->file('thumb_img')->storeAs('public/images', $imageName);
-            File::delete('public/images/' . $product->thumb_img);
-            $product->thumb_img = $imageName;
+            $image = $request->file('thumb_img');
+            $imageName = 'Product_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $validatedProduct['thumb_img'] = $imageName;
         }
-
-        $product->category_id = $request->category_id;
-        $product->name = $request->name;
-        $product->description = $request->description;
-        $product->price = $request->price;
-        $product->slug = Str::slug($request->name, '-');
-        $product->save();
-
-        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+    
+        $product->update($validatedProduct);
+    
+        return redirect()->route('product')->with('success', 'Product updated successfully.');
     }
+    
 
-    public function destroy(Product $product)
+    public function destroy($id)
     {
-        File::delete('public/images/' . $product->thumb_img);
+        $product = Product::findOrFail($id);
+
+        File::delete('public/images' . $product->thumb_img);
         $product->delete();
 
-        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
+        return redirect()->route('product')->with('success', 'Product deleted successfully.');
     }
 }

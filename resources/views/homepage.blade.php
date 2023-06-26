@@ -95,19 +95,15 @@
                 <div class="d-flex justify-content-center align-items-center">
                     <div class="d-flex flex-inline">
                         <div class="m-3">
-                            <h1 class="text-center">40</h1>
+                            <h1 class="text-center">{{$products->count()}}</h1>
                             <small>Produk</small>
                         </div>
                         <div class="m-3">
-                                @if($count)
-                                    <h1 class="text-center">{{ $count }}</h1>
-                                @else
-                                    <h1 class="text-center">0</h1>
-                                @endif</h1>
-                            <small>Produk Terjual</small>
+                            <h1 class="text-center">{{$user->count()}}</h1>
+                            <small>Pengguna</small>
                         </div>
                         <div class="m-3">
-                            <h1 class="text-center">5</h1>
+                            <h1 class="text-center">{{$category->count()}}</h1>
                             <small>Kategori</small>
                         </div>
                     </div>
@@ -140,43 +136,17 @@
                     <h5>Produk</h5>
                     <h2>SPARE PART HANDPHONE</h2>
                     <div class="multiple-items">
+                        @foreach($products as $product)
                         <div class="card">
-                            <img class="card-img-top" style="padding: 20px" src="assets/img/memori-hp.jpg"
-                                alt="Card img cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Memori HP Sandisk Ultra 65 GB</h5>
-                                <p class="card-text">Rp. 250.000</p>
-                                <a href="#" class="btn btn-dark" style="width: 100%;">Lihat Detail</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" style="padding: 20px" src="assets/img/memori-hp.jpg"
-                                alt="Card img cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Memori HP Sandisk Ultra 65 GB</h5>
-                                <p class="card-text">Rp. 250.000</p>
-                                <a href="#" class="btn btn-dark" style="width: 100%;">Lihat Detail</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" style="padding: 20px" src="assets/img/memori-hp.jpg"
-                                alt="Card img cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Memori HP Sandisk Ultra 65 GB</h5>
-                                <p class="card-text">Rp. 250.000</p>
-                                <a href="#" class="btn btn-dark" style="width: 100%;">Lihat Detail</a>
-                            </div>
-                        </div>
-                        <div class="card">
-                            <img class="card-img-top" style="padding: 20px" src="assets/img/memori-hp.jpg"
-                                alt="Card img cap">
-                            <div class="card-body">
-                                <h5 class="card-title">Memori HP Sandisk Ultra 65 GB</h5>
-                                <p class="card-text">Rp. 250.000</p>
-                                <a href="#" class="btn btn-dark" style="width: 100%;">Lihat Detail</a>
-                            </div>
-                        </div>
+                            <img class="card-img-top" style="padding: 20px;" src="{{ asset('storage/images/'. $product->thumb_img) }}" alt="">
 
+                            <div class="card-body">
+                                <h5 class="card-title">{{$product->name}}</h5>
+                                <p class="card-text">Rp. {{ number_format($product->price, 0, ',', '.') }}</p>
+                                <a href="{{route('detail.product', $product->id)}}" class="btn btn-dark" style="width: 100%;">Lihat Detail</a>
+                            </div>
+                        </div>
+                        @endforeach
                     </div>
                 </div>
 
