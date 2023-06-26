@@ -255,7 +255,7 @@
                                         </div>
                                         <div class="total-price">
                                             <p>Harga</p>
-                                            <p class="total-price"><span></span></p>
+                                            <p>Rp. <span>0</span></p>
                                         </div>
                                     </div>
                                     <button class="button button-primary w-100">
