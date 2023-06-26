@@ -778,7 +778,7 @@
                                         <div class="tab-pane fade" id="nav-failed" role="tabpanel"
                                             aria-labelledby="nav-failed-tab">
                                              @foreach($history as $histories)
-                                            @if($histories->name == Auth::user()->name && $histories['status'] == 1)
+                                            @if($histories->name == Auth::user()->name && $histories['status'] == 2)
                                             <div class="history-item">
                                                 <div class="head-item">
                                                     <div class="icon">

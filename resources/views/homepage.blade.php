@@ -80,7 +80,7 @@
                             yang menyediakan segala kebutuhan Anda dalam mencari dan membeli spare part handphone dengan
                             cara yang mudah dan menyenangkan.</p>
                         <div class="flex-button-content1">
-                            <button class="btn btn-dark">Belanja Sekarang</button>
+                            <a class="btn btn-dark" href="/show">Belanja Sekarang</a>
                         </div>
                     </div>
 
@@ -124,7 +124,7 @@
                         <div class="text-content3">
                             <h5>SH</h5>
                             <h2>Marketplace Penyedia Berbagai Spare Part Handphone No. 1 Di Indonesia</h2>
-                            <button class="btn btn-light">Belanja Sekarang</button>
+                            <a class="btn btn-light" href="/show">Belanja Sekarang</a>
                         </div>
                     </div>
                 </div>

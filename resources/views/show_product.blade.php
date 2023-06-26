@@ -80,7 +80,7 @@
 											src="./assets/img/icon/shopping-cart_icon.svg"
 											alt=""
 										/>
-										<div class="totalItem">9</div>
+										<div class="totalItem">0</div>
 									</a>
 								</div>
 							</div>
@@ -770,6 +770,121 @@
 					},
 				],
 			});
+		</script>
+
+		<script>
+			$(document).ready(function() {
+        // Mengambil data dari localStorage saat halaman dimuat
+        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+
+        function updateTotalItem() {
+            var totalItem = cartData.length;
+            $('.totalItem').text(totalItem);
+        }
+
+        // Fungsi untuk menghasilkan elemen HTML untuk setiap item dalam data keranjang
+        function generateCartItemHTML(item, index) {
+            return `
+                <div class="product-list">
+                    <div class="form-check checkbox-select checkbox-item">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                    </div>
+                    <div class="product-detail">
+                        <div class="image-product">
+                            <img src="${item.imageSrc}" alt="">
+                        </div>
+                        <div class="wrapper-info-product">
+                            <div class="name-price-product">
+                                <h5>${item.productName}</h5>
+                                <p>Rp. <span class="price" data-price="${item.totalPrice}" data-index="${index}">${item.totalPrice}</span></p>
+                            </div>
+                            <p class="price-per-plant">Rp. <span class="price-plant">${item.price}</span>/Produk</p>
+                            <div class="action-cart">
+                                <div class="quantity-product">
+                                    <button class="quantity-count quantity-count--minus" data-action="minus" type="button" data-index="${index}">-</button>
+                                    <input class="product-quantity" type="number" name="product-quantity" min="0" max="10" value="${item.quantity}" data-index="${index}">
+                                    <button class="quantity-count quantity-count--add" data-action="add" type="button" data-index="${index}">+</button>
+                                </div>
+                                <button class="delete-cart-button" data-index="${index}">
+                                    <img src="./assets/img/icon/trash-delete-icon.svg" alt="">
+                                    Delete
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Fungsi untuk mengupdate total price
+        function updateTotalPrice() {
+            var totalPrice = 0;
+            for (var i = 0; i < cartData.length; i++) {
+                totalPrice += cartData[i].totalPrice;
+            }
+            $('.value-total-fix').text('Rp. ' + totalPrice);
+        }
+
+        // Fungsi untuk mengupdate harga total per item
+        function updateItemTotalPrice(index) {
+            var item = cartData[index];
+            var priceElement = $('.price[data-index="' + index + '"]');
+            priceElement.text(item.totalPrice);
+            priceElement.attr('data-price', item.totalPrice);
+        }
+
+        // Fungsi untuk menghapus item dari keranjang berdasarkan index
+        function deleteCartItem(index) {
+            cartData.splice(index, 1);
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+            location.reload();
+            $('.body-cart').empty(); // Menghapus elemen HTML sebelum memperbarui
+            updateCartItems(); // Memperbarui tampilan keranjang setelah menghapus item
+        }
+
+        // Fungsi untuk memperbarui quantity item dalam keranjang
+        function updateCartItemQuantity(index, quantity) {
+            cartData[index].quantity = quantity;
+            cartData[index].totalPrice = quantity * cartData[index].price; // Mengupdate totalPrice
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+            updateTotalPrice(); // Memperbarui total price
+            updateItemTotalPrice(index); // Memperbarui harga total per item
+        }
+
+        // Menambahkan elemen HTML untuk setiap item dalam data keranjang
+        function updateCartItems() {
+            var cartContainer = $('.body-cart');
+            for (var i = 0; i < cartData.length; i++) {
+                var itemHTML = generateCartItemHTML(cartData[i], i);
+                cartContainer.append(itemHTML);
+            }
+        }
+
+        // Menangani klik tombol minus dan plus
+        $('.body-cart').on('click', '.quantity-count', function() {
+            var action = $(this).data('action');
+            var index = $(this).data('index');
+            var quantityInput = $('.product-quantity[data-index="' + index + '"]');
+            var quantity = parseInt(quantityInput.val());
+            if (action === 'minus' && quantity > 0) {
+                quantityInput.val(quantity - 1);
+                updateCartItemQuantity(index, quantity - 1);
+            } else if (action === 'add' && quantity < 10) {
+                quantityInput.val(quantity + 1);
+                updateCartItemQuantity(index, quantity + 1);
+            }
+        });
+
+        // Menangani klik tombol hapus
+        $('.body-cart').on('click', '.delete-cart-button', function() {
+            var index = $(this).data('index');
+            deleteCartItem(index);
+        });
+
+        updateCartItems(); // Memperbarui tampilan keranjang saat halaman dimuat
+        updateTotalPrice(); // Memperbarui total price saat halaman dimuat
+        updateTotalItem();
+    });
 		</script>
 	</body>
 </html>
