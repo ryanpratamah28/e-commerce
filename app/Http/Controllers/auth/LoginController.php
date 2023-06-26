@@ -25,6 +25,7 @@ class LoginController extends Controller
         ]);
 
         $user = $request->only('email', 'password');
+
         if (Auth::attempt($user)) {
             $authenticatedUser = Auth::user();
 
@@ -33,8 +34,9 @@ class LoginController extends Controller
             } else if ($authenticatedUser->role === 'user') {
                 return redirect('/');
             }
-            return redirect()->back()->with('error', 'Gagal login, silahkan cek dan coba lagi!');
         }
+
+        return redirect()->back()->with('error', 'Gagal login, silahkan cek dan coba lagi!');
     }
 
     public function logout()
