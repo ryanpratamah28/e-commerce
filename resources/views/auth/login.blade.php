@@ -14,10 +14,10 @@
                         <div class="mb-3 inputForm">
                             <div class="icon">
                                 <label for="username">
-                                    <img src="../assets/img/iconUser.svg" alt="">
+                                    <img src="../assets/img/icon/email 2.png" alt="">
                                 </label>
                             </div>
-                            <input type="username" name="email" class="form-control" id="username" placeholder="Username">
+                            <input name="email" class="form-control" id="username" placeholder="Email">
                         </div>
                         <div class="mb-3 inputForm passwordForm">
                             <div class="icon">
@@ -35,9 +35,10 @@
                         </div>
 
                         <div class="wrapperButton mb-4">
-                            <button class="button">Login</button>
+                            <button class="button" type="submit">Login</button>
                         </div>
-                        <p class="toSignUppage">Don’t have an account ? <a href="/register">Sign up!</a></p>
+
+                        <p class="toSignUppage">Don’t have an account ? <a href="{{route('register.page')}}">Sign up!</a></p>
                     </div>
                 </form>
             </div>

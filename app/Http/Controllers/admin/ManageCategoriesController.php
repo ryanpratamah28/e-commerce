@@ -2,59 +2,74 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
+
 
 class ManageCategoriesController extends Controller
 {
-    public function category(){
-        $categories = Category::where('user_id', '=', Auth::user()->id)->get();
-
-        return view('admin.product_categories.list_category', compact('categories'));
+    public function index()
+    {
+        $categories = Category::all();
+        return view('admin.categories.index', compact('categories'));
     }
 
-    public function createCategory(){
-        return view('admin.product_categories.create_category');
+    public function create()
+    {
+        return view('admin.categories.create');
     }
 
-    public function storeCategory(Request $request){
-        $message = [
-            'required' => 'Tolong lengkapi kolom :attribute ini',   
-        ];
+    public function store(Request $request)
+    {
+        // dd($request->all());
 
-        $request->validate([
-            'category_name' => ['required']
-        ], $message);
-
-        Category::create([
-            'category_name' => $request-> category_name,
+        $validatedData = $request->validate([
+            'category_name' => 'required|string|max:255',
+            'thumb_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        return redirect()->route('create.category')->with('addCategory', 'Berhasil menambahkan kategori');
+        if ($request->hasFile('thumb_img')) {
+            $image = $request->file('thumb_img');
+            $imageName = 'Category_' . uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->storeAs('public/images', $imageName);
+            $validatedData['thumb_img'] = $imageName;
+        }
+
+        Category::create($validatedData);
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category created successfully.');
     }
 
-    public function editCategory($id){
-        $category = Category::where('id', $id)->first();
-
-        return view('edit.category', compact('categories'));
+    public function edit(Category $category)
+    {
+        return view('admin.categories.edit', compact('category'));
     }
 
-    public function updateCategory(Request $request, $id){
-        $request->Validate([
-            'category_name' => 'required',
+    public function update(Request $request, Category $category)
+    {
+        $validatedData = $request->validate([
+            'category_name' => 'required|string|max:255',
+            'thumb_img' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        Category::where('id', $id)->update([
-            'category_name' => $request-> category_name,
-        ]);
+        if ($request->hasFile('thumb_img')) {
+            $imageName = 'Product_' . uniqid() . '.' . $request->file('thumb_img')->getClientOriginalExtension();
+            $request->file('thumb_img')->storeAs('public/images', $imageName);
+            File::delete('public/images/' . $category->thumb_img);
+            $category->thumb_img = $imageName;
+        }
 
-        return redirect()->route('category')->with('updateCategory', 'Berhasil memperbarui kategori');
+        $category->update($validatedData);
+
+        return redirect()->route('admin.categories.index')->with('success', 'Category updated successfully.');
     }
 
-    public function deleteCategory($id){
-        Category::where('id', '=', $id)->delete();
+    public function destroy(Category $category)
+    {
+        File::delete('public/images/' . $category->thumb_img);
+        $category->delete();
 
-        return redirect()->back()->with('deleteCategory', 'Berhasil menghapus kategori');
+        return redirect()->route('admin.categories.index')->with('success', 'Category deleted successfully.');
     }
 }

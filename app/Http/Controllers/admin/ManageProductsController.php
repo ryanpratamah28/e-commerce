@@ -2,75 +2,89 @@
 
 namespace App\Http\Controllers\Admin;
 
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use App\Models\Product;
+use App\Models\Category;
+use Illuminate\Http\Request;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\File;
 
 class ManageProductsController extends Controller
 {
-    public function product(){
-        $products = Product::where('user_id', '=', Auth::user()->id)->get();
-
-        return view('admin.products.list_product', compact('products'));
+    public function index()
+    {
+        $products = Product::with('category')->get();
+        return view('admin.products.index', compact('products'));
     }
 
-    public function createProduct(){
-        return view('admin.products.create_product');
+    public function create()
+    {
+        $categories = Category::all();
+        return view('admin.products.create', compact('categories'));
     }
 
-    public function storeProduct(Request $request){
-        $message = [
-            'required' => 'Tolong lengkapi kolom :attribute ini',   
-            'min' => 'Attribute must be at least :min characters long',
-            'max' => 'Attributes must be filled with a maximum of :max characters',
-        ];
-
+    public function store(Request $request)
+    {
         $request->validate([
-            'name' => ['required', 'min: 3'],
-            'description' => ['required', 'min: 3'],
-            'price' => 'required',
-        ], $message);
-
-        Product::create([
-            'name' => $request-> name,
-            'description' => $request-> description,
-            'price' => $request-> price,
+            'category_id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'thumb_img' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
         ]);
 
-        return redirect()->route('create.product')->with('addProduct', 'Berhasil menambahkan produk');
-    }
+        $imageName = 'Product_' . uniqid() . '.' . $request->file('thumb_img')->getClientOriginalExtension();
+        $request->file('thumb_img')->storeAs('public/images', $imageName);
 
-    public function editProduct($id){
-        $product = Product::where('id', $id)->first();
-
-        return view('edit.product', compact('products'));
-    }
-
-    public function updateProduct(Request $request, $id){
-        $message = [
-            'required' => 'Tolong lengkapi kolom :attribute ini',   
-            'min' => 'Attribute must be at least :min characters long',
-            'max' => 'Attributes must be filled with a maximum of :max characters',
-        ];
-
-        $request->validate([
-            'name' => ['required', 'min: 3'],
-            'description' => ['required', 'min: 3'],
-            'price' => 'required',
-        ], $message);
-
-        Product::where('id', $id)->update([
-            'name' => $request-> name,
-            'description' => $request-> description,
-            'price' => $request-> price,
+        $product = Product::create([
+            'category_id' => $request->category_id,
+            'name' => $request->name,
+            'description' => $request->description,
+            'price' => $request->price,
+            'thumb_img' => $imageName,
+            'slug' => Str::slug($request->name, '-'),
         ]);
 
-        return redirect()->route('product')->with('updateProduct', 'Berhasil memperbarui produk');
+        return redirect()->route('admin.products.index')->with('success', 'Product created successfully.');
     }
 
-    public function deleteProduct($id){
-        Product::where('id', '=', $id)->delete();
+    public function edit(Product $product)
+    {
+        $categories = Category::all();
+        return view('admin.products.edit', compact('product', 'categories'));
+    }
 
-        return redirect()->back()->with('deleteProduct', 'Berhasil menghapus produk');
+    public function update(Request $request, Product $product)
+    {
+        $request->validate([
+            'category_id' => 'required',
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required|numeric',
+            'thumb_img' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+        ]);
+
+        if ($request->hasFile('thumb_img')) {
+            $imageName = 'Product_' . uniqid() . '.' . $request->file('thumb_img')->getClientOriginalExtension();
+            $request->file('thumb_img')->storeAs('public/images', $imageName);
+            File::delete('public/images/' . $product->thumb_img);
+            $product->thumb_img = $imageName;
+        }
+
+        $product->category_id = $request->category_id;
+        $product->name = $request->name;
+        $product->description = $request->description;
+        $product->price = $request->price;
+        $product->slug = Str::slug($request->name, '-');
+        $product->save();
+
+        return redirect()->route('admin.products.index')->with('success', 'Product updated successfully.');
+    }
+
+    public function destroy(Product $product)
+    {
+        File::delete('public/images/' . $product->thumb_img);
+        $product->delete();
+
+        return redirect()->route('admin.products.index')->with('success', 'Product deleted successfully.');
     }
 }

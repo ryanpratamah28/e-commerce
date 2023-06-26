@@ -33,6 +33,8 @@ class LoginController extends Controller
             } else if ($authenticatedUser->role === 'user') {
                 return redirect('/');
             }
+        }else {
+            return redirect()->back()->with('error', 'Gagal login, silahkan cek dan coba lagi!');
         }
 
         return redirect()->back()->with('error', 'Gagal login, silahkan cek dan coba lagi!');

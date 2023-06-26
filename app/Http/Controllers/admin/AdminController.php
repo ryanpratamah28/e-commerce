@@ -7,6 +7,7 @@ use App\Models\User;
 use App\Models\Checkout;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
+
 class AdminController extends Controller
 {
     public function index(){
@@ -15,15 +16,22 @@ class AdminController extends Controller
     }
 
     public function userData(){
-        $userData = User::all();
-        return view('admin.manage_user.list_user', compact('userData'))->with('i');
+        $users = User::all();
+
+        return view('admin.manage_user.list_user', compact('users'));
     }
 
-public function listOrder()
-{
-    $order = Checkout::with('user')->get();
-    return view('admin.order.list-order', compact('order'))->with('i');
-}
+    public function userDelete(User $user){
+        $user->delete();
+
+        return redirect()->back()->with('deleteUser', 'Berhasil menghapus user');
+    }
+
+    public function listOrder()
+    {
+        $order = Checkout::with('user')->get();
+        return view('admin.order.list-order', compact('order'))->with('i');
+    }
 
     public function detail_pembayaran($id){
         $bukti = Checkout::where('id', $id)->first();
