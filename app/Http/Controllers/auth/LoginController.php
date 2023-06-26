@@ -26,15 +26,13 @@ class LoginController extends Controller
 
         $user = $request->only('email', 'password');
         if (Auth::attempt($user)) {
-            $authenticatedUser = Auth::user();
+        $authenticatedUser = Auth::user();
 
-            if ($authenticatedUser->role === 'admin') {
-                return redirect('/dashboard');
-            } else if ($authenticatedUser->role === 'user') {
-                return redirect('/');
-            }
+        if ($authenticatedUser->role === 'admin') {
+            return redirect('/dashboard');
+        } else if ($authenticatedUser->role === 'user') {
+            return redirect('/');
         }
-
         return redirect()->back()->with('error', 'Gagal login, silahkan cek dan coba lagi!');
     }
 

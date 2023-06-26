@@ -44,4 +44,10 @@ public function listOrder()
         ]);
         return redirect()->back()->with('done', 'Permintaan Di tolak');
     }
+
+    public function userDelete(User $user){
+        $user->delete();
+
+        return redirect()->back()->with('deleteUser', 'Berhasil menghapus user');
+    }
 }

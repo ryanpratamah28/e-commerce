@@ -71,9 +71,12 @@ Route::middleware(['isLogin', 'CekRole:admin'])->prefix('/dashboard')->group(fun
 
     //USER DATA
     Route::get('/users', [AdminController::class, 'userData'])->name('users.data');
+    Route::delete('/delete/{user:id}', [AdminController::class, 'userDelete'])->name('users.delete');
 
     Route::get('/list-order', [AdminController::class, 'listOrder'])->name('list.order');
     Route::get('/detailpembayaran/{checkout:id}', [AdminController::class, 'detail_pembayaran'])->name('detail.pembayaran');
     Route::patch('/detailpembayaran/validasi/{checkout:id}', [AdminController::class, 'validasi'])->name('validasi');
     Route::patch('/detailpembayaran/tolak/{checkout:id}', [AdminController::class, 'tolak'])->name('tolak');
-});
+
+
+// User

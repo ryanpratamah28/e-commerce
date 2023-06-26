@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SPY-Web</title>
+    <title>SH E-Commerce</title>
 
     <link rel="stylesheet" href="assets/css/homepage.css">
     <link rel="stylesheet" href="assets/css/app.css">
@@ -29,39 +29,43 @@
                 <h1 class="text-logo">SH</h1>
             </a>
 
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarTogglerDemo02"
-                aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false"
+                aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
 
             <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="#">Beranda</a>
+                        <a class="nav-link" aria-current="page" href="{{ route('homepage') }}">Beranda</a>
                     </li>
+
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Belanja</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#content4">Kegiatan</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#content3">Bergerak dibidang</a>
+                        <a class="nav-link" href="/product">Belanja</a>
                     </li>
                 </ul>
                 <div class="slicing-color"></div>
-                <form class="d-flex" role="search">
-                    @if (Route::has('login'))
-                        @auth
-                        <a href="{{route('logout')}}" class="button button-outline button-outline-primary">Logout</a>
-                        @else
-                        <a class="btn btn-light" type="submit" href="/login">
+@if (Route::has('login'))
+                    @auth
+                        <a class="btn btn-light" href="{{ route('logout') }}">
+                            <img src="assets/img/homepage/icons8-login-50.png" width="20" height="20">
+                            Logout
+                        </a>
+                    @else
+                        <a class="btn btn-light" href="/login">
                             <img src="assets/img/homepage/icons8-login-50.png" width="20" height="20">
                             Login
                         </a>
-                        @endauth
-                    @endif
-                </form>
+                        @if (Route::has('register'))
+                            <a class="btn btn-light" href="/register">
+                                <img src="assets/img/homepage/icons8-login-50.png" width="20" height="20">
+                                Register
+                            </a>
+                        @endif
+                    @endauth
+                @endif
+>>>>>>> 9745f0e2a688518e7972b670c267b2eb4389ebf5
             </div>
         </div>
         </div>
@@ -124,7 +128,7 @@
                         <div class="text-content3">
                             <h5>SH</h5>
                             <h2>Marketplace Penyedia Berbagai Spare Part Handphone No. 1 Di Indonesia</h2>
-                            <a class="btn btn-light" href="/show">Belanja Sekarang</a>
+                            <p>Jadi, tunggu apa lagi? Kunjungi SH sekarang dan temukan segala spare part handphone yang Anda butuhkan. Jadikan pengalaman belanja Anda lebih menyenangkan dengan SH, pasar online terbaik untuk spare part handphone!</p>
                         </div>
                     </div>
                 </div>
@@ -265,8 +269,7 @@
     <script type="text/javascript" src="assets/vendor/slick/slick.min.js"></script>
 
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js">
-    </script>
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
 
     <script>
         function myFunction() {
@@ -279,7 +282,6 @@
                 x.className = "collapse navbar-collapse";
             }
         }
-
     </script>
 
     <script>
@@ -287,7 +289,7 @@
         var i;
 
         for (i = 0; i < coll.length; i++) {
-            coll[i].addEventListener("click", function () {
+            coll[i].addEventListener("click", function() {
                 this.classList.toggle("active");
                 var content = this.nextElementSibling;
                 if (content.style.maxHeight) {
@@ -297,20 +299,18 @@
                 }
             });
         }
-
     </script>
 
     <script>
-        $(document).on('click', '.navbar-collapse.in', function (e) {
+        $(document).on('click', '.navbar-collapse.in', function(e) {
             if ($(e.target).is('a') && $(e.target).attr('class') != 'dropdown-toggle') {
                 $(this).collapse('hide');
             }
         });
-
     </script>
 
     <script>
-        $(document).ready(function () {
+        $(document).ready(function() {
             $('.multiple-items').slick({
                 infinite: true,
                 slidesToShow: 3,
@@ -350,7 +350,6 @@
                 ]
             });
         });
-
     </script>
 </body>
 
