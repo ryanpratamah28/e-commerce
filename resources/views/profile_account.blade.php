@@ -35,18 +35,6 @@
                     </div>
 
                     <div class="rightSideNavbar">
-                        <!-- <div class="beforeLogin">
-                            <div class="buttonWrapper">
-                                <a href="#" class="button button-outline button-outline-primary">Login</a>
-                                <a href="#" class="button button-primary">Sign Up</a>
-                            </div>
-                            <div class="cartWrapper">
-                                <a href="#" class="cart icon">
-                                    <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
-                                    <div class="totalItem">9</div>
-                                </a>
-                            </div>
-                        </div> -->
                         <div class="afterLogin">
                             <div class="cartWrapper">
                                 <a href="/cart" class="cart icon">
@@ -139,9 +127,6 @@
                                                     <p>{{Auth::user()->adress}}</p>
                                                 </div>
                                                 <div class="edit-data-modal py-2 pt-3 d-flex justify-content-end">
-                                                    <button type="button" class="button button-text" data-bs-toggle="modal" data-bs-target="#changeDataProfileUser">
-                                                        Change Your Profile Data
-                                                      </button>
                                                       <div class="modal fade" id="changeDataProfileUser" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="changeDataProfileUserLabel" aria-hidden="true">
                                                         <div class="modal-dialog">
                                                           <div class="modal-content">

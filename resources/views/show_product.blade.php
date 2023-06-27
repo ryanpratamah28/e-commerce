@@ -38,7 +38,7 @@
                                 <h1 class="ps-3 pe-3">SH</h1>
                             </a>
                         </div>
-                        {{-- <div class="searchMenu">
+                        <!-- <div class="searchMenu">
                             <form action="">
                                 <div class="input-group">
                                     <div class="form-outline">
@@ -50,7 +50,7 @@
                                     </button>
                                 </div>
                             </form>
-                        </div> --}}
+                        </div> -->
                     </div>
 
                     <div class="rightSideNavbar">
@@ -314,15 +314,28 @@
             slidesToShow: 3.2,
             slidesToScroll: 3,
 
-            responsive: [{
-                breakpoint: 768,
-                settings: {
-                    slidesToShow: 2.2,
-                    slidesToScroll: 2,
-                },
-            }, ],
-        });
-    </script>
+				responsive: [
+					{
+						breakpoint: 768,
+						settings: {
+							slidesToShow: 2.2,
+							slidesToScroll: 2,
+						},
+					},
+				],
+			});
+		</script>
+	
+		
+		<script>
+			$(document).ready(function() {
+        // Mengambil data dari localStorage saat halaman dimuat
+        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+
+        function updateTotalItem() {
+            var totalItem = cartData.length;
+            $('.totalItem').text(totalItem);
+        }
 
 
     <script>

@@ -76,8 +76,7 @@
                     <div class="tab-content" id="nav-tabContent">
                         <div class="tab-pane fade show active" id="nav-personalData" role="tabpanel"
                             aria-labelledby="nav-personalData-tab">
-                            <form action="{{route('pembayaran')}}" method="POST" enctype="multipart/form-data">
-                                @csrf
+                            <form action="" method="" enctype="multipart/form-data" id="customerForm">
                                 <h5 class="titleForm">Informasi Pribadi</h5>
                                     <div class="row">
                                         <div class="col-6">
@@ -87,12 +86,6 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <div class="form-input">
-                                                <label for="lastName" class="form-label">Konfirmasi Pembayaran</label>
-                                                <input type="file" name="bukti_pembayaran" class="form-control" id="pembayaran">
-                                            </div>
-                                        </div>
-                                        <div class="col-12">
                                             <div class="form-input">Nomor Telepon</label>
                                                 <input type="number" value="{{Auth::user()->phone}}" name="phone" class="form-control" id="phone">
                                             </div>
@@ -115,7 +108,7 @@
                                         </div>
                                         <div class="col-6">
                                             <label for="username" class="form-label">Price</label>
-                                            <input class="form-control price" name="price" readonly/>
+                                            <input class="form-control price" name="price" id="price" readonly/>
                                         </div>
                                         <div class="col-6" style="display: none;">
                                             <label for="username" class="form-label">Image Product</label>
@@ -125,7 +118,7 @@
                                     </div>
                                     <div class="col-12 d-flex justify-content-between">
                                         <a href="/cart" class="btn btn-outline-danger">Back</a>
-                                        <button type="submit" class="button button-primary">Submit</button>
+                                        <button type="submit" class="button button-primary" onclick="displayCustomerDetails()">konfirmasi</button>
                                     </div>
                             </form>
                         </div>
@@ -134,9 +127,10 @@
                             <div class="row">
                                 <div class="col-12 col-lg-8">
                                     <div class="detail-customer">
-                                        <h5 class="name-customer">{{Auth::user()->name}}</h5>
-                                        <p class="number-phone">{{Auth::user()->phone}}</p>
-                                        <p class="address">{{Auth::user()->adress}}</p>
+                                        <p class="email"></p>
+                                        <h5 class="name-customer"></h5>
+                                        <p class="number-phone"></p>
+                                        <p class="address"></p>
                                     </div>
                                 
                                     <div class="shipping-detail">
@@ -180,8 +174,8 @@
                                                         <button type="button"
                                                             class="dropdown-item d-flex justify-content-between"
                                                             data-bs-toggle="modal"
-                                                            data-bs-target="#modalManualTransfer">
-                                                            <p>Manual Transfer</p>
+                                                            data-bs-target="#modalDanaMethode">
+                                                            <p>Dana</p>
                                                         </button>
                                                         <button class="dropdown-item"
                                                             data-bs-toggle="modalPaypalMethode"
@@ -203,120 +197,90 @@
         </div>
     </div>
 
-
-    <!--Modal manual transfer Section-->
-    <div class="modal fade modalManualTransfer" id="modalManualTransfer" aria-hidden="true"
-        aria-labelledby="modalManualTransferToggleLabel" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="modalManualTransferToggleLabel">Manual Transfer</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <button type="button" class="button d-flex align-items-center justify-content-between w-100 mb-2"
-                        data-bs-toggle="modal" data-bs-target="#usDollarManualTransfer">
-                        <div class="icon-name d-flex align-items-center thint-text">
-                            <div class="icon me-2">
-                                <img src="./assets/img/icon/currency-dollar.png" alt="">
-                            </div>
-                            Us Dollar Currency
-                        </div>
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                    </button>
-
-                    <button type="button" class="button d-flex align-items-center justify-content-between w-100 mb-2"
-                        data-bs-toggle="modal" data-bs-target="#euroManualTransfer">
-                        <div class="icon-name d-flex align-items-center thint-text">
-                            <div class="icon me-2">
-                                <img src="./assets/img/icon/currency-euro.png" alt="">
-                            </div>
-                            Euro Currency
-                        </div>
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                    </button>
-
-                    <button type="button" class="button d-flex align-items-center justify-content-between w-100 mb-2"
-                        data-bs-toggle="modal" data-bs-target="#asa">
-                        <div class="icon-name d-flex align-items-center thint-text">
-                            <div class="icon me-2">
-                                <img src="./assets/img/icon/currency-british.png" alt="">
-                            </div>
-                            British Pound Currency
-                        </div>
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                    </button>
-
-                    <button type="button" class="button d-flex align-items-center justify-content-between w-100"
-                        data-bs-toggle="modal" data-bs-target="#asa">
-                        <div class="icon-name d-flex align-items-center thint-text">
-                            <div class="icon me-2">
-                                <img src="./assets/img/icon/currency-canadian.png" alt="">
-                            </div>
-                            Canadian Currency
-                        </div>
-                        <ion-icon name="chevron-forward-outline"></ion-icon>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!--US Dollar - Manual transfer-->
-    <div class="modal fade nextStepModalManualPayment" id="usDollarManualTransfer" aria-hidden="true" tabindex="-1">
+    <!--Dana-->
+    <div class="modal fade nextStepModalManualPayment" id="modalDanaMethode" aria-hidden="true" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header">
                     <div class="d-flex align-items-center back-modal">
-                        <div class="me-2 d-flex align-items-center" data-bs-target="#modalManualTransfer"
+                        <div class="me-2 d-flex align-items-center" data-bs-target="#modalDanaTransfer"
                             data-bs-toggle="modal">
                             <ion-icon name="chevron-back-outline"></ion-icon>
                         </div>
-                        <h5 class="modal-title" id="exampleModalToggleLabel2">Manual Transfer</h5>
+                        <h5 class="modal-title" id="exampleModalToggleLabel2">Dana</h5>
                     </div>
                 </div>
                 <div class="modal-body">
                     <div class="card mb-3">
                         <div class="d-flex justify-content-between align-items-center">
                             <p class="thint-text">Total Bill</p>
-                            <p class="primary-text">$270</p>
+                            <p class="primary-text" id="total">0</p>
                         </div>
                     </div>
                     <div class="card mb-3">
                         <div class="card-head">
                             <div class="d-flex justify-content-between align-items-center">
-                                <p class="bold-text">US Dollar</p>
+                                <p class="bold-text">Rupiah</p>
                                 <img src="./assets/img/icon/currency-dollar.png" alt="">
                             </div>
                         </div>
                         <div class="card-body">
                             <ul>
-                                <li>Transfer to account number <span class="bold-text">038576846</span> in the name of
+                                <li>Transfer ke nomor<span class="bold-text">08735218721</span> atas nama 
                                     Ajat Supriana.</li>
-                                <li>Make sure the transfer is successful.</li>
-                                <li>Screenshot of proof of transfer.</li>
-                                <li>Submit Proof of Transfer below.</li>
+                                <li>Pastikan Transfer Berhasil</li>
+                                <li>Screenshoot bukti transfer atau pembayaran</li>
+                                <li>Upload Bukti di kolom bawah dan submit</li>
                             </ul>
                         </div>
                     </div>
 
-                    <form action="">
-                        <div class="proof-payment ">
+                    <form action="{{route('pembayaran')}}" method="POST" enctype="multipart/form-data">
+                        @csrf
                             <p>Enter Proof of Transfer</p>
-                            <input type="file" id="proofFile">
-                            <label for="proofFile">
-                                <div class="card">
-                                    <ion-icon name="cloud-upload-outline"></ion-icon>
+                            <div class="form-input">
+                                <input type="file" name="bukti_pembayaran" class="form-control" >
+                            </div>
+                        <div style="display: none;">
+                             <div class="col-6">
+                                <div class="form-input">
+                                    <label for="firstName" class="form-label">Nama</label>
+                                    <input type="text" value="{{Auth::user()->name}}" name="name" class="form-control" id="firstName">
                                 </div>
-                            </label>
-
-                            <button type="submit" class="button button-primary w-100">Pay</button>
+                            </div>
+                            <div class="col-12">
+                                <div class="form-input">Nomor Telepon</label>
+                                    <input type="number" value="{{Auth::user()->phone}}" name="phone" class="form-control" id="phone">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-input">
+                                    <label class="form-label">Address</label>
+                                    <input type="text" value="{{Auth::user()->adress}}" name="adress" class="form-control" id="address">
+                                </div>
+                            </div>
+                             <div class="col-6">
+                                <div class="form-input">
+                                    <label for="username" class="form-label">Email</label>
+                                    <input type="email" name="email" value="{{Auth::user()->email}}" class="form-control" id="email">
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <label for="username" class="form-label">Your Product</label>
+                                <textarea style="margin-top: 0;" class="form-control product" name="product" readonly></textarea>
+                            </div>
+                            <div class="col-6">
+                                <label for="username" class="form-label">Price</label>
+                                <input class="form-control price" name="price" readonly/>
+                            </div>
+                            <div class="col-6" style="display: none;">
+                                <label for="username" class="form-label">Image Product</label>
+                                <input class="form-control image-product" name="image-product" readonly/>
+                            </div>
                         </div>
+                            <button type="submit" class="button button-primary w-100">Pay</button>
                     </form>
                 </div>
-                <!-- <div class="modal-footer">
-                        <button class="btn btn-primary" data-bs-target="#modalManualTransfer" data-bs-toggle="modal">Back to first</button>
-                    </div> -->
             </div>
         </div>
     </div>
@@ -398,7 +362,7 @@
     function generateProductText() {
       var productText = '';
       for (var i = 0; i < cartData.length; i++) {
-        productText += `${cartData[i].productName} (Jumlah: ${cartData[i].quantity})\n`;
+        productText += `${cartData[i].productName} (Jumlah: ${cartData[i].quantity}),\n`;
       }
       return productText;
     }
@@ -408,24 +372,24 @@
     }
 
     function getProductPrice(index) {
-      var totalPrice = cartData[index].totalPrice;
+    var totalPrice = cartData[index].totalPrice;
 
-      // Cek apakah ada lebih dari satu totalPrice
-      if (cartData.length > 1) {
+    // Cek apakah ada lebih dari satu totalPrice
+    if (cartData.length > 1) {
         var combinedTotalPrice = calculateCombinedTotalPrice();
-        return combinedTotalPrice;
-      } else {
-        return totalPrice;
-      }
+        return combinedTotalPrice.toLocaleString(); // Memformat total harga kombinasi dengan format angka
+    } else {
+        return totalPrice.toLocaleString(); // Memformat total harga produk dengan format angka
+    }
     }
 
     // Fungsi untuk menghitung total harga kombinasi
     function calculateCombinedTotalPrice() {
-      var combinedTotalPrice = 0;
-      for (var i = 0; i < cartData.length; i++) {
+    var combinedTotalPrice = 0;
+    for (var i = 0; i < cartData.length; i++) {
         combinedTotalPrice += cartData[i].totalPrice;
-      }
-      return combinedTotalPrice;
+    }
+    return combinedTotalPrice;
     }
 
     var productText = generateProductText();
@@ -441,6 +405,21 @@
     // Menetapkan nilai gambar dan harga produk pertama ke input yang sesuai
     imageProductInput.val(firstProductImage);
     priceInput.val('Rp. ' + firstProductPrice);
+
+        function calculateTotalBill() {
+      var totalBill = 0;
+      for (var i = 0; i < cartData.length; i++) {
+        totalBill += cartData[i].totalPrice;
+      }
+      return totalBill;
+    }
+
+      function updateTotalBill() {
+      var totalBill = calculateTotalBill();
+      $('#total').text('Rp. ' + totalBill);
+    }
+
+    updateTotalBill();
   });
 </script>
 
@@ -449,29 +428,32 @@
   $(document).ready(function() {
     var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
 
-    function generateCartItemHTML(item, index) {
-      return `
-        <div class="wrapper-item">
-          <div class="item">
-            <div class="images-item">
-              <img src="${item.imageSrc}" alt="">
-            </div>
-            <div class="detail-item">
-              <h5>${item.productName}</h5>
-              <h6>Rp. ${item.totalPrice}</h6>
-            </div>
-          </div>
+function generateCartItemHTML(item, index) {
+  var formattedTotalPrice = item.totalPrice.toLocaleString(); // Memformat total harga dengan format angka
+  return `
+    <div class="wrapper-item">
+      <div class="item">
+        <div class="images-item">
+          <img src="${item.imageSrc}" alt="">
         </div>
-      `;
-    }
+        <div class="detail-item">
+          <h5>${item.productName}</h5>
+          <h6>Rp. ${formattedTotalPrice}</h6>
+        </div>
+      </div>
+    </div>
+  `;
+}
 
-    function calculateTotalPrice() {
-      var totalPrice = 0;
-      for (var i = 0; i < cartData.length; i++) {
-        totalPrice += cartData[i].totalPrice;
-      }
-      return totalPrice;
-    }
+function calculateTotalPrice() {
+  var totalPrice = 0;
+  for (var i = 0; i < cartData.length; i++) {
+    totalPrice += cartData[i].totalPrice;
+  }
+  var formattedTotalPrice = totalPrice.toLocaleString(); // Memformat total harga dengan format angka
+  return formattedTotalPrice;
+}
+
 
     function updateCartItems() {
       var cartContainer = $('.wrapper-item');
@@ -484,7 +466,7 @@
 
     function updateTotalPrice() {
       var totalPrice = calculateTotalPrice();
-      $('.value-total').text('Rp. ' + totalPrice);
+      $('.value-total').text('Rp. ' + totalPrice.toLocaleString()); 
     }
 
     updateCartItems();
@@ -605,4 +587,50 @@
         updateTotalItem();
     });
     </script>
+
+<script>
+  // Fungsi untuk mengambil nilai formulir dan menampilkan hasilnya
+  function displayCustomerDetails() {
+    var name = document.getElementById("firstName").value;
+    var email = document.getElementById("email").value;
+    var phone = document.getElementById("phone").value;
+    var address = document.getElementById("address").value;
+    // Menampilkan hasil dalam elemen dengan kelas "detail-customer"
+    document.querySelector(".detail-customer .email").textContent = email;
+    document.querySelector(".detail-customer .name-customer").textContent = name;
+    document.querySelector(".detail-customer .number-phone").textContent = phone;
+    document.querySelector(".detail-customer .address").textContent = address;
+  }
+
+  var formSubmitted = false;
+
+  // Menjalankan fungsi displayCustomerDetails saat formulir dikirim
+  document.querySelector("form").addEventListener("submit", function(event) {
+    event.preventDefault();
+    displayCustomerDetails();
+    formSubmitted = true;
+    setTimeout(redirectToPaymentConfirmation, 200); // Tambahkan penanganan waktu tunggu (200ms) sebelum memicu perpindahan tab
+  });
+
+  function redirectToPaymentConfirmation() {
+    var paymentConfirmationTab = document.getElementById("nav-paymentConfirmation-tab");
+    paymentConfirmationTab.click();
+  }
+
+  // Memeriksa jika tab "Payment Confirmation" diakses secara manual
+  var paymentConfirmationTab = document.getElementById("nav-paymentConfirmation-tab");
+  var detailCustomer = document.querySelector(".detail-customer");
+
+  paymentConfirmationTab.addEventListener("click", function(event) {
+    if (!formSubmitted) {
+      event.preventDefault();
+      var dataTab = document.getElementById("nav-personalData-tab");
+      dataTab.click();
+      alert("Silakan submit formulir terlebih dahulu sebelum mengakses halaman pembayaran!");
+    }
+  });
+</script>
+
+
+
 </html>

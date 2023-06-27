@@ -266,13 +266,12 @@
 
         // Fungsi untuk mengupdate total price
         function updateTotalPrice() {
-            var totalPrice = 0;
-            for (var i = 0; i < cartData.length; i++) {
-                totalPrice += cartData[i].totalPrice;
-            }
-            $('.value-total-fix').text('Rp. ' + totalPrice);
+        var totalPrice = 0;
+        for (var i = 0; i < cartData.length; i++) {
+            totalPrice += cartData[i].totalPrice;
         }
-
+        $('.value-total-fix').text('Rp. ' + totalPrice.toLocaleString()); // Memformat total harga dengan format angka
+        }
         // Fungsi untuk mengupdate harga total per item
         function updateItemTotalPrice(index) {
             var item = cartData[index];

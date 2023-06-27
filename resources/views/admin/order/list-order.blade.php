@@ -28,7 +28,7 @@
                             </td>
                             <td>{{ $orders->product }} / {{ $orders->category }}</td>
                             <td>
-                                @if($orders['status'] == 1)
+                                @if($orders['status'] == 3)
                                     <p style="color: green">Di Terima</p>
                                     @if($orders['updated_at'])
                                         <p>Tanggal Update: {{ $orders['updated_at']->format('d-m-Y') }}</p>
@@ -41,7 +41,7 @@
                                             @csrf
                                             @method('PATCH')
                                             <input type="hidden" name="updated_at" value="{{ now() }}">
-                                            <button type="submit" class="btn btn-primary" style="color: white; background:rgb(24, 175, 24)"> Validasi </button>
+                                            <button type="submit" class="btn btn-primary" style="color: white; background:rgb(24, 175, 24)"> Approve </button>
                                         </form>
 
                                         <form action="{{ route('tolak', $orders->id) }}" method="POST">

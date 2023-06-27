@@ -36,7 +36,7 @@ public function listOrder()
 
     public function validasi($id){
         Checkout::where('id', '=', $id)->update([
-            'status' => 1,
+            'status' => 3,
         ]);
         return redirect()->back()->with('done', 'Berhasil Validasi');
     }
