@@ -34,7 +34,7 @@
                 <div class="navbar-wrapper">
                     <div class="leftSideNavbar">
                         <div class="logo-brand">
-                            <a href="{{ route('homepage') }}" class="text-black text-decoration-none">
+                            <a href="/show" class="text-black text-decoration-none">
                                 <h1 class="me-3">SH</h1>
                             </a>
                         </div>
@@ -132,8 +132,8 @@
                                 </div>
 
                                 <div class="cartWrapper">
-                                    <a href="#" class="cart icon">
-                                        <img src="./assets/img/icon/shopping-cart_icon.svg" alt="" />
+                                    <a href="/cart" class="cart icon">
+                                        <img src="../../assets/img/icon/shopping-cart_icon.svg" alt="" />
                                         <div class="totalItem">9</div>
                                     </a>
                                 </div>

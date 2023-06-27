@@ -25,7 +25,7 @@
 <body>
     <nav class="navbar navbar-expand-lg fixed-top bg-body-light" style="padding: 0 !important">
         <div class="container">
-            <a class="navbar-brand" href="#">
+            <a class="navbar-brand text-decoration-none text-black" href="/show">
                 <h1 class="text-logo">SH</h1>
             </a>
 
