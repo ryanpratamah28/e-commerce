@@ -30,7 +30,9 @@
                 <div class="navbar-wrapper">
                     <div class="leftSideNavbar">
                         <div class="logo-text">
-                            <h1 class="text-black me-3">SH</h1>
+                            <a href="/show" class="text-decoration-none">
+                                <h1 class="text-black me-3">SH</h1>
+                            </a>
                         </div>
                     </div>
 

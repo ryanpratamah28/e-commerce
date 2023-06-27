@@ -9,7 +9,6 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Support\Facades\Auth;
 
-
 class PagesController extends Controller
 {
     public function index()
@@ -22,33 +21,89 @@ class PagesController extends Controller
 
     public function showProduct()
     {
-        $user = User::where('id', Auth::user()->id)->first();
-        $products = Product::with('category')
-            ->limit(5)
-            ->get();
-        $product = Product::all();
-        $categories = Category::all();
-        return view('show_product', compact('products', 'user', 'categories', 'product'));
+        $user = null;
 
+        if (Auth::check()) {
+            $user = User::find(Auth::user()->id);
+        }
+
+        $product = Product::all();
+        $products = Product::with('category')->limit(5)->get();
+        $categories = Category::all();
+
+        return view('show_product', compact('user', 'products', 'categories', 'product'));
     }
 
     public function detailProduct($id)
     {
-        $user = User::where('id', Auth::user()->id)->first();
+        $user = null;
+
+        if (Auth::check()) {
+            $user = User::find(Auth::user()->id);
+        }
+
         $product = Product::with('category')->find($id);
 
-        if ($product) {
-            return view('detail_product', compact('product', 'user'));
-        } else {
+        if (!$product) {
             abort(404);
         }
+
+        return view('detail_product', compact('user', 'product'));
     }
 
-    public function cart(){
+    // public function showProduct()
+    // {
+    //     if (Auth::check()) {
+    //         $user = User::where('id', Auth::user()->id)->first();
+    //         $products = Product::with('category')
+    //             ->limit(5)
+    //             ->get();
+    //         $product = Product::all();
+    //         $categories = Category::all();
+
+    //         return view('show_product', compact('user', 'products', 'categories', 'product'));
+    //     } else {
+    //         $products = Product::with('category')
+    //             ->limit(5)
+    //             ->get();
+    //         $product = Product::all();
+    //         $categories = Category::all();
+
+    //         return view('show_product', compact('products', 'categories', 'product'));
+    //     }
+    // }
+
+    // public function detailProduct($id)
+    // {
+    //     if (Auth::check()) {
+    //         $user = User::where('id', Auth::user()->id)->first();
+    //         $product = Product::with('category')->find($id);
+
+    //         if ($product) {
+    //             return view('detail_product', compact('product'));
+    //         } else {
+    //             abort(404);
+    //         }
+
+    //         return view('detail_product', compact('user', 'product'));
+    //     }else{
+    //         $product = Product::with('category')->find($id);
+
+    //         if ($product) {
+    //             return view('detail_product', compact('product'));
+    //         } else {
+    //             abort(404);
+    //         }
+    //     }
+    // }
+
+    public function cart()
+    {
         return view('cart');
     }
 
-    public function historyTransaction(){
+    public function historyTransaction()
+    {
         $history = Checkout::all();
         return view('history_transaction', compact('history'));
     }
@@ -74,20 +129,19 @@ class PagesController extends Controller
             'price' => 'required',
             'bukti_pembayaran' => 'required',
             'adress' => 'required',
-            'product' => 'required'
+            'product' => 'required',
         ]);
 
         $images = $request->file('bukti_pembayaran');
-        $imgName = time().rand().'.'.$images->extension();
+        $imgName = time() . rand() . '.' . $images->extension();
 
-        if(!file_exists(public_path('/image'.$images->getClientOriginalName()))){
+        if (!file_exists(public_path('/image' . $images->getClientOriginalName()))) {
             $destinationPath = public_path('/image');
             $images->move($destinationPath, $imgName);
             $upload = $imgName;
-        }else{
+        } else {
             $upload = $images->getClientOriginalName();
         }
-
 
         Checkout::create([
             'name' => $request->name,
@@ -103,6 +157,5 @@ class PagesController extends Controller
         ]);
 
         return redirect('/history')->with('success', 'Pembayaran sedang di verifikasi, harap tuggu informasi selanjutnya');
-
     }
 }

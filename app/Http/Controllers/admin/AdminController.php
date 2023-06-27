@@ -11,8 +11,12 @@ class AdminController extends Controller
 {
     public function index(){
         $user = User::where('id', Auth::user()->id)->first();
-        return view('admin.layout.dashboard', compact('user'));
+        return view('admin.dashboard_admin', compact('user'));
     }
+
+    // public function dashboard(){
+    //     return view('admin.dashboard_admin');
+    // }
 
     public function userData(){
         $userData = User::all();

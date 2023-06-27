@@ -27,7 +27,9 @@
                 <div class="navbar-wrapper">
                     <div class="leftSideNavbar">
                         <div class="text-logo">
-                            <h1 class="text-black me-3">SH</h1>
+                            <a href="/show" class="text-decoration-none text-dark">
+                                <h1 class="me-3">SH</h1>
+                            </a>
                         </div>
                     </div>
 
@@ -70,14 +72,14 @@
                                         <div class="icon-alert">
                                             <img src="./assets/img/icon/alert-icon.svg" alt="">
                                         </div>
-                                        You signed
+                                        Kamu sudah login, anda sekarang bisa memesan barang sesuai kebutuhan anda.
                                     </div>
                                     @else
                                     <div class="alert alert-danger" role="alert">
                                         <div class="icon-alert">
                                             <img src="./assets/img/icon/alert-icon.svg" alt="">
                                         </div>
-                                        Hello, you are not logged in, please Sign In !
+                                        Maaf, silahkan login terlebih dahulu agar bisa memesan barang !!
                                     </div>
                                 @endauth
                             @endif
@@ -112,11 +114,11 @@
                                 </div>
                              @if (Route::has('login'))
                                 @auth
-                                    <a href="/checkout" class="button button-primary w-100">
+                                    <a href="/checkout" class="button button-primary w-100 text-decoration-none">
                                         Checkout
                                     </a>
                                 @else
-                                <a href="/login" class="button button-primary w-100">
+                                <a href="/login" class="button button-primary w-100 text-decoration-none">
                                     Login and Checkout
                                 </a>
                                 @endauth
