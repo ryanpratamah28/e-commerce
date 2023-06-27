@@ -51,52 +51,6 @@ class PagesController extends Controller
         return view('detail_product', compact('user', 'product'));
     }
 
-    // public function showProduct()
-    // {
-    //     if (Auth::check()) {
-    //         $user = User::where('id', Auth::user()->id)->first();
-    //         $products = Product::with('category')
-    //             ->limit(5)
-    //             ->get();
-    //         $product = Product::all();
-    //         $categories = Category::all();
-
-    //         return view('show_product', compact('user', 'products', 'categories', 'product'));
-    //     } else {
-    //         $products = Product::with('category')
-    //             ->limit(5)
-    //             ->get();
-    //         $product = Product::all();
-    //         $categories = Category::all();
-
-    //         return view('show_product', compact('products', 'categories', 'product'));
-    //     }
-    // }
-
-    // public function detailProduct($id)
-    // {
-    //     if (Auth::check()) {
-    //         $user = User::where('id', Auth::user()->id)->first();
-    //         $product = Product::with('category')->find($id);
-
-    //         if ($product) {
-    //             return view('detail_product', compact('product'));
-    //         } else {
-    //             abort(404);
-    //         }
-
-    //         return view('detail_product', compact('user', 'product'));
-    //     }else{
-    //         $product = Product::with('category')->find($id);
-
-    //         if ($product) {
-    //             return view('detail_product', compact('product'));
-    //         } else {
-    //             abort(404);
-    //         }
-    //     }
-    // }
-
     public function cart()
     {
         return view('cart');

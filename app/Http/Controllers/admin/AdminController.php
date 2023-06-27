@@ -14,10 +14,6 @@ class AdminController extends Controller
         return view('admin.dashboard_admin', compact('user'));
     }
 
-    // public function dashboard(){
-    //     return view('admin.dashboard_admin');
-    // }
-
     public function userData(){
         $userData = User::all();
         return view('admin.manage_user.list_user', compact('userData'))->with('i');
