@@ -53,6 +53,13 @@ class PagesController extends Controller
         return view('history_transaction', compact('history'));
     }
 
+    public function penerimaan($id){
+        Checkout::where('id', '=', $id)->update([
+            'status' => 1,
+        ]);
+        return redirect()->back()->with('done', 'Berhasil');
+    }
+
     public function checkout(){
         return view('checkout');
     }

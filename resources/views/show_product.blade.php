@@ -38,7 +38,7 @@
                                 <h1 class="ps-3 pe-3">SH</h1>
                             </a>
                         </div>
-                        <div class="searchMenu">
+                        <!-- <div class="searchMenu">
                             <form action="">
                                 <div class="input-group">
                                     <div class="form-outline">
@@ -50,7 +50,7 @@
                                     </button>
                                 </div>
                             </form>
-                        </div>
+                        </div> -->
                     </div>
 
                     <div class="rightSideNavbar">
@@ -325,7 +325,7 @@
 				],
 			});
 		</script>
-
+	
 		
 		<script>
 			$(document).ready(function() {

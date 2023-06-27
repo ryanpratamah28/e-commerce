@@ -110,7 +110,7 @@
             <!-- Orders -->
             <li class="menu-header small text-uppercase"><span class="menu-header-text">Orders</span></li>     
 
-            <li class="menu-item">
+            <li class="menu-item {{ (request()->is('dashboard/list-order')) ? 'active' : '' }}">
               <a href="/dashboard/list-order" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-table"></i>
                 <div data-i18n="Tables">List Order</div>

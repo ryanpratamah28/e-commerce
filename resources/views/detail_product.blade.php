@@ -36,36 +36,23 @@
                                 <h1 class="ps-3 pe-3">SH</h1>
                             </a>
                         </div>
-                        <div class="searchMenu">
-                            <form action="">
-                                <div class="input-group">
-                                    <div class="form-outline">
-                                        <input type="search" id="form1" class="form-control" />
-                                        <label class="form-label" for="form1">Search</label>
-                                    </div>
-                                    <button type="button" class="buttonSearch button button-primary">
-                                        <img src="../../assets/img/icon/search_icon.svg" alt="" />
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
                     </div>
 
                     <div class="rightSideNavbar">
-@if(Auth::check())
+                    @if(Auth::check())
                         <div class="afterLogin align-items-center">
                             <li class="nav-item navbar-dropdown dropdown-user dropdown profileWrapper icon"
                                 style="list-style: none;">
                                 <a class="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                     @if (is_null($user['image_profile']))
                                         <div class="avatar avatar-online">
-                                            <img src="../../assets/img/avatars/1.png" alt=""
+                                            <img src="../../assets/img/avatars/1.png" style="width:40px ; height: 40px;" alt=""
                                                 class="w-px-40 h-auto rounded-circle">
                                         </div>
                                     @else
                                         <div class="avatar avatar-online">
                                             <img src="{{ asset('assets/img/' . Auth::user()->image_profile) }}"
-                                                alt="" class="w-px-40 h-auto rounded-circle">
+                                                alt="" class="w-px-40 h-auto rounded-circle" style="width:40px ; height: 40px;">
                                         </div>
                                     @endif
                                 </a>
@@ -210,7 +197,7 @@
                                     </div>
                                         <div class="col-12 col-lg-7">
                                         <div class="wrapper-detail-product">
-                                            <h1 class="name-product" data-name="{{$product->name}}">{{$product->name}}</h1>
+                                            <h1 class="name" data-name="{{$product->name}}">{{$product->name}}</h1>
                                             <div class="price-product">
                                                 <p id="price">Rp. {{ number_format($product->price, 0, ',', '.') }}<span>/Produk</span></p>
                                             </div>
@@ -256,7 +243,7 @@
                                         </div>
                                         <div class="total-price">
                                             <p>Harga</p>
-                                            <p>Rp. <span>0</span></p>
+                                            <p>Rp. <span>{{$product->price}}</span></p>
                                         </div>
                                     </div>
                                     <button id="add-to-cart" class="button button-primary w-100">
@@ -394,69 +381,70 @@
 
         </script>
 
-<script>
+    <script>
     function updateSummary() {
-        var quantity = parseInt($('.product-quantity').val());
-        var price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
-        var totalPrice = quantity * price;
+    var quantity = parseInt($('.product-quantity').val());
+    var price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
+    var totalPrice = quantity * price;
 
-        $('.total-order span').text(quantity);
-        $('.total-price span').text(totalPrice);
+    $('.total-order span').text(quantity);
+    $('.total-price span').text(totalPrice.toLocaleString()); // Memformat total harga dengan format angka
     }
 
     $('.quantity-count--add').click(function() {
-        var quantityInput = $(this).siblings('.product-quantity');
-        var maxQuantity = parseInt(quantityInput.attr('max'));
-        var currentQuantity = parseInt(quantityInput.val());
-        if (currentQuantity < maxQuantity) {
-            currentQuantity += 0;
-            quantityInput.val(currentQuantity);
-            updateSummary();
-        }
+    var quantityInput = $(this).siblings('.product-quantity');
+    var maxQuantity = parseInt(quantityInput.attr('max'));
+    var currentQuantity = parseInt(quantityInput.val());
+    if (currentQuantity < maxQuantity) {
+        currentQuantity += 0;
+        quantityInput.val(currentQuantity);
+        updateSummary();
+    }
     });
 
     $('.quantity-count--minus').click(function() {
-        var quantityInput = $(this).siblings('.product-quantity');
-        var minQuantity = parseInt(quantityInput.attr('min'));
-        var currentQuantity = parseInt(quantityInput.val());
-        if (currentQuantity > minQuantity) {
-            currentQuantity -= 0;
-            quantityInput.val(currentQuantity);
-            updateSummary();
-        }
+    var quantityInput = $(this).siblings('.product-quantity');
+    var minQuantity = parseInt(quantityInput.attr('min'));
+    var currentQuantity = parseInt(quantityInput.val());
+    if (currentQuantity > minQuantity) {
+        currentQuantity -= 0;
+        quantityInput.val(currentQuantity);
+        updateSummary();
+    }
     });
 
     $('#add-to-cart').click(function() {
-        var quantity = parseInt($('.product-quantity').val());
-        var price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
-        var totalPrice = quantity * price;
-        var productName = $('.name-product').data('name'); // Mengambil nama produk
-        var imageSrc = $('.product-image').attr('src');
+    var quantity = parseInt($('.product-quantity').val());
+    var price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
+    var totalPrice = quantity * price;
+    var productName = $('.name').data('name'); // Mengambil nama produk
+    var imageSrc = $('.product-image').attr('src');
 
-        // Mengambil data yang sudah ada dalam localStorage (jika ada)
-        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+    // Mengambil data yang sudah ada dalam localStorage (jika ada)
+    var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
 
-        // Menambahkan data baru ke dalam array
-        var newData = {
-            quantity: quantity,
-            totalPrice: totalPrice,
-            productName: productName,
-            price: price,
-            imageSrc: imageSrc
-        };
-        cartData.push(newData);
+    // Menambahkan data baru ke dalam array
+    var newData = {
+        quantity: quantity,
+        totalPrice: totalPrice,
+        productName: productName,
+        price: price,
+        imageSrc: imageSrc
+    };
+    cartData.push(newData);
 
-        // Menyimpan data ke localStorage sebagai string
-        localStorage.setItem('cartData', JSON.stringify(cartData));
+    // Menyimpan data ke localStorage sebagai string
+    localStorage.setItem('cartData', JSON.stringify(cartData));
 
-        // Tampilkan pesan sukses atau lakukan tindakan lainnya
-        alert('Produk telah ditambahkan ke keranjang.');
-        location.reload(); // Lakukan refresh halaman
+    // Tampilkan pesan sukses atau lakukan tindakan lainnya
+    alert('Produk telah ditambahkan ke keranjang.');
+    location.reload(); // Lakukan refresh halaman
 
-        // Bersihkan nilai jumlah order dan update summary
-        $('.product-quantity').val(0);
-        updateSummary();
+    // Bersihkan nilai jumlah order dan update summary
+    $('.product-quantity').val(0);
+    updateSummary();
     });
+
 
     $(document).ready(function() {
         // Mengambil data dari localStorage saat halaman dimuat
@@ -465,9 +453,9 @@
         if (cartData.length > 0) {
             var lastData = cartData[cartData.length - 1];
             // Mengisi nilai jumlah order, total harga, dan nama produk dari data terakhir
-            $('.product-quantity').val(lastData.quantity);
-            $('.total-order span').text(lastData.quantity);
-            $('.total-price span').text(lastData.totalPrice);
+            $('.product-quantity').val(currentData.quantity);
+            $('.total-order span').text(currentData.quantity);
+            $('.total-price span').text(currentData.totalPrice);
             $('.name-product').text(lastData.productName);
             $('.images.product').text(lastData.imageSrc);
         } else {
@@ -475,8 +463,6 @@
         }
     });
 </script>
-
-
 <script>
        $(document).ready(function() {
         // Mengambil data dari localStorage saat halaman dimuat

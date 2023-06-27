@@ -44,6 +44,8 @@ Route::middleware(['isLogin', 'CekRole:admin,user'])->group(function () {
     Route::get('/show', [PagesController::class, 'showProduct'])->name('show.product');
     Route::get('/cart', [PagesController::class, 'cart'])->name('cart');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+    Route::patch('/history/penerimaan/{checkout:id}', [PagesController::class, 'penerimaan'])->name('penerimaan');
 });
 
 Route::middleware(['isLogin', 'CekRole:admin'])->prefix('/dashboard')->group(function () {
@@ -76,5 +78,4 @@ Route::middleware(['isLogin', 'CekRole:admin'])->prefix('/dashboard')->group(fun
         Route::get('/detailpembayaran/{checkout:id}', [AdminController::class, 'detail_pembayaran'])->name('detail.pembayaran');
         Route::patch('/detailpembayaran/validasi/{checkout:id}', [AdminController::class, 'validasi'])->name('validasi');
         Route::patch('/detailpembayaran/tolak/{checkout:id}', [AdminController::class, 'tolak'])->name('tolak');
-
 });
