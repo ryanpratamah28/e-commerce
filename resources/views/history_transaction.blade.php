@@ -379,6 +379,10 @@
                                                                                             <td>Address</td>
                                                                                             <td>{{$histories->adress}}</td>
                                                                                         </tr>
+                                                                                        <tr>
+                                                                                            <td>Produk</td>
+                                                                                            <td>{{$histories->product}}</td>
+                                                                                        </tr>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
@@ -594,6 +598,10 @@
                                                                                             <td>Address</td>
                                                                                             <td>{{$histories->adress}}</td>
                                                                                         </tr>
+                                                                                        <tr>
+                                                                                            <td>Produk</td>
+                                                                                            <td>{{$histories->product}}</td>
+                                                                                        </tr>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
@@ -794,6 +802,10 @@
                                                                                             <td>Address</td>
                                                                                             <td>{{$histories->adress}}</td>
                                                                                         </tr>
+                                                                                        <tr>
+                                                                                            <td>Produk</td>
+                                                                                            <td>{{$histories->product}}</td>
+                                                                                        </tr>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
@@ -993,6 +1005,10 @@
                                                                                         <tr>
                                                                                             <td>Address</td>
                                                                                             <td>{{$histories->adress}}</td>
+                                                                                        </tr>
+                                                                                        <tr>
+                                                                                            <td>Produk</td>
+                                                                                            <td>{{$histories->product}}</td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>

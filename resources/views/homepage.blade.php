@@ -46,6 +46,7 @@
                     </li>
                 </ul>
                 <div class="slicing-color"></div>
+                
                 @if (Route::has('login'))
                     @auth
                         <a class="btn btn-light" href="{{ route('logout') }}">

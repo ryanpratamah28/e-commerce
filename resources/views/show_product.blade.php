@@ -76,19 +76,6 @@
                                         <li>
                                             <a class="dropdown-item" href="#">
                                                 <div class="d-flex">
-                                                    <!-- <div class="flex-shrink-0 me-3">
-                                                        @if (is_null($user['image_profile']))
-                                                            <div class="avatar avatar-online">
-                                                                <img src="./assets/img/avatars/1.png" alt=""
-                                                                    class="w-px-40 h-auto rounded-circle">
-                                                            </div>
-                                                        @else
-                                                        <div class="avatar avatar-online">
-                                                                <img src="{{ asset('assets/img/' . Auth::user()->image_profile) }}"
-                                                                    alt="" class="w-px-40 h-auto rounded-circle">
-                                                            </div>
-                                                        @endif
-                                                    </div> -->
                                                     <div class="flex-grow-1">
                                                         <span
                                                             class="fw-semibold d-block">{{ Auth::user()->name }}</span>
@@ -193,27 +180,27 @@
                             <p>Penawaran Terbaik</p>
                         </a>
                         <div class="bestOfferProduct">
-                            @foreach ($products as $bestProduct)
-                                <a href="{{ route('detail.product', $bestProduct->id) }}" class="product">
-                                    <div class="imagesProduct">
-                                        <img src="{{ asset('storage/images/' . $bestProduct->thumb_img) }}"
-                                            width="250px" alt="">
-                                    </div>
+                           @if(count($products) >= 3)
+    @foreach ($products as $bestProduct)
+        <a href="{{ route('detail.product', $bestProduct->id) }}" class="product">
+            <div class="imagesProduct">
+                <img src="{{ asset('storage/images/' . $bestProduct->thumb_img) }}" width="250px" alt="">
+            </div>
 
-                                    <div class="infoProduct">
-                                        <p class="nameProduct">
-                                            {{ $bestProduct->name }}
-                                        </p>
-                                        <p class="price">Rp. {{ number_format($bestProduct->price, 0, ',', '.') }}
-                                        </p>
-                                        <div class="discountDetail">
-                                            <div class="discountValue">
-                                                {{ $bestProduct->category->name }}
-                                            </div>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endforeach
+            <div class="infoProduct">
+                <p class="nameProduct">
+                    {{ $bestProduct->name }}
+                </p>
+                <p class="price">Rp. {{ number_format($bestProduct->price, 0, ',', '.') }}</p>
+                <div class="discountDetail">
+                    <div class="discountValue">
+                        {{ $bestProduct->category->name }}
+                    </div>
+                </div>
+            </div>
+        </a>
+    @endforeach
+@endif
                         </div>
                     </div>
                 </div>

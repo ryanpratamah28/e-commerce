@@ -79,7 +79,7 @@ Route::middleware(['isLogin', 'CekRole:admin'])->prefix('/dashboard')->group(fun
 
         //USER DATA
         Route::get('/users', [AdminController::class, 'userData'])->name('users.data');
-        Route::delete('/delete/{user:id}', [AdminController::class, 'userDelete'])->name('users.delete');
+        Route::delete('/delete/{id}', [AdminController::class, 'userDelete'])->name('users.delete');
 
         // LIST ORDER & DETAIL PEMBAYARAN
         Route::get('/list-order', [AdminController::class, 'listOrder'])->name('list.order');

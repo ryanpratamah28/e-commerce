@@ -49,9 +49,11 @@ public function listOrder()
         return redirect()->back()->with('done', 'Permintaan Di tolak');
     }
 
-    public function userDelete(User $user){
+    public function userDelete($id){
+    $user = User::find($id);
+    if ($user) {
         $user->delete();
-
         return redirect()->back()->with('deleteUser', 'Berhasil menghapus user');
+    }
     }
 }
