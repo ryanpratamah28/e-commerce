@@ -32,19 +32,6 @@
                                 <h1 class="me-3">SH</h1>
                             </a>
                         </div>
-                        <div class="searchMenu">
-                            <form action="">
-                                <div class="input-group">
-                                    <div class="form-outline">
-                                      <input type="search" id="form1" class="form-control" />
-                                      <label class="form-label" for="form1">Search</label>
-                                    </div>
-                                    <button type="button" class="buttonSearch button button-primary">
-                                        <img src="./assets/img/icon/search_icon.svg" alt="">
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
                     </div>
 
                     <div class="rightSideNavbar">

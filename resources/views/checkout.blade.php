@@ -29,20 +29,9 @@
                 <div class="navbar-wrapper">
                     <div class="leftSideNavbar">
                         <div class="text-logo">
-                            <h1 class="text-black me-3">SH</h1>
-                        </div>
-                        <div class="searchMenu">
-                            <form action="">
-                                <div class="input-group">
-                                    <div class="form-outline">
-                                        <input type="search" id="form1" class="form-control" />
-                                        <label class="form-label" for="form1">Search</label>
-                                    </div>
-                                    <button type="button" class="buttonSearch button button-primary">
-                                        <img src="../../assets/img/icon/search_icon.svg" alt="">
-                                    </button>
-                                </div>
-                            </form>
+                            <a href="/homepage" class="text-dark text-decoration-none">
+                                <h1 class="me-3">SH</h1>
+                            </a>
                         </div>
                     </div>
 

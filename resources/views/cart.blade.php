@@ -27,20 +27,9 @@
                 <div class="navbar-wrapper">
                     <div class="leftSideNavbar">
                         <div class="text-logo">
-                            <h1 class="text-black me-3">SH</h1>
-                        </div>
-                        <div class="searchMenu">
-                            <form action="">
-                                <div class="input-group">
-                                    <div class="form-outline">
-                                      <input type="search" id="form1" class="form-control" />
-                                      <label class="form-label" for="form1">Search</label>
-                                    </div>
-                                    <button type="button" class="buttonSearch button button-primary">
-                                        <img src="./assets/img/icon/search_icon.svg" alt="">
-                                    </button>
-                                </div>
-                            </form>
+                            <a href="/homepage" class="text-decoration-none text-dark">
+                                <h1 class="me-3">SH</h1>
+                            </a>
                         </div>
                     </div>
 
@@ -83,14 +72,14 @@
                                         <div class="icon-alert">
                                             <img src="./assets/img/icon/alert-icon.svg" alt="">
                                         </div>
-                                        You signed
+                                        Kamu sudah login, anda sekarang bisa memesan barang sesuai kebutuhan anda.
                                     </div>
                                     @else
                                     <div class="alert alert-danger" role="alert">
                                         <div class="icon-alert">
                                             <img src="./assets/img/icon/alert-icon.svg" alt="">
                                         </div>
-                                        Hello, you are not logged in, please Sign In !
+                                        Maaf, silahkan login terlebih dahulu agar bisa memesan barang !!
                                     </div>
                                 @endauth
                             @endif
@@ -125,7 +114,7 @@
                                 </div>
                              @if (Route::has('login'))
                                 @auth
-                                    <a href="/checkout" class="button button-primary w-100">
+                                    <a href="/checkout" class="button button-primary w-100 text-decoration-none">
                                         Checkout
                                     </a>
                                 @else
