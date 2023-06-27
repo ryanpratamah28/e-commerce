@@ -38,7 +38,7 @@
                                 <h1 class="ps-3 pe-3">SH</h1>
                             </a>
                         </div>
-                        <div class="searchMenu">
+                        {{-- <div class="searchMenu">
                             <form action="">
                                 <div class="input-group">
                                     <div class="form-outline">
@@ -50,117 +50,113 @@
                                     </button>
                                 </div>
                             </form>
-                        </div>
+                        </div> --}}
                     </div>
 
                     <div class="rightSideNavbar">
-						@if(Auth::check())
-                        <div class="afterLogin align-items-center">
-                            <li class="nav-item navbar-dropdown dropdown-user dropdown profileWrapper icon"
-                                style="list-style: none;">
-                                <a class="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                    @if (is_null($user['image_profile']))
-                                        <div class="avatar avatar-online">
-                                            <img src="../../assets/img/avatars/1.png" alt=""
-                                                class="w-px-40 h-auto rounded-circle">
-                                        </div>
-                                    @else
-                                        <div class="avatar avatar-online">
-                                            <img src="{{ asset('assets/img/' . Auth::user()->image_profile) }}"
-                                                alt="" class="w-px-40 h-auto rounded-circle">
-                                        </div>
-                                    @endif
-                                </a>
-
-                                <ul class="dropdown-menu dropdown-menu-end">
-                                    <li>
-                                        <a class="dropdown-item" href="#">
-                                            <div class="d-flex">
-                                                <!-- <div class="flex-shrink-0 me-3">
-                                                    @if (is_null($user['image_profile']))
-                                                        <div class="avatar avatar-online">
-                                                            <img src="./assets/img/avatars/1.png" alt=""
-                                                                class="w-px-40 h-auto rounded-circle">
-                                                        </div>
-                                                    @else
-                                                        <div class="avatar avatar-online">
-                                                            <img src="{{ asset('assets/img/' . Auth::user()->image_profile) }}"
-                                                                alt="" class="w-px-40 h-auto rounded-circle">
-                                                        </div>
-                                                    @endif
-                                                </div> -->
-                                                <div class="flex-grow-1">
-                                                    <span class="fw-semibold d-block">{{ Auth::user()->name }}</span>
-                                                    <small class="text-muted">{{ Auth::user()->role }}</small>
-                                                </div>
+                        @if (Auth::check())
+                            <div class="afterLogin align-items-center">
+                                <li class="nav-item navbar-dropdown dropdown-user dropdown profileWrapper icon"
+                                    style="list-style: none;">
+                                    <a class="nav-link dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                        @if (is_null($user['image_profile']))
+                                            <div class="avatar avatar-online">
+                                                <img src="../../assets/img/avatars/1.png" alt=""
+                                                    class="w-px-40 h-auto rounded-circle">
                                             </div>
-                                        </a>
-                                    </li>
-                                    <li>
-                                        <div class="dropdown-divider"></div>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="/profile">
-                                            <i class="bx bx-user me-2"></i>
-                                            <span class="align-middle">My Profile</span>
-                                        </a>
-                                    </li>
-									@if(Auth::check())
-										@if(Auth::user()->role == 'admin')
-										<li>
-											<a class="dropdown-item" href="/dashboard">
-												<i class="bx bx-user me-2"></i>
-												<span class="align-middle">Dashboard Admin</span>
-											</a>
-										</li>
-										@else
-									@endif
-									@endif
-                                    <li>
-                                        <div class="dropdown-divider"></div>
-                                    </li>
-                                    <li>
-                                        <a class="dropdown-item" href="{{ route('logout') }}">
-                                            <i class="bx bx-power-off me-2"></i>
-                                            <span class="align-middle">Log Out</span>
-                                        </a>
-                                    </li>
-                                </ul>
-                            </li>
+                                        @else
+                                            <div class="avatar avatar-online">
+                                                <img src="{{ asset('assets/img/' . Auth::user()->image_profile) }}"
+                                                    alt="" class="w-px-40 h-auto rounded-circle">
+                                            </div>
+                                        @endif
+                                    </a>
+
+                                    <ul class="dropdown-menu dropdown-menu-end">
+                                        <li>
+                                            <a class="dropdown-item" href="#">
+                                                <div class="d-flex">
+                                                    <!-- <div class="flex-shrink-0 me-3">
+                                                        @if (is_null($user['image_profile']))
+                                                            <div class="avatar avatar-online">
+                                                                <img src="./assets/img/avatars/1.png" alt=""
+                                                                    class="w-px-40 h-auto rounded-circle">
+                                                            </div>
+                                                        @else
+                                                        <div class="avatar avatar-online">
+                                                                <img src="{{ asset('assets/img/' . Auth::user()->image_profile) }}"
+                                                                    alt="" class="w-px-40 h-auto rounded-circle">
+                                                            </div>
+                                                        @endif
+                                                    </div> -->
+                                                    <div class="flex-grow-1">
+                                                        <span
+                                                            class="fw-semibold d-block">{{ Auth::user()->name }}</span>
+                                                        <small class="text-muted">{{ Auth::user()->role }}</small>
+                                                    </div>
+                                                </div>
+                                            </a>
+                                        </li>
+                                        <li>
+                                            <div class="dropdown-divider"></div>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="/profile">
+                                                <i class="bx bx-user me-2"></i>
+                                                <span class="align-middle">My Profile</span>
+                                            </a>
+                                        </li>
+                                        @if (Auth::check())
+                                            @if (Auth::user()->role == 'admin')
+                                                <li>
+                                                    <a class="dropdown-item" href="/dashboard">
+                                                        <i class="bx bx-user me-2"></i>
+                                                        <span class="align-middle">Dashboard Admin</span>
+                                                    </a>
+                                                </li>
+                                            @else
+                                            @endif
+                                        @endif
+                                        <li>
+                                            <div class="dropdown-divider"></div>
+                                        </li>
+                                        <li>
+                                            <a class="dropdown-item" href="{{ route('logout') }}">
+                                                <i class="bx bx-power-off me-2"></i>
+                                                <span class="align-middle">Log Out</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+
+                                {{-- <div class="cartWrapper">
+                                    <a href="/cart" class="cart icon">
+                                        <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
+                                        <div class="totalItem">0</div>
+                                    </a>
+                                </div> --}}
+                            </div>
+                        @endif
+
+                        <div class="beforeLogin">
+                            <div class="buttonWrapper">
+                                @if (Route::has('login'))
+                                    @auth
+                                        <div></div>
+                                    @else
+                                        <a href="/login" class="button button-outline button-outline-primary">Login</a>
+                                        <a href="/register" class="button button-primary">Sign Up</a>
+                                    @endauth
+                                @endif
+                            </div>
 
                             <div class="cartWrapper">
                                 <a href="/cart" class="cart icon">
-                                    <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
+                                    <img src="./assets/img/icon/shopping-cart_icon.svg" alt="" />
                                     <div class="totalItem">0</div>
                                 </a>
                             </div>
                         </div>
-						@else
-						<div class="beforeLogin">
-								<div class="buttonWrapper">
-                                @if (Route::has('login'))
-                                        @auth
-                                            <a href="{{route('logout')}}" class="button button-outline button-outline-primary">Logout</a>
-                                        @else
-                                            <a href="/login" class="button button-outline button-outline-primary">Login</a>
-                                            @if (Route::has('register'))
-                                            <a href="/register" class="button button-primary">Sign Up</a>
-                                            @endif
-                                        @endauth
-                                @endif
-								</div>
-
-							<div class="cartWrapper">
-								<a href="/cart" class="cart icon">
-									<img
-										src="./assets/img/icon/shopping-cart_icon.svg"
-										alt=""
-									/>
-									<div class="totalItem">0</div>
-								</a>
-							</div>
-						</div>
-						@endif
                     </div>
                 </div>
             </div>
@@ -174,17 +170,18 @@
                     <div class="categoriesContainer">
                         <h4>Kategori</h4>
                         <div class="wrapperCategories row">
-                            @foreach($categories as $category)
-                            <div class="col-12 col-sm-6 col-md-3 col-lg-12">
-                                <a href="#" class="categoriesPlant">
-                                    <div class="imagesCategories">
-                                        <img src="{{ asset('storage/images/'. $category->thumb_img) }}" alt="">
-                                    </div>
-                                    <p class="nameCategories">
-                                        {{$category->name}}
-                                    </p>
-                                </a>
-                            </div>
+                            @foreach ($categories as $category)
+                                <div class="col-12 col-sm-6 col-md-3 col-lg-12">
+                                    <a href="#" class="categoriesPlant">
+                                        <div class="imagesCategories">
+                                            <img src="{{ asset('storage/images/' . $category->thumb_img) }}"
+                                                alt="">
+                                        </div>
+                                        <p class="nameCategories">
+                                            {{ $category->name }}
+                                        </p>
+                                    </a>
+                                </div>
                             @endforeach
                         </div>
                     </div>
@@ -196,24 +193,26 @@
                             <p>Penawaran Terbaik</p>
                         </a>
                         <div class="bestOfferProduct">
-                            @foreach($products as $bestProduct)
-                            <a href="{{route('detail.product', $bestProduct->id)}}" class="product">
-                                <div class="imagesProduct">
-                                    <img src="{{ asset('storage/images/'. $bestProduct->thumb_img) }}" width="250px" alt="">
-                                </div>
-                        
-                                <div class="infoProduct">
-                                    <p class="nameProduct">
-                                        {{$bestProduct->name}}
-                                    </p>
-                                    <p class="price">Rp. {{ number_format($bestProduct->price, 0, ',', '.') }}</p>
-                                    <div class="discountDetail">
-                                        <div class="discountValue">
-                                            {{$bestProduct->category->name}}
+                            @foreach ($products as $bestProduct)
+                                <a href="{{ route('detail.product', $bestProduct->id) }}" class="product">
+                                    <div class="imagesProduct">
+                                        <img src="{{ asset('storage/images/' . $bestProduct->thumb_img) }}"
+                                            width="250px" alt="">
+                                    </div>
+
+                                    <div class="infoProduct">
+                                        <p class="nameProduct">
+                                            {{ $bestProduct->name }}
+                                        </p>
+                                        <p class="price">Rp. {{ number_format($bestProduct->price, 0, ',', '.') }}
+                                        </p>
+                                        <div class="discountDetail">
+                                            <div class="discountValue">
+                                                {{ $bestProduct->category->name }}
+                                            </div>
                                         </div>
                                     </div>
-                                </div>
-                            </a>
+                                </a>
                             @endforeach
                         </div>
                     </div>
@@ -228,23 +227,24 @@
                 </a>
 
                 <div class="row">
-                    @foreach($product as $item)
-                    <div class="col-6 col-lg-3">
-                        <a href="{{route('detail.product', $item->id)}}" class="product">
-                            <div class="imagesProduct">
-                                <img src="{{ asset('storage/images/'. $item->thumb_img) }}" width="250px" alt="">
-                            </div>
-                            <div class="infoProduct">
-                                <p class="nameProduct">
-                                   {{ $item->name }}
-                                </p>
-                                <p class="price">Rp. {{ number_format($item->price, 0, ',', '.') }}</p>
-                                <div class="discountDetail">
-                                    <div class="discountValue">{{$item->category->name}}</div>
+                    @foreach ($product as $item)
+                        <div class="col-6 col-lg-3">
+                            <a href="{{ route('detail.product', $item->id) }}" class="product">
+                                <div class="imagesProduct">
+                                    <img src="{{ asset('storage/images/' . $item->thumb_img) }}" width="250px"
+                                        alt="">
                                 </div>
-                            </div>
-                        </a>
-                    </div>
+                                <div class="infoProduct">
+                                    <p class="nameProduct">
+                                        {{ $item->name }}
+                                    </p>
+                                    <p class="price">Rp. {{ number_format($item->price, 0, ',', '.') }}</p>
+                                    <div class="discountDetail">
+                                        <div class="discountValue">{{ $item->category->name }}</div>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
                     @endforeach
                 </div>
             </div>
@@ -314,32 +314,30 @@
             slidesToShow: 3.2,
             slidesToScroll: 3,
 
-				responsive: [
-					{
-						breakpoint: 768,
-						settings: {
-							slidesToShow: 2.2,
-							slidesToScroll: 2,
-						},
-					},
-				],
-			});
-		</script>
+            responsive: [{
+                breakpoint: 768,
+                settings: {
+                    slidesToShow: 2.2,
+                    slidesToScroll: 2,
+                },
+            }, ],
+        });
+    </script>
 
-		
-		<script>
-			$(document).ready(function() {
-        // Mengambil data dari localStorage saat halaman dimuat
-        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
 
-        function updateTotalItem() {
-            var totalItem = cartData.length;
-            $('.totalItem').text(totalItem);
-        }
+    <script>
+        $(document).ready(function() {
+            // Mengambil data dari localStorage saat halaman dimuat
+            var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
 
-        // Fungsi untuk menghasilkan elemen HTML untuk setiap item dalam data keranjang
-        function generateCartItemHTML(item, index) {
-            return `
+            function updateTotalItem() {
+                var totalItem = cartData.length;
+                $('.totalItem').text(totalItem);
+            }
+
+            // Fungsi untuk menghasilkan elemen HTML untuk setiap item dalam data keranjang
+            function generateCartItemHTML(item, index) {
+                return `
                 <div class="product-list">
                     <div class="form-check checkbox-select checkbox-item">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -369,77 +367,78 @@
                     </div>
                 </div>
             `;
-        }
-
-        // Fungsi untuk mengupdate total price
-        function updateTotalPrice() {
-            var totalPrice = 0;
-            for (var i = 0; i < cartData.length; i++) {
-                totalPrice += cartData[i].totalPrice;
             }
-            $('.value-total-fix').text('Rp. ' + totalPrice);
-        }
 
-        // Fungsi untuk mengupdate harga total per item
-        function updateItemTotalPrice(index) {
-            var item = cartData[index];
-            var priceElement = $('.price[data-index="' + index + '"]');
-            priceElement.text(item.totalPrice);
-            priceElement.attr('data-price', item.totalPrice);
-        }
-
-        // Fungsi untuk menghapus item dari keranjang berdasarkan index
-        function deleteCartItem(index) {
-            cartData.splice(index, 1);
-            localStorage.setItem('cartData', JSON.stringify(cartData));
-            location.reload();
-            $('.body-cart').empty(); // Menghapus elemen HTML sebelum memperbarui
-            updateCartItems(); // Memperbarui tampilan keranjang setelah menghapus item
-        }
-
-        // Fungsi untuk memperbarui quantity item dalam keranjang
-        function updateCartItemQuantity(index, quantity) {
-            cartData[index].quantity = quantity;
-            cartData[index].totalPrice = quantity * cartData[index].price; // Mengupdate totalPrice
-            localStorage.setItem('cartData', JSON.stringify(cartData));
-            updateTotalPrice(); // Memperbarui total price
-            updateItemTotalPrice(index); // Memperbarui harga total per item
-        }
-
-        // Menambahkan elemen HTML untuk setiap item dalam data keranjang
-        function updateCartItems() {
-            var cartContainer = $('.body-cart');
-            for (var i = 0; i < cartData.length; i++) {
-                var itemHTML = generateCartItemHTML(cartData[i], i);
-                cartContainer.append(itemHTML);
+            // Fungsi untuk mengupdate total price
+            function updateTotalPrice() {
+                var totalPrice = 0;
+                for (var i = 0; i < cartData.length; i++) {
+                    totalPrice += cartData[i].totalPrice;
+                }
+                $('.value-total-fix').text('Rp. ' + totalPrice);
             }
-        }
 
-        // Menangani klik tombol minus dan plus
-        $('.body-cart').on('click', '.quantity-count', function() {
-            var action = $(this).data('action');
-            var index = $(this).data('index');
-            var quantityInput = $('.product-quantity[data-index="' + index + '"]');
-            var quantity = parseInt(quantityInput.val());
-            if (action === 'minus' && quantity > 0) {
-                quantityInput.val(quantity - 1);
-                updateCartItemQuantity(index, quantity - 1);
-            } else if (action === 'add' && quantity < 10) {
-                quantityInput.val(quantity + 1);
-                updateCartItemQuantity(index, quantity + 1);
+            // Fungsi untuk mengupdate harga total per item
+            function updateItemTotalPrice(index) {
+                var item = cartData[index];
+                var priceElement = $('.price[data-index="' + index + '"]');
+                priceElement.text(item.totalPrice);
+                priceElement.attr('data-price', item.totalPrice);
             }
+
+            // Fungsi untuk menghapus item dari keranjang berdasarkan index
+            function deleteCartItem(index) {
+                cartData.splice(index, 1);
+                localStorage.setItem('cartData', JSON.stringify(cartData));
+                location.reload();
+                $('.body-cart').empty(); // Menghapus elemen HTML sebelum memperbarui
+                updateCartItems(); // Memperbarui tampilan keranjang setelah menghapus item
+            }
+
+            // Fungsi untuk memperbarui quantity item dalam keranjang
+            function updateCartItemQuantity(index, quantity) {
+                cartData[index].quantity = quantity;
+                cartData[index].totalPrice = quantity * cartData[index].price; // Mengupdate totalPrice
+                localStorage.setItem('cartData', JSON.stringify(cartData));
+                updateTotalPrice(); // Memperbarui total price
+                updateItemTotalPrice(index); // Memperbarui harga total per item
+            }
+
+            // Menambahkan elemen HTML untuk setiap item dalam data keranjang
+            function updateCartItems() {
+                var cartContainer = $('.body-cart');
+                for (var i = 0; i < cartData.length; i++) {
+                    var itemHTML = generateCartItemHTML(cartData[i], i);
+                    cartContainer.append(itemHTML);
+                }
+            }
+
+            // Menangani klik tombol minus dan plus
+            $('.body-cart').on('click', '.quantity-count', function() {
+                var action = $(this).data('action');
+                var index = $(this).data('index');
+                var quantityInput = $('.product-quantity[data-index="' + index + '"]');
+                var quantity = parseInt(quantityInput.val());
+                if (action === 'minus' && quantity > 0) {
+                    quantityInput.val(quantity - 1);
+                    updateCartItemQuantity(index, quantity - 1);
+                } else if (action === 'add' && quantity < 10) {
+                    quantityInput.val(quantity + 1);
+                    updateCartItemQuantity(index, quantity + 1);
+                }
+            });
+
+            // Menangani klik tombol hapus
+            $('.body-cart').on('click', '.delete-cart-button', function() {
+                var index = $(this).data('index');
+                deleteCartItem(index);
+            });
+
+            updateCartItems(); // Memperbarui tampilan keranjang saat halaman dimuat
+            updateTotalPrice(); // Memperbarui total price saat halaman dimuat
+            updateTotalItem();
         });
+    </script>
+</body>
 
-        // Menangani klik tombol hapus
-        $('.body-cart').on('click', '.delete-cart-button', function() {
-            var index = $(this).data('index');
-            deleteCartItem(index);
-        });
-
-        updateCartItems(); // Memperbarui tampilan keranjang saat halaman dimuat
-        updateTotalPrice(); // Memperbarui total price saat halaman dimuat
-        updateTotalItem();
-    });
-		</script>
-	</body>
 </html>

@@ -30,36 +30,13 @@
                 <div class="navbar-wrapper">
                     <div class="leftSideNavbar">
                         <div class="logo-text">
-                            <h1 class="text-black me-3">SH</h1>
-                        </div>
-                        <div class="searchMenu">
-                            <form action="">
-                                <div class="input-group">
-                                    <div class="form-outline">
-                                        <input type="search" id="form1" class="form-control" />
-                                        <label class="form-label" for="form1">Search</label>
-                                    </div>
-                                    <button type="button" class="buttonSearch button button-primary">
-                                        <img src="./assets/img/icon/search_icon.svg" alt="">
-                                    </button>
-                                </div>
-                            </form>
+                            <a href="/show" class="text-decoration-none">
+                                <h1 class="text-black me-3">SH</h1>
+                            </a>
                         </div>
                     </div>
 
                     <div class="rightSideNavbar">
-                        <!-- <div class="beforeLogin">
-                            <div class="buttonWrapper">
-                                <a href="#" class="button button-outline button-outline-primary">Login</a>
-                                <a href="#" class="button button-primary">Sign Up</a>
-                            </div>
-                            <div class="cartWrapper">
-                                <a href="#" class="cart icon">
-                                    <img src="./assets/img/icon/shopping-cart_icon.svg" alt="">
-                                    <div class="totalItem">9</div>
-                                </a>
-                            </div>
-                        </div> -->
                         <div class="afterLogin">
                             <div class="cartWrapper">
                                 <a href="/cart" class="cart icon">

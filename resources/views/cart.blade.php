@@ -27,7 +27,7 @@
                 <div class="navbar-wrapper">
                     <div class="leftSideNavbar">
                         <div class="text-logo">
-                            <a href="/homepage" class="text-decoration-none text-dark">
+                            <a href="/show" class="text-decoration-none text-dark">
                                 <h1 class="me-3">SH</h1>
                             </a>
                         </div>
@@ -118,7 +118,7 @@
                                         Checkout
                                     </a>
                                 @else
-                                <a href="/login" class="button button-primary w-100">
+                                <a href="/login" class="button button-primary w-100 text-decoration-none">
                                     Login and Checkout
                                 </a>
                                 @endauth
