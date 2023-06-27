@@ -29,7 +29,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <label for="formFile" class="form-label">Thumbnail Image</label>
+                    <label for="formFile" class="form-label">Gambar Thumbnail</label>
                     <input class="form-control" type="file"  name="thumb_img" />
                     @error('thumb_img')
                         <div class="form-text text-danger">{{ $message }}</div>
