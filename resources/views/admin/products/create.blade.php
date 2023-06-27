@@ -48,7 +48,7 @@
 
                 <div class="mb-3">
                     <label class="form-label" for="basic-default-email">Harga</label>
-                    <input type="number" class="form-control" placeholder="Rp. 250.000" name="price"/>
+                    <input type="number" class="form-control" placeholder="Rp. 250.000 ( Isi dengan angka saja)" name="price"/>
                     @error('price')
                     <div class="form-text text-danger">{{ $message }}</div>
                     @enderror

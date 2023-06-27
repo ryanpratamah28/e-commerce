@@ -221,7 +221,7 @@
                                                 <button class="quantity-count quantity-count--add" data-action="add"
                                                     type="button">+</button>
                                             </div>
-                                            <p class="info">Min. order : 1 Plant</p>
+                                            <p class="info">Min. order : 1 Produk</p>
                                         </div>
                                     </div>
                                 </div>
