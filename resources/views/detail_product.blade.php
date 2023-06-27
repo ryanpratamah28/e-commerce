@@ -134,7 +134,7 @@
                                 <div class="cartWrapper">
                                     <a href="/cart" class="cart icon">
                                         <img src="../../assets/img/icon/shopping-cart_icon.svg" alt="" />
-                                        <div class="totalItem">9</div>
+                                        <div class="totalItem">0</div>
                                     </a>
                                 </div>
                             </div>
@@ -177,12 +177,10 @@
                                                     alt="">
                                             </div>
                                         </div>
-                                    </div>
-                                        <div class="col-12 col-lg-7">
-                                        <div class="wrapper-detail-product">
-                                            <h1 class="name" data-name="{{$product->name}}">{{$product->name}}</h1>
-                                            <div class="price-product">
-                                                <p id="price">Rp. {{ number_format($product->price, 0, ',', '.') }}<span>/Produk</span></p>
+                                        <div class="nav-images">
+                                            <div class="images-nav">
+                                                <img src="{{ asset('storage/images/' . $product->thumb_img) }}"
+                                                    alt="">
                                             </div>
                                             <div class="images-nav">
                                                 <img src="{{ asset('storage/images/' . $product->thumb_img) }}"
@@ -205,7 +203,7 @@
                                 </div>
                                 <div class="col-12 col-lg-7">
                                     <div class="wrapper-detail-product">
-                                        <h1 class="name-product" data-name="{{ $product->name }}">
+                                        <h1 class="name" data-name="{{ $product->name }}">
                                             {{ $product->name }}</h1>
                                         <div class="price-product">
                                             <p id="price">Rp.
@@ -228,19 +226,6 @@
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="col-12 col-lg-4 col-xl-3">
-                            <div class="wrapper-summary">
-                                <div class="card">
-                                    <h4>Total Order</h4>
-                                    <div class="detail-summary">
-                                        <div class="total-order">
-                                            <p>Jumlah Order</p>
-                                            <p><span>1</span> Produk</p>
-                                        </div>
-                                        <div class="total-price">
-                                            <p>Harga</p>
-                                            <p>Rp. <span>{{$product->price}}</span></p>
                             <div class="descripsi-product">
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
                                     <button class="nav-link active" id="nav-detail-tab" data-bs-toggle="tab"
@@ -286,7 +271,6 @@
                         </div>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 
@@ -300,51 +284,51 @@
     <script src="../../assets/vendor/slick/slick.js"></script>
 
     <!--Slick Images Product-->
-    <script>
-        $('.view-Images').slick({
-            slidesToShow: 1,
-            slidesToScroll: 1,
-            arrows: false,
-            fade: false,
-            adaptiveHeight: true,
-            infinite: false,
-            useTransform: true,
-            speed: 400,
-            asNavFor: '.nav-images',
-            cssEase: 'cubic-bezier(0.77, 0, 0.18, 1)',
-        });
-
-        $('.nav-images')
-            .on('init', function(event, slick) {
-                $('.nav-images .slick-slide.slick-current').addClass('is-active');
-            })
-            .slick({
-                slidesToShow: 5,
-                slidesToScroll: 5,
-                dots: false,
-                focusOnSelect: false,
+        <script>
+             $('.view-Images').slick({
+                slidesToShow: 1,
+                slidesToScroll: 1,
+                arrows: false,
+                fade: false,
+                adaptiveHeight: true,
                 infinite: false,
-                asNavFor: '.view-Images',
+                useTransform: true,
+                speed: 400,
+                asNavFor: '.nav-images',
+                cssEase: 'cubic-bezier(0.77, 0, 0.18, 1)',
             });
 
-        $('.view-Images').on('afterChange', function(event, slick, currentSlide) {
-            $('.nav-images').slick('slickGoTo', currentSlide);
-            var currrentNavSlideElem = '.nav-images .slick-slide[data-slick-index="' + currentSlide + '"]';
-            $('.nav-images .slick-slide.is-active').removeClass('is-active');
-            $(currrentNavSlideElem).addClass('is-active');
-        });
+            $('.nav-images')
+                .on('init', function(event, slick) {
+                    $('.nav-images .slick-slide.slick-current').addClass('is-active');
+                })
+                .slick({
+                    slidesToShow: 5,
+                    slidesToScroll: 5,
+                    dots: false,
+                    focusOnSelect: false,
+                    infinite: false,
+                    asNavFor: '.view-Images',
+                });
 
-        $('.nav-images').on('click', '.slick-slide', function(event) {
-            event.preventDefault();
-            var goToSingleSlide = $(this).data('slick-index');
+            $('.view-Images').on('afterChange', function(event, slick, currentSlide) {
+                $('.nav-images').slick('slickGoTo', currentSlide);
+                var currrentNavSlideElem = '.nav-images .slick-slide[data-slick-index="' + currentSlide + '"]';
+                $('.nav-images .slick-slide.is-active').removeClass('is-active');
+                $(currrentNavSlideElem).addClass('is-active');
+            });
 
-            $('.view-Images').slick('slickGoTo', goToSingleSlide);
-        });
-    </script>
+            $('.nav-images').on('click', '.slick-slide', function(event) {
+                event.preventDefault();
+                var goToSingleSlide = $(this).data('slick-index');
 
-    <!--Quantity Input-->
-    <script>
-        var QtyInput = (function() {
+                $('.view-Images').slick('slickGoTo', goToSingleSlide);
+            });
+        </script>
+
+        <!--Quantity Input-->
+<script>
+            var QtyInput = (function () {
             var $qtyInputs = $(".quantity-product");
 
             if (!$qtyInputs.length) {
@@ -356,7 +340,7 @@
             var qtyMin = parseInt($inputs.attr("min"));
             var qtyMax = parseInt($inputs.attr("max"));
 
-            $inputs.change(function() {
+            $inputs.change(function () {
                 var $this = $(this);
                 var $minusBtn = $this.siblings(".quantity-count--minus");
                 var $addBtn = $this.siblings(".quantity-count--add");
@@ -367,8 +351,8 @@
                     $minusBtn.attr("disabled", true);
                 } else {
                     $minusBtn.attr("disabled", false);
-
-                    if (qty >= qtyMax) {
+                    
+                    if(qty >= qtyMax){
                         $this.val(qtyMax);
                         $addBtn.attr('disabled', true);
                     } else {
@@ -378,7 +362,7 @@
                 }
             });
 
-            $countBtn.click(function() {
+            $countBtn.click(function () {
                 var operator = this.dataset.action;
                 var $this = $(this);
                 var $input = $this.siblings(".product-quantity");
@@ -395,7 +379,7 @@
                     }
                 } else {
                     qty = qty <= qtyMin ? qtyMin : (qty -= 1);
-
+                    
                     if (qty == qtyMin) {
                         $this.attr("disabled", true);
                     }
@@ -408,7 +392,6 @@
                 $input.val(qty);
             });
         })();
-    </script>
 
         </script>
 
@@ -477,41 +460,40 @@
     });
 
 
-    $(document).ready(function() {
-        // Mengambil data dari localStorage saat halaman dimuat
-        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+$(document).ready(function() {
+    // Mengambil data dari localStorage saat halaman dimuat
+    var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
 
-        if (cartData.length > 0) {
-            var lastData = cartData[cartData.length - 1];
-            // Mengisi nilai jumlah order, total harga, dan nama produk dari data terakhir
-            $('.product-quantity').val(currentData.quantity);
-            $('.total-order span').text(currentData.quantity);
-            $('.total-price span').text(currentData.totalPrice);
-            $('.name-product').text(lastData.productName);
-            $('.images.product').text(lastData.imageSrc);
-        } else {
-            updateSummary();
-        }
-    });
+    if (cartData.length > 0) {
+        var lastData = cartData[cartData.length - 1];
+        // Mengisi nilai jumlah order, total harga, dan nama produk dari data terakhir
+        $('.product-quantity').val(lastData.quantity);
+        $('.total-order span').text(lastData.quantity);
+
+        var price = parseInt($('#price').text().replace(/[^0-9]/g, ''));
+        $('.total-price span').text((price * lastData.quantity).toLocaleString());
+
+        $('.name-product').text(lastData.productName);
+        $('.images.product').text(lastData.imageSrc);
+    } else {
+        updateSummary();
+    }
+});
+
 </script>
 <script>
        $(document).ready(function() {
         // Mengambil data dari localStorage saat halaman dimuat
         var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
 
-    <script>
-        $(document).ready(function() {
-            // Mengambil data dari localStorage saat halaman dimuat
-            var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
+        function updateTotalItem() {
+            var totalItem = cartData.length;
+            $('.totalItem').text(totalItem);
+        }
 
-            function updateTotalItem() {
-                var totalItem = cartData.length;
-                $('.totalItem').text(totalItem);
-            }
-
-            // Fungsi untuk menghasilkan elemen HTML untuk setiap item dalam data keranjang
-            function generateCartItemHTML(item, index) {
-                return `
+        // Fungsi untuk menghasilkan elemen HTML untuk setiap item dalam data keranjang
+        function generateCartItemHTML(item, index) {
+            return `
                 <div class="product-list">
                     <div class="form-check checkbox-select checkbox-item">
                         <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
@@ -541,78 +523,78 @@
                     </div>
                 </div>
             `;
+        }
+
+        // Fungsi untuk mengupdate total price
+        function updateTotalPrice() {
+            var totalPrice = 0;
+            for (var i = 0; i < cartData.length; i++) {
+                totalPrice += cartData[i].totalPrice;
             }
+            $('.value-total-fix').text('Rp. ' + totalPrice);
+        }
 
-            // Fungsi untuk mengupdate total price
-            function updateTotalPrice() {
-                var totalPrice = 0;
-                for (var i = 0; i < cartData.length; i++) {
-                    totalPrice += cartData[i].totalPrice;
-                }
-                $('.value-total-fix').text('Rp. ' + totalPrice);
+        // Fungsi untuk mengupdate harga total per item
+        function updateItemTotalPrice(index) {
+            var item = cartData[index];
+            var priceElement = $('.price[data-index="' + index + '"]');
+            priceElement.text(item.totalPrice);
+            priceElement.attr('data-price', item.totalPrice);
+        }
+
+        // Fungsi untuk menghapus item dari keranjang berdasarkan index
+        function deleteCartItem(index) {
+            cartData.splice(index, 1);
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+            $('.body-cart').empty(); // Menghapus elemen HTML sebelum memperbarui
+            updateCartItems(); // Memperbarui tampilan keranjang setelah menghapus item
+        }
+
+        // Fungsi untuk memperbarui quantity item dalam keranjang
+        function updateCartItemQuantity(index, quantity) {
+            cartData[index].quantity = quantity;
+            cartData[index].totalPrice = quantity * cartData[index].price; // Mengupdate totalPrice
+            localStorage.setItem('cartData', JSON.stringify(cartData));
+
+            updateTotalPrice(); // Memperbarui total price
+            updateItemTotalPrice(index); // Memperbarui harga total per item
+        }
+
+        // Menambahkan elemen HTML untuk setiap item dalam data keranjang
+        function updateCartItems() {
+            var cartContainer = $('.body-cart');
+            for (var i = 0; i < cartData.length; i++) {
+                var itemHTML = generateCartItemHTML(cartData[i], i);
+                cartContainer.append(itemHTML);
             }
+        }
 
-            // Fungsi untuk mengupdate harga total per item
-            function updateItemTotalPrice(index) {
-                var item = cartData[index];
-                var priceElement = $('.price[data-index="' + index + '"]');
-                priceElement.text(item.totalPrice);
-                priceElement.attr('data-price', item.totalPrice);
+        // Menangani klik tombol minus dan plus
+        $('.body-cart').on('click', '.quantity-count', function() {
+            var action = $(this).data('action');
+            var index = $(this).data('index');
+            var quantityInput = $('.product-quantity[data-index="' + index + '"]');
+            var quantity = parseInt(quantityInput.val());
+            if (action === 'minus' && quantity > 0) {
+                quantityInput.val(quantity - 1);
+                updateCartItemQuantity(index, quantity - 1);
+            } else if (action === 'add' && quantity < 10) {
+                quantityInput.val(quantity + 1);
+                updateCartItemQuantity(index, quantity + 1);
             }
-
-            // Fungsi untuk menghapus item dari keranjang berdasarkan index
-            function deleteCartItem(index) {
-                cartData.splice(index, 1);
-                localStorage.setItem('cartData', JSON.stringify(cartData));
-                $('.body-cart').empty(); // Menghapus elemen HTML sebelum memperbarui
-                updateCartItems(); // Memperbarui tampilan keranjang setelah menghapus item
-            }
-
-            // Fungsi untuk memperbarui quantity item dalam keranjang
-            function updateCartItemQuantity(index, quantity) {
-                cartData[index].quantity = quantity;
-                cartData[index].totalPrice = quantity * cartData[index].price; // Mengupdate totalPrice
-                localStorage.setItem('cartData', JSON.stringify(cartData));
-
-                updateTotalPrice(); // Memperbarui total price
-                updateItemTotalPrice(index); // Memperbarui harga total per item
-            }
-
-            // Menambahkan elemen HTML untuk setiap item dalam data keranjang
-            function updateCartItems() {
-                var cartContainer = $('.body-cart');
-                for (var i = 0; i < cartData.length; i++) {
-                    var itemHTML = generateCartItemHTML(cartData[i], i);
-                    cartContainer.append(itemHTML);
-                }
-            }
-
-            // Menangani klik tombol minus dan plus
-            $('.body-cart').on('click', '.quantity-count', function() {
-                var action = $(this).data('action');
-                var index = $(this).data('index');
-                var quantityInput = $('.product-quantity[data-index="' + index + '"]');
-                var quantity = parseInt(quantityInput.val());
-                if (action === 'minus' && quantity > 0) {
-                    quantityInput.val(quantity - 1);
-                    updateCartItemQuantity(index, quantity - 1);
-                } else if (action === 'add' && quantity < 10) {
-                    quantityInput.val(quantity + 1);
-                    updateCartItemQuantity(index, quantity + 1);
-                }
-            });
-
-            // Menangani klik tombol hapus
-            $('.body-cart').on('click', '.delete-cart-button', function() {
-                var index = $(this).data('index');
-                deleteCartItem(index);
-            });
-
-            updateCartItems(); // Memperbarui tampilan keranjang saat halaman dimuat
-            updateTotalPrice(); // Memperbarui total price saat halaman dimuat
-            updateTotalItem();
         });
-    </script>
+
+        // Menangani klik tombol hapus
+        $('.body-cart').on('click', '.delete-cart-button', function() {
+            var index = $(this).data('index');
+            deleteCartItem(index);
+        });
+        
+        updateCartItems(); // Memperbarui tampilan keranjang saat halaman dimuat
+        updateTotalPrice(); // Memperbarui total price saat halaman dimuat
+        updateTotalItem();
+    });
+</script>
 
 
 </body>
