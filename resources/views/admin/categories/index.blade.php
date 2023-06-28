@@ -10,7 +10,7 @@
                         <th>No</th>
                         <th>Nama Kategori</th>
                         <th>Gambar Kategori</th>
-                        <th>Actions</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -23,12 +23,12 @@
                             </td>
                             <td>
                                 <form method="POST" action="{{ route('delete.category', $category->id) }}" class="d-flex">
-                                    <a class="btn btn-success d-flex align-items-center me-1" href="{{ route('edit.category', $category->id) }}"><i class="bx bx-edit-alt me-1"></i>Edit</a>
+                                    <a class="btn btn-success d-flex align-items-center me-1" href="{{ route('edit.category', $category->id) }}"><i class="bx bx-edit-alt me-1"></i>Ubah</a>
 
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger d-flex align-items-center ms-1" type="submit"><i
-                                            class="bx bx-trash me-1"></i>Delete</button>
+                                            class="bx bx-trash me-1"></i>Hapus</button>
                                 </form>
                             </td>
                         </tr>

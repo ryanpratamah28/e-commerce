@@ -3,7 +3,7 @@
 @section('dashboard')
     <div class="card mb-4">
         <div class="card-header d-flex justify-content-between align-items-center">
-            <h5 class="mb-0">Edit Product</h5>
+            <h5 class="mb-0">Ubah Produk</h5>
         </div>
         <div class="card-body">
             <form method="POST" action="{{ route('update.product', $product->id) }}" enctype="multipart/form-data">
@@ -18,7 +18,7 @@
                 <div class="mb-3">
                     <label for="exampleFormControlSelect1" class="form-label">Kategori</label>
                     <select class="form-select" id="exampleFormControlSelect1" name="category_id">
-                      <option hidden>Select Category</option>
+                      <option hidden>Pilih Kategori</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id}}" @if($category->id === $product->category_id) selected @endif>{{ ($category->name) }}</option>
                         @endforeach
@@ -52,8 +52,8 @@
                     @enderror
                 </div>
 
-                <a href="{{ route('product') }}" class="btn btn-danger">Cancel</a>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <a href="{{ route('product') }}" class="btn btn-danger">Batal</a>
+                <button type="submit" class="btn btn-primary">Kirim</button>
             </form>
         </div>
     </div>

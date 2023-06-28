@@ -50,17 +50,17 @@
                     @auth
                         <a class="btn btn-light" href="{{ route('logout') }}">
                             <img src="assets/img/homepage/icons8-login-50.png" width="20" height="20">
-                            Logout
+                            Keluar
                         </a>
                     @else
                         <a class="btn btn-light" href="/login">
                             <img src="assets/img/homepage/icons8-login-50.png" width="20" height="20">
-                            Login
+                            Masuk
                         </a>
                         @if (Route::has('register'))
                             <a class="btn btn-light" href="/register">
                                 <img src="assets/img/homepage/icons8-login-50.png" width="20" height="20">
-                                Register
+                                Daftar
                             </a>
                         @endif
                     @endauth

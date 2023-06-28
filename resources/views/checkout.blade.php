@@ -40,11 +40,11 @@
                             <div class="buttonWrapper">
                                 @if (Route::has('login'))
                                         @auth
-                                            <a href="{{route('logout')}}" class="button button-outline button-outline-primary">Logout</a>
+                                            <a href="{{route('logout')}}" class="button button-outline button-outline-primary">Keluar</a>
                                         @else
-                                            <a href="/login" class="button button-outline button-outline-primary">Login</a>
+                                            <a href="/login" class="button button-outline button-outline-primary">Masuk</a>
                                             @if (Route::has('register'))
-                                            <a href="/register" class="button button-primary">Sign Up</a>
+                                            <a href="/register" class="button button-primary">Daftar</a>
                                             @endif
                                         @endauth
                                 @endif
@@ -92,7 +92,7 @@
                                         </div>
                                         <div class="col-6">
                                             <div class="form-input">
-                                                <label class="form-label">Address</label>
+                                                <label class="form-label">Alamat</label>
                                                 <input type="text" value="{{Auth::user()->adress}}" name="adress" class="form-control" id="address">
                                             </div>
                                         </div>
@@ -103,22 +103,22 @@
                                             </div>
                                         </div>
                                         <div class="col-6">
-                                            <label for="username" class="form-label">Your Product</label>
+                                            <label for="username" class="form-label">Produk kamu</label>
                                             <textarea style="margin-top: 0;" class="form-control product" name="product" readonly></textarea>
                                         </div>
                                         <div class="col-6">
-                                            <label for="username" class="form-label">Price</label>
+                                            <label for="username" class="form-label">Harga</label>
                                             <input class="form-control price" name="price" id="price" readonly/>
                                         </div>
                                         <div class="col-6" style="display: none;">
-                                            <label for="username" class="form-label">Image Product</label>
+                                            <label for="username" class="form-label">Gambar Produk</label>
                                             <input class="form-control image-product" name="image-product" readonly/>
                                         </div>
                                         <div class="col-12"></div>
                                     </div>
                                     <div class="col-12 d-flex justify-content-between">
-                                        <a href="/cart" class="btn btn-outline-danger">Back</a>
-                                        <button type="submit" class="button button-primary" onclick="displayCustomerDetails()">konfirmasi</button>
+                                        <a href="/cart" class="btn btn-outline-danger">Kembali</a>
+                                        <button type="submit" class="button button-primary" onclick="displayCustomerDetails()">Konfirmasi</button>
                                     </div>
                             </form>
                         </div>
@@ -166,7 +166,7 @@
                                                         class="button button-primary w-100 d-flex align-items-center justify-content-center"
                                                         type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown"
                                                         aria-expanded="false">
-                                                        Select Payment
+                                                        Pilih Pembayaran
                                                         <ion-icon class="ms-2" name="chevron-down-outline"></ion-icon>
 
                                                     </button>

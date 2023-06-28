@@ -61,15 +61,15 @@
                                <div class="menu-profile">
                                     <a href="/profile" class="menu">
                                         <ion-icon name="person"></ion-icon>
-                                        Account
+                                        Akun
                                     </a>
                                     <a href="/history" class="menu">
                                         <ion-icon name="cart"></ion-icon>
-                                        History Transaction
+                                        Riwayat Transaksi
                                     </a>
                                     <a href="{{route('logout')}}" class="menu logout">
                                         <ion-icon name="log-out"></ion-icon>
-                                        Logout
+                                        Keluar
                                     </a>
                                </div>
                            </div>
@@ -77,8 +77,8 @@
                        <div class="col-12 col-lg-8 col-xl-9">
                            <div class="card profile-data">
                                 <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                                    <button class="nav-link active" id="nav-profileData-tab" data-bs-toggle="tab" data-bs-target="#nav-profileData" type="button" role="tab" aria-controls="nav-profileData" aria-selected="true">Profile Setting</button>
-                                    <button class="nav-link" id="nav-securitySetting-tab" data-bs-toggle="tab" data-bs-target="#nav-securitySetting" type="button" role="tab" aria-controls="nav-securitySetting" aria-selected="false">Security</button>
+                                    <button class="nav-link active" id="nav-profileData-tab" data-bs-toggle="tab" data-bs-target="#nav-profileData" type="button" role="tab" aria-controls="nav-profileData" aria-selected="true">Profil Setting</button>
+                                    <button class="nav-link" id="nav-securitySetting-tab" data-bs-toggle="tab" data-bs-target="#nav-securitySetting" type="button" role="tab" aria-controls="nav-securitySetting" aria-selected="false">Keamanan</button>
                                 </div>
                                 <div class="tab-content" id="nav-tabContent">
                                     <div class="tab-pane fade show active" id="nav-profileData" role="tabpanel" aria-labelledby="nav-profileData-tab">
@@ -95,23 +95,23 @@
                                                         @endif
                                                     </div>
                                                     <div class="button-change-image">
-                                                        <a href="{{'/profile/edit'}}" class="button button-outline-primary w-100">Change Profile</a>
+                                                        <a href="{{'/profile/edit'}}" class="button button-outline-primary w-100">Ganti Profil</a>
                                                     </div>
-                                                    <p class="info">Large file: maximum 4,000,000 bytes (4 MB). allowed files: .extensionJPG .JPEG .PNG</p>
+                                                    <p class="info">File besar: maksimal 4.000.000 byte (4 MB). file yang diizinkan: .extensionJPG .JPEG .PNG</p>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-lg-8">
                                                 <div class="biodata-user">
-                                                    <h5 class="title-data-user">Your Profile Data</h5>
+                                                    <h5 class="title-data-user">Profil Data Kamu</h5>
                                                     <div class="table-data-user">
                                                         <table>
                                                             <tbody>
                                                                 <tr>
-                                                                    <td class="label">Name</td>
+                                                                    <td class="label">Nama</td>
                                                                     <td class="value">{{Auth::user()->name}}</td>
                                                                 </tr>
                                                                 <tr>
-                                                                    <td class="label">Phone Number</td>
+                                                                    <td class="label">Nomor Telepon</td>
                                                                     <td class="value">{{Auth::user()->phone}}</td>
                                                                 </tr>
                                                                 <tr>
@@ -123,7 +123,7 @@
                                                     </div>
                                                 </div>
                                                 <div class="address-user">
-                                                    <h5 class="title-data-user">Your Address</h5>
+                                                    <h5 class="title-data-user">Alamat Kamu</h5>
                                                     <p>{{Auth::user()->adress}}</p>
                                                 </div>
                                                 <div class="edit-data-modal py-2 pt-3 d-flex justify-content-end">
@@ -131,7 +131,7 @@
                                                         <div class="modal-dialog">
                                                           <div class="modal-content">
                                                             <div class="modal-header">
-                                                              <h5 class="modal-title" id="changeDataProfileUserLabel">Edit Profile</h5>
+                                                              <h5 class="modal-title" id="changeDataProfileUserLabel">Ubah Profil</h5>
                                                               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                                             </div>
                                                             <div class="modal-body">
@@ -139,19 +139,19 @@
                                                                   <div class="row">
                                                                         <div class="col-6">
                                                                             <div class="form-input">
-                                                                                <label for="firstName" class="form-label">First Name</label>
+                                                                                <label for="firstName" class="form-label">Nama awal</label>
                                                                                 <input type="text" class="form-control" id="firstName">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-6">
                                                                             <div class="form-input">
-                                                                                <label for="lastName" class="form-label">Last Name</label>
+                                                                                <label for="lastName" class="form-label">Nama Akhir</label>
                                                                                 <input type="text" class="form-control" id="lastName">
                                                                             </div>
                                                                         </div>
                                                                         <div class="col-12">
                                                                             <div class="form-input">
-                                                                                <label for="phoneNumber" class="form-label">Phone Number</label>
+                                                                                <label for="phoneNumber" class="form-label">Nomor Telepon</label>
                                                                                 <input type="number" class="form-control" id="phoneNumber">
                                                                             </div>
                                                                         </div>
@@ -163,14 +163,14 @@
                                                                         </div>
                                                                         <div class="col-12">
                                                                             <div class="form-input">
-                                                                                <label for="address" class="form-label">Address</label>
+                                                                                <label for="address" class="form-label">Alamat</label>
                                                                                 <textarea name="address" id="address" cols="30" rows="5" class="form-control"></textarea>
                                                                             </div>
                                                                         </div>
                                                                   </div>
                                                                   <div class="row pt-3">
                                                                       <div class="col-12 d-flex justify-content-end">
-                                                                          <button class="button button-outline-primary">Save Data</button>
+                                                                          <button class="button button-outline-primary">Ubah Profil</button>
                                                                       </div>
                                                                   </div>
                                                               </form>
@@ -186,17 +186,17 @@
                                         <div class="row change-password">
                                             <div class="col-12 col-md-4 mb-4 mb-md-0">
                                                 <div class="greetings">
-                                                    <p>Hi, <span class="name">{{Auth::user()->name}}</span></p>
-                                                    <p>set your <span class="text-dark">account security</span> here.</p>
+                                                    <p>Halo, <span class="name">{{Auth::user()->name}}</span></p>
+                                                    <p>Ubah <span class="text-dark">keamanan akun</span> disini.</p>
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-8">
-                                                <h5 class="title-data-user">Change Password</h5>
+                                                <h5 class="title-data-user">Ganti Password</h5>
                                                 <form action="{{route('password.change')}}" method="POST" enctype="multipart/form-data">
                                                     @csrf
                                                     @method('PATCH')
                                                     <div class="form-input">
-                                                        <label for="newPassword" class="form-label">New Password</label>
+                                                        <label for="newPassword" class="form-label">Password baru</label>
                                                         <div class="password-eye">
                                                             <input type="password" class="form-control" id="newPassword">
                                                             <div class="togglePassword">
@@ -205,17 +205,17 @@
                                                         </div>
                                                     </div>
                                                     <div class="form-input">
-                                                        <label for="confirmPassword" class="form-label">Confirm Password</label>
+                                                        <label for="confirmPassword" class="form-label">Konfirmasi password</label>
                                                         <div class="password-eye">
                                                             <input type="password" name="password" class="form-control" id="confirmPassword">
                                                             <div class="togglePassword">
                                                                 <i class="bi bi-eye-fill"></i>
                                                             </div>
                                                         </div>
-                                                        <p id="small" style="color: red; display: none;">make sure the passwords are the same</p>
+                                                        <p id="small" style="color: red; display: none;">pastikan kata sandinya sama</p>
                                                     </div>
                                                     <div class="d-flex justify-content-end pt-3">
-                                                        <button class="button button-outline-primary" style="display: block;" id="button">Change Password</button>
+                                                        <button class="button button-outline-primary" style="display: block;" id="button">Ganti Password</button>
                                                     </div>
                                                 </form>
                                             </div>

@@ -2,50 +2,43 @@
 
 @section('dashboard')
     <div class="card">
-        <h5 class="card-header">All Users</h5>
+        <h5 class="card-header">Semua Pengguna</h5>
         <div class="table-responsive text-nowrap">
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Username</th>
+                        <th>Nama</th>
                         <th>Email</th>
-                        <th>Address</th>
-                        <th>Phone</th>
-                        <th>Role</th>
-                        <th>Action</th>
+                        <th>Alamat</th>
+                        <th>Nomor Telepon</th>
+                        <th>Status</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
-                    @foreach($userData as $users)
-                    <tr>
-                        <td>{{ ++$i }}</td>
-                        <td>{{$users->name}}</td>
-                        <td>{{$users->email}}</td>
-                        <td>{{$users->adress}}</td>
-                        <td>{{$users->phone}}</td>
-                        @if($users->role == 'user')
-                            <td><span class="badge bg-label-success me-1">{{$users->role}}</span></td>
-                        @else
-                            @if($users->role == 'admin')
-                                <td><span class="badge bg-label-primary me-1">{{$users->role}}</span></td>
+                    @foreach ($userData as $users)
+                        <tr>
+                            <td>{{ ++$i }}</td>
+                            <td>{{ $users->name }}</td>
+                            <td>{{ $users->email }}</td>
+                            <td>{{ $users->adress }}</td>
+                            <td>{{ $users->phone }}</td>
+                            @if ($users->role == 'user')
+                                <td><span class="badge bg-label-success me-1">{{ $users->role }}</span></td>
+                            @else
+                                @if ($users->role == 'admin')
+                                    <td><span class="badge bg-label-primary me-1">{{ $users->role }}</span></td>
+                                @endif
                             @endif
-                        @endif
-                        <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                     <form method="POST" action="{{ route('users.delete', $users->id) }}" class="dropdown-item">
+                            <td>
+                                <form method="POST" action="{{ route('users.delete', $users->id) }}">
                                     @method('DELETE')
                                     @csrf
-                                    <button class="btn btn-danger ms-1" type="submit"><i class="bx bx-trash me-1"></i>Delete</button>
+                                    <button class="btn btn-danger" type="submit"><i class="bx bx-trash me-1"></i>Hapus</button>
                                 </form>
-                                </div>
-                            </div>
-                        </td>
-                    </tr>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>

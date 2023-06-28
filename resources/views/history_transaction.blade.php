@@ -114,7 +114,7 @@
                                                     @elseif($histories['status'] == 3)
                                                     <div class="alert alert-warning" role="alert" style="margin: 0 5px 0 0; padding: 5px 5px;">Pesanan sedang diantar</div>
                                                     @elseif($histories['status'] == 0)
-                                                    <div class="alert alert-secondary" role="alert" style="margin: 0 5px 0 0; padding: 5px 5px;">proses</div>
+                                                    <div class="alert alert-secondary" role="alert" style="margin: 0 5px 0 0; padding: 5px 5px;">Proses</div>
                                                     @endif
                                                 </div>
                                                 <div class="body-item">
@@ -144,34 +144,33 @@
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title"
-                                                                                id="seeDetailModalLabel">Transaction
-                                                                                Detail</h5>
+                                                                                id="seeDetailModalLabel">Detail Transaksi</h5>
                                                                             <button type="button" class="btn-close"
                                                                                 data-bs-dismiss="modal"
                                                                                 aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <div class="line-detail">
-                                                                                <h5>Info Transaction</h5>
+                                                                                <h5>Info Transaksi</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Transaction Date</td>
+                                                                                            <td>Tanggal Transaksi</td>
                                                                                             <td>{{$histories->updated_at}}</td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
                                                                             <div class="line-detail">
-                                                                                <h5>Info Delivered</h5>
+                                                                                <h5>Info Pengiriman</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Name</td>
+                                                                                            <td>Nama</td>
                                                                                             <td class="bold-text">{{$histories->name}}</td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td>Address</td>
+                                                                                            <td>Alamat</td>
                                                                                             <td>{{$histories->adress}}</td>
                                                                                         </tr>
                                                                                         <tr>
@@ -182,7 +181,7 @@
                                                                                 </table>
                                                                             </div>
                                                                             <div class="line-detail">
-                                                                                <h5>Payment Details</h5>
+                                                                                <h5>Detail Pembayaran</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
@@ -349,34 +348,33 @@
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title"
-                                                                                id="seeDetailModalLabel">Transaction
-                                                                                Detail</h5>
+                                                                                id="seeDetailModalLabel">Detail Transaksi</h5>
                                                                             <button type="button" class="btn-close"
                                                                                 data-bs-dismiss="modal"
                                                                                 aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <div class="line-detail">
-                                                                                <h5>Info Transaction</h5>
+                                                                                <h5>Info Transaksi</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Transaction Date</td>
+                                                                                            <td>Tanggal Transaksi</td>
                                                                                             <td>{{$histories->updated_at}}</td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
                                                                             <div class="line-detail">
-                                                                                <h5>Info Delivered</h5>
+                                                                                <h5>Info Pengiriman</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Name</td>
+                                                                                            <td>Nama</td>
                                                                                             <td class="bold-text">{{$histories->name}}</td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td>Address</td>
+                                                                                            <td>Alamat</td>
                                                                                             <td>{{$histories->adress}}</td>
                                                                                         </tr>
                                                                                         <tr>
@@ -387,7 +385,7 @@
                                                                                 </table>
                                                                             </div>
                                                                             <div class="line-detail">
-                                                                                <h5>Payment Details</h5>
+                                                                                <h5>Detail Pembayaran</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
@@ -568,34 +566,33 @@
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title"
-                                                                                id="seeDetailModalLabel">Transaction
-                                                                                Detail</h5>
+                                                                                id="seeDetailModalLabel">Detail Transaksi</h5>
                                                                             <button type="button" class="btn-close"
                                                                                 data-bs-dismiss="modal"
                                                                                 aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <div class="line-detail">
-                                                                                <h5>Info Transaction</h5>
+                                                                                <h5>Info Transaksi</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Transaction Date</td>
+                                                                                            <td>Tanggal Transaksi</td>
                                                                                             <td>{{$histories->updated_at}}</td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
                                                                             <div class="line-detail">
-                                                                                <h5>Info Delivered</h5>
+                                                                                <h5>Info Pengiriman</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Name</td>
+                                                                                            <td>Nama</td>
                                                                                             <td class="bold-text">{{$histories->name}}</td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td>Address</td>
+                                                                                            <td>Alamat</td>
                                                                                             <td>{{$histories->adress}}</td>
                                                                                         </tr>
                                                                                         <tr>
@@ -606,7 +603,7 @@
                                                                                 </table>
                                                                             </div>
                                                                             <div class="line-detail">
-                                                                                <h5>Payment Details</h5>
+                                                                                <h5>Detail Pembayaran</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
@@ -772,34 +769,33 @@
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title"
-                                                                                id="seeDetailModalLabel">Transaction
-                                                                                Detail</h5>
+                                                                                id="seeDetailModalLabel">Detail Transaksi</h5>
                                                                             <button type="button" class="btn-close"
                                                                                 data-bs-dismiss="modal"
                                                                                 aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <div class="line-detail">
-                                                                                <h5>Info Transaction</h5>
+                                                                                <h5>Info Transaksi</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Transaction Date</td>
+                                                                                            <td>Tanggal Transaksi</td>
                                                                                             <td>{{$histories->updated_at}}</td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
                                                                             <div class="line-detail">
-                                                                                <h5>Info Delivered</h5>
+                                                                                <h5>Info Pengiriman</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Name</td>
+                                                                                            <td>Nama</td>
                                                                                             <td class="bold-text">{{$histories->name}}</td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td>Address</td>
+                                                                                            <td>Alamat</td>
                                                                                             <td>{{$histories->adress}}</td>
                                                                                         </tr>
                                                                                         <tr>
@@ -810,7 +806,7 @@
                                                                                 </table>
                                                                             </div>
                                                                             <div class="line-detail">
-                                                                                <h5>Payment Details</h5>
+                                                                                <h5>Detail Pembayaran</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
@@ -976,34 +972,33 @@
                                                                     <div class="modal-content">
                                                                         <div class="modal-header">
                                                                             <h5 class="modal-title"
-                                                                                id="seeDetailModalLabel">Transaction
-                                                                                Detail</h5>
+                                                                                id="seeDetailModalLabel">Detail Transaksi</h5>
                                                                             <button type="button" class="btn-close"
                                                                                 data-bs-dismiss="modal"
                                                                                 aria-label="Close"></button>
                                                                         </div>
                                                                         <div class="modal-body">
                                                                             <div class="line-detail">
-                                                                                <h5>Info Transaction</h5>
+                                                                                <h5>Info Transaksi</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Transaction Date</td>
+                                                                                            <td>Tanggal Transaksi</td>
                                                                                             <td>{{$histories->updated_at}}</td>
                                                                                         </tr>
                                                                                     </tbody>
                                                                                 </table>
                                                                             </div>
                                                                             <div class="line-detail">
-                                                                                <h5>Info Delivered</h5>
+                                                                                <h5>Info Pengiriman</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>
-                                                                                            <td>Name</td>
+                                                                                            <td>Nama</td>
                                                                                             <td class="bold-text">{{$histories->name}}</td>
                                                                                         </tr>
                                                                                         <tr>
-                                                                                            <td>Address</td>
+                                                                                            <td>Alamat</td>
                                                                                             <td>{{$histories->adress}}</td>
                                                                                         </tr>
                                                                                         <tr>
@@ -1014,7 +1009,7 @@
                                                                                 </table>
                                                                             </div>
                                                                             <div class="line-detail">
-                                                                                <h5>Payment Details</h5>
+                                                                                <h5>Detail Pembayaran</h5>
                                                                                 <table style="width: 100%;">
                                                                                     <tbody>
                                                                                         <tr>

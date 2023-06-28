@@ -20,7 +20,7 @@
                 <div class="mb-3">
                     <label for="exampleFormControlSelect1" class="form-label">Kategori</label>
                     <select class="form-select" id="exampleFormControlSelect1" aria-label="Default select example" name="category_id">
-                      <option selected hidden>Select Category</option>
+                      <option selected hidden>Pilih Kategori</option>
                         @foreach($categories as $category)
                             <option value="{{ $category->id }}">{{ ($category->name) }}</option>
                         @endforeach
@@ -54,7 +54,7 @@
                     @enderror
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn btn-primary">Kirim</button>
             </form>
         </div>
     </div>

@@ -12,7 +12,7 @@
       content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Dashboard Admin Marketplace</title>
+    <title>Dashboard Admin</title>
 
     <meta name="description" content="" />
 
@@ -73,42 +73,42 @@
             </li>
 
             <li class="menu-header small text-uppercase">
-              <span class="menu-header-text">Product</span>
+              <span class="menu-header-text">Produk</span>
             </li>
 
             <li class="menu-item {{ (request()->is('dashboard/product/create')) ? 'active' : '' }}" >
               <a href="/dashboard/product/create" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-plus"></i>
-                <div data-i18n="Basic">Add Product</div>
+                <div data-i18n="Basic">Tambah Produk</div>
               </a>
             </li>
 
             <li class="menu-item {{ (request()->is('dashboard/product')) ? 'active' : '' }}" >
               <a href="/dashboard/product" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">List Product</div>
+                <div data-i18n="Basic">List Produk</div>
               </a>
             </li>
 
             <!-- Components -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Category</span></li>
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Kategori</span></li>
             <!-- Cards -->
             <li class="menu-item {{ (request()->is('dashboard/category/create')) ? 'active' : '' }}" >
               <a href="/dashboard/category/create" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-plus"></i>
-                <div data-i18n="Basic">Add Category</div>
+                <div data-i18n="Basic">Tambah Kategori</div>
               </a>
             </li>
 
             <li class="menu-item {{ (request()->is('dashboard/category')) ? 'active' : '' }}" >
               <a href="/dashboard/category" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-collection"></i>
-                <div data-i18n="Basic">List Category</div>
+                <div data-i18n="Basic">List Kategori</div>
               </a>
             </li>
 
             <!-- Orders -->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Orders</span></li>     
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Orderan</span></li>     
 
             <li class="menu-item {{ (request()->is('dashboard/list-order')) ? 'active' : '' }}">
               <a href="/dashboard/list-order" class="menu-link">
@@ -118,7 +118,7 @@
             </li>
 
             <!-- Users Data-->
-            <li class="menu-header small text-uppercase"><span class="menu-header-text">Users Data</span></li>
+            <li class="menu-header small text-uppercase"><span class="menu-header-text">Data Pengguna</span></li>
             <li class="menu-item {{ (request()->is('dashboard/users')) ? 'active' : '' }}" >
               <a href="/dashboard/users" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-archive"></i>
@@ -179,7 +179,7 @@
                     <li>
                       <a class="dropdown-item" href="/profile">
                         <i class="bx bx-user me-2"></i>
-                        <span class="align-middle">My Profile</span>
+                        <span class="align-middle">Profil saya</span>
                       </a>
                     </li>
                     <li>
@@ -188,7 +188,7 @@
                     <li>
                       <a class="dropdown-item" href="{{route('logout')}}">
                         <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                        <span class="align-middle">Keluar</span>
                       </a>
                     </li>
                   </ul>

@@ -2,18 +2,18 @@
 
 @section('dashboard')
     <div class="card">
-        <h5 class="card-header">All Users</h5>
+        <h5 class="card-header">Semua Orderan Pengguna</h5>
         <div class="table-responsive text-nowrap">
             <table class="table table-hover">
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>name</th>
-                        <th>Address</th>
-                        <th>Phone</th>
+                        <th>Nama</th>
+                        <th>Alamat</th>
+                        <th>Nomor Telepon</th>
                         <th>Bukti Pembayaran</th>
-                        <th>Product / kategori</th>
-                        <th>Action</th>
+                        <th>Produk / Kategori</th>
+                        <th>Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="table-border-bottom-0">
@@ -41,7 +41,7 @@
                                             @csrf
                                             @method('PATCH')
                                             <input type="hidden" name="updated_at" value="{{ now() }}">
-                                            <button type="submit" class="btn btn-primary" style="color: white; background:rgb(24, 175, 24)"> Approve </button>
+                                            <button type="submit" class="btn btn-primary" style="color: white; background:rgb(24, 175, 24)"> Terima </button>
                                         </form>
 
                                         <form action="{{ route('tolak', $orders->id) }}" method="POST">

@@ -2,7 +2,7 @@
 
 @section('dashboard')
     <div class="card">
-        <h5 class="card-header">All Product List</h5>
+        <h5 class="card-header">Daftar Produk</h5>
         <div class="table-responsive text-nowrap">
             <table class="table table-hover">
                 <thead>
@@ -29,12 +29,12 @@
                             <td>Rp. {{ number_format($product->price, 0, ',', '.') }}</td>
                             <td>
                                 <form method="POST" action="{{ route('delete.product', $product->id) }}" class="d-flex">
-                                    <a class="btn btn-success me-1" href="{{ route('edit.product', $product->id) }}"><i class="bx bx-edit-alt me-1"></i> Edit</a>
+                                    <a class="btn btn-success me-1" href="{{ route('edit.product', $product->id) }}"><i class="bx bx-edit-alt me-1"></i> Ubah</a>
 
                                     @csrf
                                     @method('DELETE')
                                     <button class="btn btn-danger ms-1" type="submit"><i
-                                            class="bx bx-trash me-1"></i>Delete</button>
+                                            class="bx bx-trash me-1"></i>Hapus</button>
                                 </form>
                             </td>
                         </tr>

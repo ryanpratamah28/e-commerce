@@ -103,7 +103,7 @@
                                         <li>
                                             <a class="dropdown-item" href="/profile">
                                                 <i class="bx bx-user me-2"></i>
-                                                <span class="align-middle">My Profile</span>
+                                                <span class="align-middle">Profile Saya</span>
                                             </a>
                                         </li>
                                         @if (Auth::check())
@@ -123,7 +123,7 @@
                                         <li>
                                             <a class="dropdown-item" href="{{ route('logout') }}">
                                                 <i class="bx bx-power-off me-2"></i>
-                                                <span class="align-middle">Log Out</span>
+                                                <span class="align-middle">Keluar</span>
                                             </a>
                                         </li>
                                     </ul>
@@ -144,8 +144,8 @@
                                     @auth
                                         <div></div>
                                     @else
-                                        <a href="/login" class="button button-outline button-outline-primary">Login</a>
-                                        <a href="/register" class="button button-primary">Sign Up</a>
+                                        <a href="/login" class="button button-outline button-outline-primary">Masuk</a>
+                                        <a href="/register" class="button button-primary">Daftar</a>
                                     @endauth
                                 @endif
                             </div>
@@ -168,7 +168,7 @@
             <div class="row line">
                 <div class="col-12 col-lg-3 mb-4 mb-lg-0">
                     <div class="categoriesContainer">
-                        <h4>Kategori</h4>
+                        <h4>List Kategori</h4>
                         <div class="wrapperCategories row">
                             @foreach ($categories as $category)
                                 <div class="col-12 col-sm-6 col-md-3 col-lg-12">
@@ -189,31 +189,33 @@
                 <div class="col-12 col-lg-9">
                     <div class="bestOfferContainer">
                         <a href="#" class="header-line">
-                            <img src="./assets/img/icon/icons8-hot-price-30.png" alt="" />
-                            <p>Penawaran Terbaik</p>
+                            <img src="./assets/img/icon/icons8-product-26.png" alt=""/>
+                            <p class="ms-2">Rekomendasi Produk</p>
                         </a>
                         <div class="bestOfferProduct">
-                            @foreach ($products as $bestProduct)
-                                <a href="{{ route('detail.product', $bestProduct->id) }}" class="product">
-                                    <div class="imagesProduct">
-                                        <img src="{{ asset('storage/images/' . $bestProduct->thumb_img) }}"
-                                            width="250px" alt="">
-                                    </div>
+                            @if(count($products) >= 4)
+                                @foreach ($products as $bestProduct)
+                                    <a href="{{ route('detail.product', $bestProduct->id) }}" class="product">
+                                        <div class="imagesProduct">
+                                            <img src="{{ asset('storage/images/' . $bestProduct->thumb_img) }}"
+                                                width="250px" alt="">
+                                        </div>
 
-                                    <div class="infoProduct">
-                                        <p class="nameProduct">
-                                            {{ $bestProduct->name }}
-                                        </p>
-                                        <p class="price">Rp. {{ number_format($bestProduct->price, 0, ',', '.') }}
-                                        </p>
-                                        <div class="discountDetail">
-                                            <div class="discountValue">
-                                                {{ $bestProduct->category->name }}
+                                        <div class="infoProduct">
+                                            <p class="nameProduct">
+                                                {{ $bestProduct->name }}
+                                            </p>
+                                            <p class="price">Rp. {{ number_format($bestProduct->price, 0, ',', '.') }}
+                                            </p>
+                                            <div class="discountDetail">
+                                                <div class="discountValue">
+                                                    {{ $bestProduct->category->name }}
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
-                                </a>
-                            @endforeach
+                                    </a>
+                                @endforeach
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -327,27 +329,16 @@
 		</script>
 	
 		
-		<script>
-			$(document).ready(function() {
-        // Mengambil data dari localStorage saat halaman dimuat
-        var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
-
-        function updateTotalItem() {
-            var totalItem = cartData.length;
-            $('.totalItem').text(totalItem);
-        }
-
-
-    <script>
+	<script>
         $(document).ready(function() {
             // Mengambil data dari localStorage saat halaman dimuat
             var cartData = JSON.parse(localStorage.getItem('cartData')) || [];
-
+    
             function updateTotalItem() {
                 var totalItem = cartData.length;
                 $('.totalItem').text(totalItem);
             }
-
+    
             // Fungsi untuk menghasilkan elemen HTML untuk setiap item dalam data keranjang
             function generateCartItemHTML(item, index) {
                 return `
@@ -379,9 +370,9 @@
                         </div>
                     </div>
                 </div>
-            `;
+                `;
             }
-
+    
             // Fungsi untuk mengupdate total price
             function updateTotalPrice() {
                 var totalPrice = 0;
@@ -390,7 +381,7 @@
                 }
                 $('.value-total-fix').text('Rp. ' + totalPrice);
             }
-
+    
             // Fungsi untuk mengupdate harga total per item
             function updateItemTotalPrice(index) {
                 var item = cartData[index];
@@ -398,16 +389,17 @@
                 priceElement.text(item.totalPrice);
                 priceElement.attr('data-price', item.totalPrice);
             }
-
+    
             // Fungsi untuk menghapus item dari keranjang berdasarkan index
             function deleteCartItem(index) {
                 cartData.splice(index, 1);
                 localStorage.setItem('cartData', JSON.stringify(cartData));
-                location.reload();
                 $('.body-cart').empty(); // Menghapus elemen HTML sebelum memperbarui
                 updateCartItems(); // Memperbarui tampilan keranjang setelah menghapus item
+                updateTotalPrice(); // Memperbarui total price
+                updateTotalItem();
             }
-
+    
             // Fungsi untuk memperbarui quantity item dalam keranjang
             function updateCartItemQuantity(index, quantity) {
                 cartData[index].quantity = quantity;
@@ -416,7 +408,7 @@
                 updateTotalPrice(); // Memperbarui total price
                 updateItemTotalPrice(index); // Memperbarui harga total per item
             }
-
+    
             // Menambahkan elemen HTML untuk setiap item dalam data keranjang
             function updateCartItems() {
                 var cartContainer = $('.body-cart');
@@ -425,7 +417,7 @@
                     cartContainer.append(itemHTML);
                 }
             }
-
+    
             // Menangani klik tombol minus dan plus
             $('.body-cart').on('click', '.quantity-count', function() {
                 var action = $(this).data('action');
@@ -440,13 +432,13 @@
                     updateCartItemQuantity(index, quantity + 1);
                 }
             });
-
+    
             // Menangani klik tombol hapus
             $('.body-cart').on('click', '.delete-cart-button', function() {
                 var index = $(this).data('index');
                 deleteCartItem(index);
             });
-
+    
             updateCartItems(); // Memperbarui tampilan keranjang saat halaman dimuat
             updateTotalPrice(); // Memperbarui total price saat halaman dimuat
             updateTotalItem();

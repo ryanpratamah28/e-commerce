@@ -40,9 +40,9 @@
                                         @auth
                                             <a href="{{route('logout')}}" class="button button-outline button-outline-primary">Logout</a>
                                         @else
-                                            <a href="/login" class="button button-outline button-outline-primary">Login</a>
+                                            <a href="/login" class="button button-outline button-outline-primary">Masuk</a>
                                             @if (Route::has('register'))
-                                            <a href="/register" class="button button-primary">Sign Up</a>
+                                            <a href="/register" class="button button-primary">Daftar</a>
                                             @endif
                                         @endauth
                                 @endif
@@ -63,7 +63,7 @@
             <div class="container">
                <div class="row first-line">
                    <div class="col-12 col-lg-8 col-xl-9">
-                      <a class="btn btn-outline-danger" href="/show" style="width: 100px; margin: -20px 0 10px 0;">Back</a>
+                      <a class="btn btn-outline-danger" href="/show" style="width: 100px; margin: -20px 0 10px 0;">Kembali</a>
                         <div class="card">
                             <h3>Keranjang Kamu</h3>
                             @if (Route::has('login'))
@@ -88,13 +88,13 @@
                                     <div class="form-check checkbox-select">
                                         <input class="form-check-input checkbox-all" type="checkbox" value="" id="chooseAllCheckbox">
                                         <label class="form-check-label" for="chooseAllCheckbox">
-                                            Choose all
+                                            Pilih Semua
                                         </label>
                                     </div>
                                     <div class="delete-button delete-all">
                                         <button class="delete-cart-button delete-all-button">
                                             <img src="./assets/img/icon/trash-delete-icon.svg" alt="">
-                                            Delete All
+                                            Hapus Semua
                                         </button>
                                     </div>
                                 </div>
@@ -119,7 +119,7 @@
                                     </a>
                                 @else
                                 <a href="/login" class="button button-primary w-100 text-decoration-none">
-                                    Login and Checkout
+                                    Masuk dan Checkout
                                 </a>
                                 @endauth
                             @endif
