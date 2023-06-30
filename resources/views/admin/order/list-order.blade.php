@@ -28,7 +28,7 @@
                             </td>
                             <td>{{ $orders->product }} / {{ $orders->category }}</td>
                             <td>
-                                @if($orders['status'] == 3)
+                                @if($orders['status'] == 3 || $orders['status'] == 1)
                                     <p style="color: green">Di Terima</p>
                                     @if($orders['updated_at'])
                                         <p>Tanggal Update: {{ $orders['updated_at']->format('d-m-Y') }}</p>
