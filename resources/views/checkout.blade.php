@@ -175,14 +175,8 @@
                                                             class="dropdown-item d-flex justify-content-between"
                                                             data-bs-toggle="modal"
                                                             data-bs-target="#modalDanaMethode">
-                                                            <p>Dana</p>
+                                                            <p>Transfer</p>
                                                         </button>
-                                                        <button class="dropdown-item"
-                                                            data-bs-toggle="modalPaypalMethode"
-                                                            data-bs-target="#modalPaypalMethode">Paypal</button>
-                                                        <button class="dropdown-item"
-                                                            data-bs-toggle="modalMidtransMethode"
-                                                            data-bs-target="#modalMidtransMethode">Midtrans</button>
                                                     </ul>
                                                 </div>
                                             </div>
@@ -207,7 +201,7 @@
                             data-bs-toggle="modal">
                             <ion-icon name="chevron-back-outline"></ion-icon>
                         </div>
-                        <h5 class="modal-title" id="exampleModalToggleLabel2">Dana</h5>
+                        <h5 class="modal-title" id="exampleModalToggleLabel2">Transfer</h5>
                     </div>
                 </div>
                 <div class="modal-body">
@@ -226,8 +220,8 @@
                         </div>
                         <div class="card-body">
                             <ul>
-                                <li>Transfer ke nomor<span class="bold-text">08735218721</span> atas nama 
-                                    Ajat Supriana.</li>
+                                <li>Transfer ke nomor <span class="bold-text">+62 857-1881-3616</span> atas nama 
+                                    Afif</li>
                                 <li>Pastikan Transfer Berhasil</li>
                                 <li>Screenshoot bukti transfer atau pembayaran</li>
                                 <li>Upload Bukti di kolom bawah dan submit</li>
@@ -237,7 +231,7 @@
 
                     <form action="{{route('pembayaran')}}" method="POST" enctype="multipart/form-data">
                         @csrf
-                            <p>Enter Proof of Transfer</p>
+                            <p>Upload Bukti Transfer</p>
                             <div class="form-input">
                                 <input type="file" name="bukti_pembayaran" class="form-control" >
                             </div>
@@ -278,7 +272,7 @@
                                 <input class="form-control image-product" name="image-product" readonly/>
                             </div>
                         </div>
-                            <button type="submit" class="button button-primary w-100">Pay</button>
+                            <button type="submit" class="button button-primary w-100">Bayar</button>
                     </form>
                 </div>
             </div>
